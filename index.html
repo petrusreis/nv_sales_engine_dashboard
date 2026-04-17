@@ -14,11 +14,9 @@
   :root {
     --bg-primary: #ffffff;
     --bg-secondary: #f1efe8;
-    --bg-tertiary: #f5f5f3;
     --text-primary: #1a1a18;
     --text-secondary: #73726c;
     --border: rgba(0,0,0,0.12);
-    --border-md: rgba(0,0,0,0.2);
     --radius-md: 8px;
     --radius-lg: 12px;
   }
@@ -33,68 +31,102 @@ const { useState, useMemo } = React;
 
 const SELLERS = ["Petrus", "Giuseppe", "Murillo"];
 const COLORS = { Petrus:"#7F77DD", Giuseppe:"#1D9E75", Murillo:"#BA7517" };
-const AVATARS = { Petrus:{bg:"#EEEDFE",color:"#3C3489",initials:"PR"}, Giuseppe:{bg:"#E1F5EE",color:"#085041",initials:"GZ"}, Murillo:{bg:"#FAEEDA",color:"#633806",initials:"MR"} };
-const SVC_META = { PL:{label:"Plumbing",color:"#7F77DD"}, EL:{label:"Electrical",color:"#1D9E75"}, FR:{label:"Framing",color:"#D85A30"}, GS:{label:"BIM Coord (GC)",color:"#378ADD"} };
-const STATUS_STYLE = { Approved:{bg:"#EAF3DE",color:"#3B6D11"}, Issued:{bg:"#E6F1FB",color:"#185FA5"}, Lost:{bg:"#FCEBEB",color:"#A32D2D"}, "Not Issued":{bg:"#F1EFE8",color:"#5F5E5A"} };
-const AWARD_STYLE = { "Bid List":{bg:"#F1EFE8",color:"#5F5E5A"}, "Warm Bid":{bg:"#FAEEDA",color:"#633806"}, "Awarded":{bg:"#EAF3DE",color:"#3B6D11"} };
+const AVATARS = {
+  Petrus:   {bg:"#EEEDFE", color:"#3C3489", initials:"PR"},
+  Giuseppe: {bg:"#E1F5EE", color:"#085041", initials:"GZ"},
+  Murillo:  {bg:"#FAEEDA", color:"#633806", initials:"MR"}
+};
+const SVC_META = {
+  PL:{label:"Plumbing",       color:"#7F77DD"},
+  EL:{label:"Electrical",     color:"#1D9E75"},
+  FR:{label:"Framing",        color:"#D85A30"},
+  GS:{label:"BIM Coord (GC)", color:"#378ADD"}
+};
+const STATUS_STYLE = {
+  Approved:    {bg:"#EAF3DE", color:"#3B6D11"},
+  Issued:      {bg:"#E6F1FB", color:"#185FA5"},
+  Lost:        {bg:"#FCEBEB", color:"#A32D2D"},
+  "Not Issued":{bg:"#F1EFE8", color:"#5F5E5A"}
+};
+const AWARD_STYLE = {
+  "Bid List": {bg:"#F1EFE8", color:"#5F5E5A"},
+  "Warm Bid": {bg:"#FAEEDA", color:"#633806"},
+  "Awarded":  {bg:"#EAF3DE", color:"#3B6D11"}
+};
 
 const weeklyData = [
-  {week:"2025-09-01",P:{calls:30,conn:3,pos:1,neg:0,email:2,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-09-08",P:{calls:263,conn:42,pos:9,neg:18,email:7,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-09-15",P:{calls:313,conn:36,pos:8,neg:13,email:2,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-09-22",P:{calls:169,conn:23,pos:1,neg:8,email:1,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-09-29",P:{calls:150,conn:21,pos:4,neg:9,email:2,mov:7},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-10-06",P:{calls:156,conn:33,pos:5,neg:14,email:3,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-10-13",P:{calls:95,conn:15,pos:0,neg:4,email:7,mov:7},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-10-20",P:{calls:132,conn:20,pos:6,neg:7,email:4,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-10-27",P:{calls:161,conn:23,pos:7,neg:10,email:0,mov:18},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-11-03",P:{calls:144,conn:28,pos:5,neg:14,email:0,mov:6},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-11-10",P:{calls:133,conn:21,pos:5,neg:12,email:0,mov:5},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-11-17",P:{calls:95,conn:21,pos:4,neg:15,email:0,mov:4},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-11-24",P:{calls:120,conn:24,pos:6,neg:9,email:3,mov:4},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-12-01",P:{calls:121,conn:23,pos:4,neg:6,email:1,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-12-08",P:{calls:63,conn:8,pos:3,neg:4,email:1,mov:15},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-12-15",P:{calls:117,conn:23,pos:3,neg:14,email:1,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-12-22",P:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2025-12-29",P:{calls:33,conn:0,pos:0,neg:0,email:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-01-05",P:{calls:52,conn:10,pos:4,neg:0,email:0,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-01-12",P:{calls:33,conn:4,pos:2,neg:1,email:0,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-01-19",P:{calls:77,conn:13,pos:1,neg:5,email:4,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-01-26",P:{calls:148,conn:22,pos:8,neg:9,email:3,mov:6},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-02-02",P:{calls:166,conn:23,pos:10,neg:7,email:3,mov:29},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-02-09",P:{calls:44,conn:6,pos:3,neg:2,email:1,mov:19},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-02-16",P:{calls:20,conn:9,pos:6,neg:1,email:0,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-02-23",P:{calls:32,conn:3,pos:2,neg:0,email:0,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-03-02",P:{calls:116,conn:15,pos:3,neg:6,email:1,mov:9},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-03-09",P:{calls:61,conn:7,pos:2,neg:2,email:0,mov:3},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-03-16",P:{calls:95,conn:8,pos:2,neg:1,email:0,mov:13},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-03-23",P:{calls:7,conn:3,pos:1,neg:0,email:1,mov:5},G:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,mov:0}},
-  {week:"2026-03-30",P:{calls:42,conn:7,pos:1,neg:3,email:0,mov:8},G:{calls:76,conn:9,pos:4,neg:2,email:0,mov:0},M:{calls:45,conn:12,pos:4,neg:1,email:0,mov:0}},
-  {week:"2026-04-06",P:{calls:39,conn:9,pos:4,neg:1,email:0,mov:0},G:{calls:320,conn:59,pos:17,neg:25,email:5,mov:1},M:{calls:191,conn:49,pos:21,neg:5,email:0,mov:1}},
-  {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,mov:3},G:{calls:247,conn:48,pos:7,neg:21,email:4,mov:8},M:{calls:192,conn:46,pos:11,neg:7,email:1,mov:5}},
+  {week:"2025-09-01",P:{calls:30,conn:3,pos:1,neg:0,email:2,deals:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-09-08",P:{calls:263,conn:42,pos:9,neg:18,email:7,deals:6,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-09-15",P:{calls:313,conn:36,pos:8,neg:13,email:2,deals:5,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-09-22",P:{calls:169,conn:23,pos:1,neg:8,email:1,deals:2,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-09-29",P:{calls:150,conn:21,pos:4,neg:9,email:2,deals:5,mov:7},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-10-06",P:{calls:156,conn:33,pos:5,neg:14,email:3,deals:5,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-10-13",P:{calls:95,conn:15,pos:0,neg:4,email:7,deals:10,mov:7},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-10-20",P:{calls:132,conn:20,pos:6,neg:7,email:4,deals:5,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-10-27",P:{calls:161,conn:23,pos:7,neg:10,email:0,deals:2,mov:18},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-11-03",P:{calls:144,conn:28,pos:5,neg:14,email:0,deals:4,mov:6},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-11-10",P:{calls:133,conn:21,pos:5,neg:12,email:0,deals:2,mov:5},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-11-17",P:{calls:95,conn:21,pos:4,neg:15,email:0,deals:5,mov:4},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-11-24",P:{calls:120,conn:24,pos:6,neg:9,email:3,deals:6,mov:4},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-12-01",P:{calls:121,conn:23,pos:4,neg:6,email:1,deals:4,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-12-08",P:{calls:63,conn:8,pos:3,neg:4,email:1,deals:1,mov:15},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-12-15",P:{calls:117,conn:23,pos:3,neg:14,email:1,deals:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-12-22",P:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-12-29",P:{calls:33,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-01-05",P:{calls:52,conn:10,pos:4,neg:0,email:0,deals:3,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-01-12",P:{calls:33,conn:4,pos:2,neg:1,email:0,deals:0,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-01-19",P:{calls:77,conn:13,pos:1,neg:5,email:4,deals:1,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-01-26",P:{calls:148,conn:22,pos:8,neg:9,email:3,deals:9,mov:6},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-02-02",P:{calls:166,conn:23,pos:10,neg:7,email:3,deals:5,mov:29},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-02-09",P:{calls:44,conn:6,pos:3,neg:2,email:1,deals:1,mov:19},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-02-16",P:{calls:20,conn:9,pos:6,neg:1,email:0,deals:1,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-02-23",P:{calls:32,conn:3,pos:2,neg:0,email:0,deals:1,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-03-02",P:{calls:116,conn:15,pos:3,neg:6,email:1,deals:1,mov:9},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-03-09",P:{calls:61,conn:7,pos:2,neg:2,email:0,deals:0,mov:3},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:3,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:4,mov:0}},
+  {week:"2026-03-16",P:{calls:95,conn:8,pos:2,neg:1,email:0,deals:2,mov:13},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:8,mov:1},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:6,mov:1}},
+  {week:"2026-03-23",P:{calls:7,conn:3,pos:1,neg:0,email:1,deals:0,mov:5},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:7,mov:8},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:6,mov:5}},
+  {week:"2026-03-30",P:{calls:42,conn:7,pos:1,neg:3,email:0,deals:0,mov:8},G:{calls:76,conn:9,pos:4,neg:2,email:0,deals:4,mov:5},M:{calls:45,conn:12,pos:4,neg:1,email:0,deals:1,mov:2}},
+  {week:"2026-04-06",P:{calls:39,conn:9,pos:4,neg:1,email:0,deals:1,mov:0},G:{calls:320,conn:59,pos:17,neg:25,email:5,deals:9,mov:5},M:{calls:191,conn:49,pos:21,neg:5,email:0,deals:5,mov:1}},
+  {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,deals:0,mov:4},G:{calls:247,conn:48,pos:7,neg:21,email:4,deals:10,mov:1},M:{calls:192,conn:46,pos:11,neg:7,email:1,deals:5,mov:2}},
 ];
 
 const allTimeTotals = {
-  Petrus:{calls:3268,conn:513,pos:126,neg:197,email:48,mov:80},
-  Giuseppe:{calls:1302,conn:236,pos:60,neg:105,email:12,mov:15},
-  Murillo:{calls:903,conn:166,pos:49,neg:32,email:3,mov:10},
+  Petrus:   {calls:3268, conn:513, pos:126, neg:197, email:48, deals:87, mov:80},
+  Giuseppe: {calls:1302, conn:236, pos:60,  neg:105, email:12, deals:41, mov:15},
+  Murillo:  {calls:903,  conn:166, pos:49,  neg:32,  email:3,  deals:26, mov:10},
 };
 
 const pipelines = [
-  {name:"Qualified Opportunities",color:"#7F77DD",description:"Pain identified — investing time and mapping stakeholders",total:62,
-    stages:[{name:"Becoming a Preferred Vendor",deals:9},{name:"Meeting Booked/Held",deals:2},{name:"Oppty Identified",deals:21},{name:"Added to Bid List",deals:15},{name:"Pricing Sent",deals:3},{name:"Closed Won",deals:1},{name:"Closed Lost",deals:11}]},
-  {name:"Research & Development",color:"#1D9E75",description:"Early stage — future opportunities worth continuing to call",total:82,
-    stages:[{name:"Initial Contact",deals:47},{name:"Mapping Stakeholders",deals:23},{name:"Qualified Opportunity",deals:1},{name:"No Opportunity Here",deals:11}]},
-  {name:"Circle Back Later",color:"#BA7517",description:"Went cold or lost a bid — nurture for future opportunities",total:12,
-    stages:[{name:"On Hold",deals:11},{name:"Big Fat NO",deals:1}]},
+  {name:"Research & Development", color:"#1D9E75", description:"Early stage — future opportunities worth continuing to call", total:82,
+    stages:[
+      {name:"Initial Contact",      deals:47},
+      {name:"Mapping Stakeholders", deals:23},
+      {name:"Qualified Opportunity",deals:1,  highlight:"green"},
+      {name:"No Opportunity Here",  deals:11, highlight:"red"},
+    ]},
+  {name:"Qualified Opportunities", color:"#7F77DD", description:"Pain identified — investing time and mapping stakeholders", total:62,
+    stages:[
+      {name:"Oppty Identified",           deals:21},
+      {name:"Added to Bid List",          deals:15},
+      {name:"Meeting Booked/Held",        deals:2},
+      {name:"Becoming a Preferred Vendor",deals:9},
+      {name:"Pricing Sent",               deals:3},
+      {name:"Closed Won",                 deals:1,  highlight:"green"},
+      {name:"Closed Lost",                deals:11, highlight:"red"},
+    ]},
+  {name:"Circle Back Later", color:"#BA7517", description:"Went cold or lost a bid — nurture for future opportunities", total:12,
+    stages:[
+      {name:"On Hold",    deals:11},
+      {name:"Big Fat NO", deals:1, highlight:"red"},
+    ]},
 ];
 
 const serviceLines = [
-  {svc:"PL",label:"Plumbing",deals:65,movement:49,tasks:82},
-  {svc:"EL",label:"Electrical",deals:28,movement:19,tasks:12},
-  {svc:"GS",label:"BIM Coord (GC)",deals:25,movement:11,tasks:14},
-  {svc:"FR",label:"Framing",deals:12,movement:8,tasks:10},
-  {svc:"MEP",label:"MEP (full)",deals:9,movement:6,tasks:21},
+  {svc:"PL", label:"Plumbing",       deals:65, movement:49, tasks:82},
+  {svc:"EL", label:"Electrical",     deals:28, movement:19, tasks:12},
+  {svc:"GS", label:"BIM Coord (GC)", deals:25, movement:11, tasks:14},
+  {svc:"FR", label:"Framing",        deals:12, movement:8,  tasks:10},
+  {svc:"MEP",label:"MEP (full)",     deals:9,  movement:6,  tasks:21},
 ];
 
 const quotes = [
@@ -178,65 +210,95 @@ const quotes = [
 
 const TODAY = new Date("2026-04-16");
 const PERIODS = [
-  {label:"Last 7 days",days:7},
-  {label:"Last 30 days",days:30},
-  {label:"This month",thisMonth:true},
-  {label:"Last 60 days",days:60},
-  {label:"Last 90 days",days:90},
+  {label:"Last 7 days",  days:7},
+  {label:"Last 30 days", days:30},
+  {label:"This month",   thisMonth:true},
+  {label:"Last 60 days", days:60},
+  {label:"Last 90 days", days:90},
   {label:"All time"},
 ];
 
-function daysAgo(n){const d=new Date(TODAY);d.setDate(d.getDate()-n);return d;}
-function fmt$(n){return n?"$"+Math.round(n).toLocaleString():"—";}
-function pct(a,b){return b?Math.round((a/b)*100)+"%":"0%";}
+function daysAgo(n) { const d=new Date(TODAY); d.setDate(d.getDate()-n); return d; }
+function fmt$(n)    { return n ? "$"+Math.round(n).toLocaleString() : "—"; }
+function pct(a,b)   { return b ? Math.round((a/b)*100)+"%" : "0%"; }
 
-function filterWeeks(period){
-  if(!period.days&&!period.thisMonth)return weeklyData;
-  const cutoff=period.thisMonth?new Date(TODAY.getFullYear(),TODAY.getMonth(),1):daysAgo(period.days);
-  return weeklyData.filter(w=>new Date(w.week)>=cutoff);
+function filterWeeks(period) {
+  if (!period.days && !period.thisMonth) return weeklyData;
+  const cutoff = period.thisMonth
+    ? new Date(TODAY.getFullYear(), TODAY.getMonth(), 1)
+    : daysAgo(period.days);
+  return weeklyData.filter(w => new Date(w.week) >= cutoff);
 }
-function filterQuotes(period){
-  if(!period.days&&!period.thisMonth)return quotes;
-  const cutoff=period.thisMonth?new Date(TODAY.getFullYear(),TODAY.getMonth(),1):daysAgo(period.days);
-  return quotes.filter(q=>new Date(q.date)>=cutoff);
+function filterQuotes(period) {
+  if (!period.days && !period.thisMonth) return quotes;
+  const cutoff = period.thisMonth
+    ? new Date(TODAY.getFullYear(), TODAY.getMonth(), 1)
+    : daysAgo(period.days);
+  return quotes.filter(q => new Date(q.date) >= cutoff);
 }
-function sumWeeks(weeks,key){
-  return weeks.reduce((acc,w)=>{const d=w[key];acc.calls+=d.calls;acc.conn+=d.conn;acc.pos+=d.pos;acc.neg+=d.neg;acc.email+=d.email;acc.mov+=d.mov;return acc;},{calls:0,conn:0,pos:0,neg:0,email:0,mov:0});
+function sumWeeks(weeks, key) {
+  return weeks.reduce((acc, w) => {
+    const d = w[key];
+    acc.calls  += d.calls  || 0;
+    acc.conn   += d.conn   || 0;
+    acc.pos    += d.pos    || 0;
+    acc.neg    += d.neg    || 0;
+    acc.email  += d.email  || 0;
+    acc.deals  += d.deals  || 0;
+    acc.mov    += d.mov    || 0;
+    return acc;
+  }, {calls:0, conn:0, pos:0, neg:0, email:0, deals:0, mov:0});
 }
 
-function Card({label,value,sub,vc}){
+function Card({label, value, sub, vc}) {
   return <div style={{background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.85rem 1rem"}}>
     <div style={{fontSize:12,color:"var(--text-secondary)",marginBottom:4}}>{label}</div>
     <div style={{fontSize:20,fontWeight:500,color:vc||"var(--text-primary)"}}>{value}</div>
-    {sub&&<div style={{fontSize:12,color:"var(--text-secondary)",marginTop:2}}>{sub}</div>}
+    {sub && <div style={{fontSize:12,color:"var(--text-secondary)",marginTop:2}}>{sub}</div>}
   </div>;
 }
-function ST({children}){return <div style={{fontSize:11,fontWeight:500,color:"var(--text-secondary)",textTransform:"uppercase",letterSpacing:"0.05em",margin:"1.75rem 0 0.75rem"}}>{children}</div>;}
-function FB({options,active,onChange}){
+function ST({children}) {
+  return <div style={{fontSize:11,fontWeight:500,color:"var(--text-secondary)",textTransform:"uppercase",letterSpacing:"0.05em",margin:"1.75rem 0 0.75rem"}}>{children}</div>;
+}
+function FB({options, active, onChange}) {
   return <div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:"0.75rem"}}>
-    {options.map((o,i)=><button key={i} onClick={()=>onChange(o)} style={{fontSize:12,padding:"4px 14px",borderRadius:999,border:`1px solid ${active===o?"#888":"#ccc"}`,background:active===o?"var(--bg-secondary)":"transparent",color:active===o?"var(--text-primary)":"var(--text-secondary)",fontWeight:active===o?500:400}}>{o}</button>)}
+    {options.map((o,i) => <button key={i} onClick={()=>onChange(o)} style={{fontSize:12,padding:"4px 14px",borderRadius:999,border:`1px solid ${active===o?"#888":"#ccc"}`,background:active===o?"var(--bg-secondary)":"transparent",color:active===o?"var(--text-primary)":"var(--text-secondary)",fontWeight:active===o?500:400}}>{o}</button>)}
   </div>;
 }
-function BarRow({label,value,max,color,meta}){
-  const p=max>0?Math.round((value/max)*100):0;
+function BarRow({label, value, max, color, meta}) {
+  const p = max > 0 ? Math.round((value/max)*100) : 0;
   return <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}>
     <div style={{fontSize:12,color:"var(--text-secondary)",width:140,flexShrink:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{label}</div>
-    <div style={{flex:1,height:16,background:"var(--bg-secondary)",borderRadius:4,overflow:"hidden"}}><div style={{height:"100%",width:p+"%",background:color,borderRadius:4}}/></div>
+    <div style={{flex:1,height:16,background:"var(--bg-secondary)",borderRadius:4,overflow:"hidden"}}>
+      <div style={{height:"100%",width:p+"%",background:color,borderRadius:4}}/>
+    </div>
     <div style={{fontSize:12,fontWeight:500,color:"var(--text-primary)",width:90,textAlign:"right",flexShrink:0}}>{meta}</div>
   </div>;
 }
-function SellerCard({seller,data}){
-  const av=AVATARS[seller];
-  const pickup=data.calls?Math.round((data.conn/data.calls)*100):0;
-  const posRate=data.conn?Math.round((data.pos/data.conn)*100):0;
+function SellerCard({seller, data}) {
+  const av = AVATARS[seller];
+  const pickup  = data.calls > 0 ? Math.round((data.conn  / data.calls) * 100) : 0;
+  const posRate  = data.conn  > 0 ? Math.round((data.pos   / data.conn)  * 100) : 0;
+  const dealRate = data.conn  > 0 ? Math.round((data.deals / data.conn)  * 100) : 0;
   return <div style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}}>
     <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12,fontSize:14,fontWeight:500}}>
       <div style={{width:28,height:28,borderRadius:"50%",background:av.bg,color:av.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:500}}>{av.initials}</div>
       {seller}
     </div>
-    {[["Calls logged",data.calls.toLocaleString()],["Connected",data.conn.toLocaleString()],["Pickup rate",pickup+"%"],["Positive",`${data.pos} (${posRate}%)`],["Negative",data.neg],["Asked email",data.email],["Deal movement",data.mov]].map(([l,v])=>(
+    {[
+      ["Calls logged",   data.calls.toLocaleString()],
+      ["Connected",      data.conn.toLocaleString()],
+      ["Pickup rate",    pickup+"%"],
+      ["Positive",       `${data.pos} (${posRate}%)`],
+      ["Negative",       data.neg],
+      ["Asked email",    data.email],
+      ["Deals created",  data.deals],
+      ["Deal movement",  data.mov],
+      ["Pickup → deal",  dealRate+"%"],
+    ].map(([l,v]) => (
       <div key={l} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid var(--border)",fontSize:13}}>
-        <span style={{color:"var(--text-secondary)"}}>{l}</span><span style={{fontWeight:500}}>{v}</span>
+        <span style={{color:"var(--text-secondary)"}}>{l}</span>
+        <span style={{fontWeight:500}}>{v}</span>
       </div>
     ))}
     <div style={{marginTop:8,height:6,borderRadius:3,background:"var(--bg-secondary)",overflow:"hidden"}}>
@@ -245,33 +307,73 @@ function SellerCard({seller,data}){
   </div>;
 }
 
-function App(){
-  const [pi,setPi]=useState(5);
-  const [qsf,setQsf]=useState("All");
-  const [qaf,setQaf]=useState("All");
-  const [tab,setTab]=useState("activity");
-  const period=PERIODS[pi];
-  const isAllTime=!period.days&&!period.thisMonth;
+function App() {
+  const [pi,  setPi]  = useState(5);
+  const [qsf, setQsf] = useState("All");
+  const [qaf, setQaf] = useState("All");
+  const [tab, setTab] = useState("activity");
+  const period = PERIODS[pi];
+  const isAllTime = !period.days && !period.thisMonth;
 
-  const fw=useMemo(()=>filterWeeks(period),[pi]);
-  const st=useMemo(()=>{
-    if(isAllTime)return allTimeTotals;
-    return {Petrus:sumWeeks(fw,"P"),Giuseppe:sumWeeks(fw,"G"),Murillo:sumWeeks(fw,"M")};
-  },[fw,pi]);
-  const tt=useMemo(()=>SELLERS.reduce((acc,s)=>{const d=st[s];acc.calls+=d.calls;acc.conn+=d.conn;acc.pos+=d.pos;acc.email+=d.email;acc.mov+=d.mov;return acc;},{calls:0,conn:0,pos:0,email:0,mov:0}),[st]);
+  const fw = useMemo(() => filterWeeks(period), [pi]);
 
-  const pq=useMemo(()=>filterQuotes(period),[pi]);
-  const fq=useMemo(()=>{let q=pq;if(qsf!=="All")q=q.filter(x=>x.status===qsf);if(qaf!=="All")q=q.filter(x=>x.award===qaf);return q;},[pq,qsf,qaf]);
-  const qt=useMemo(()=>{
-    const all=pq,sum=arr=>arr.reduce((s,q)=>s+(q.amount||0),0);
-    return {total:sum(all),count:all.length,approved:sum(all.filter(q=>q.status==="Approved")),approvedN:all.filter(q=>q.status==="Approved").length,issued:sum(all.filter(q=>q.status==="Issued")),issuedN:all.filter(q=>q.status==="Issued").length,lost:sum(all.filter(q=>q.status==="Lost")),lostN:all.filter(q=>q.status==="Lost").length,notIssuedN:all.filter(q=>q.status==="Not Issued").length,bidList:sum(all.filter(q=>q.award==="Bid List")),bidListN:all.filter(q=>q.award==="Bid List").length,warmBid:sum(all.filter(q=>q.award==="Warm Bid")),warmBidN:all.filter(q=>q.award==="Warm Bid").length,awarded:sum(all.filter(q=>q.award==="Awarded")),awardedN:all.filter(q=>q.award==="Awarded").length};
-  },[pq]);
-  const sqt=useMemo(()=>{const t={};pq.forEach(q=>{t[q.svc]=(t[q.svc]||0)+(q.amount||0);});return t;},[pq]);
+  const st = useMemo(() => {
+    if (isAllTime) return allTimeTotals;
+    return {
+      Petrus:   sumWeeks(fw, "P"),
+      Giuseppe: sumWeeks(fw, "G"),
+      Murillo:  sumWeeks(fw, "M"),
+    };
+  }, [fw, pi]);
 
-  const tabs=[{id:"activity",label:"Outbound Activity"},{id:"quotes",label:"Quotes"},{id:"pipeline",label:"Pipeline"},{id:"services",label:"Service Lines"}];
+  const tt = useMemo(() => SELLERS.reduce((acc, s) => {
+    const d = st[s];
+    acc.calls  += d.calls  || 0;
+    acc.conn   += d.conn   || 0;
+    acc.pos    += d.pos    || 0;
+    acc.email  += d.email  || 0;
+    acc.deals  += d.deals  || 0;
+    acc.mov    += d.mov    || 0;
+    return acc;
+  }, {calls:0, conn:0, pos:0, email:0, deals:0, mov:0}), [st]);
 
-  const thStyle={textAlign:"left",fontSize:11,fontWeight:500,color:"var(--text-secondary)",padding:"8px 10px",borderBottom:"1px solid var(--border)",background:"var(--bg-secondary)"};
-  const tdStyle={padding:"7px 10px",borderBottom:"1px solid var(--border)",color:"var(--text-primary)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"};
+  const pq = useMemo(() => filterQuotes(period), [pi]);
+  const fq = useMemo(() => {
+    let q = pq;
+    if (qsf !== "All") q = q.filter(x => x.status === qsf);
+    if (qaf !== "All") q = q.filter(x => x.award  === qaf);
+    return q;
+  }, [pq, qsf, qaf]);
+
+  const qt = useMemo(() => {
+    const all = pq;
+    const sum = arr => arr.reduce((s,q) => s+(q.amount||0), 0);
+    return {
+      total:    sum(all), count: all.length,
+      approved: sum(all.filter(q=>q.status==="Approved")),   approvedN: all.filter(q=>q.status==="Approved").length,
+      issued:   sum(all.filter(q=>q.status==="Issued")),     issuedN:   all.filter(q=>q.status==="Issued").length,
+      lost:     sum(all.filter(q=>q.status==="Lost")),       lostN:     all.filter(q=>q.status==="Lost").length,
+      notIssuedN: all.filter(q=>q.status==="Not Issued").length,
+      bidList:  sum(all.filter(q=>q.award==="Bid List")),    bidListN:  all.filter(q=>q.award==="Bid List").length,
+      warmBid:  sum(all.filter(q=>q.award==="Warm Bid")),    warmBidN:  all.filter(q=>q.award==="Warm Bid").length,
+      awarded:  sum(all.filter(q=>q.award==="Awarded")),     awardedN:  all.filter(q=>q.award==="Awarded").length,
+    };
+  }, [pq]);
+
+  const sqt = useMemo(() => {
+    const t = {};
+    pq.forEach(q => { t[q.svc] = (t[q.svc]||0) + (q.amount||0); });
+    return t;
+  }, [pq]);
+
+  const tabs = [
+    {id:"activity", label:"Outbound Activity"},
+    {id:"quotes",   label:"Quotes"},
+    {id:"pipeline", label:"Pipeline"},
+  ];
+
+  const thS = {textAlign:"left",fontSize:11,fontWeight:500,color:"var(--text-secondary)",padding:"8px 10px",borderBottom:"1px solid var(--border)",background:"var(--bg-secondary)"};
+  const tdS = {padding:"7px 10px",borderBottom:"1px solid var(--border)",color:"var(--text-primary)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"};
 
   return (
     <div style={{fontFamily:"inherit"}}>
@@ -281,53 +383,50 @@ function App(){
       </div>
 
       <div style={{display:"flex",gap:6,flexWrap:"wrap",margin:"1.25rem 0"}}>
-        {PERIODS.map((p,i)=><button key={i} onClick={()=>setPi(i)} style={{fontSize:12,padding:"5px 14px",borderRadius:999,border:`1px solid ${pi===i?"#888":"#ccc"}`,background:pi===i?"#e8e6df":"transparent",color:pi===i?"var(--text-primary)":"var(--text-secondary)",fontWeight:pi===i?500:400}}>{p.label}</button>)}
+        {PERIODS.map((p,i) => <button key={i} onClick={()=>setPi(i)} style={{fontSize:12,padding:"5px 14px",borderRadius:999,border:`1px solid ${pi===i?"#888":"#ccc"}`,background:pi===i?"#e8e6df":"transparent",color:pi===i?"var(--text-primary)":"var(--text-secondary)",fontWeight:pi===i?500:400}}>{p.label}</button>)}
       </div>
 
       <div style={{display:"flex",borderBottom:"1px solid var(--border)",marginBottom:"1.5rem"}}>
-        {tabs.map(t=><button key={t.id} onClick={()=>setTab(t.id)} style={{fontSize:13,padding:"8px 18px",border:"none",borderBottom:tab===t.id?"2px solid var(--text-primary)":"2px solid transparent",background:"transparent",color:tab===t.id?"var(--text-primary)":"var(--text-secondary)",fontWeight:tab===t.id?500:400}}>{t.label}</button>)}
+        {tabs.map(t => <button key={t.id} onClick={()=>setTab(t.id)} style={{fontSize:13,padding:"8px 18px",border:"none",borderBottom:tab===t.id?"2px solid var(--text-primary)":"2px solid transparent",background:"transparent",color:tab===t.id?"var(--text-primary)":"var(--text-secondary)",fontWeight:tab===t.id?500:400}}>{t.label}</button>)}
       </div>
 
-      {tab==="activity"&&<div>
+      {tab==="activity" && <div>
         <ST>Team totals</ST>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:"0.5rem"}}>
-          <Card label="Calls logged" value={tt.calls.toLocaleString()} sub="all sellers"/>
-          <Card label="Connected" value={tt.conn.toLocaleString()} sub={pct(tt.conn,tt.calls)+" pickup rate"}/>
-          <Card label="Positive" value={tt.pos.toLocaleString()} sub={pct(tt.pos,tt.conn)+" of pickups"}/>
-          <Card label="Asked for email" value={tt.email.toLocaleString()}/>
-          <Card label="Deal movement" value={tt.mov.toLocaleString()} sub="stage changes"/>
+          <Card label="Calls logged"   value={tt.calls.toLocaleString()}  sub="all sellers"/>
+          <Card label="Connected"      value={tt.conn.toLocaleString()}   sub={pct(tt.conn,tt.calls)+" pickup rate"}/>
+          <Card label="Positive"       value={tt.pos.toLocaleString()}    sub={pct(tt.pos,tt.conn)+" of pickups"}/>
+          <Card label="Asked for email"value={tt.email.toLocaleString()}/>
+          <Card label="Deals created"  value={tt.deals.toLocaleString()}  sub="new deals"/>
+          <Card label="Deal movement"  value={tt.mov.toLocaleString()}    sub="stage changes"/>
         </div>
         <ST>By seller</ST>
         <div style={{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:12}}>
-          {SELLERS.map(s=><SellerCard key={s} seller={s} data={st[s]}/>)}
+          {SELLERS.map(s => <SellerCard key={s} seller={s} data={st[s]}/>)}
         </div>
-        <ST>Pickup rate comparison</ST>
-        <div style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}}>
-          {SELLERS.map(s=>{const d=st[s],r=d.calls?Math.round((d.conn/d.calls)*100):0;return(
-            <div key={s} style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-              <div style={{width:80,fontSize:13,color:"var(--text-secondary)"}}>{s}</div>
-              <div style={{flex:1,height:18,background:"var(--bg-secondary)",borderRadius:4,overflow:"hidden"}}><div style={{width:r+"%",height:"100%",background:COLORS[s],borderRadius:4}}/></div>
-              <div style={{fontSize:13,fontWeight:500,width:40,textAlign:"right"}}>{r}%</div>
-            </div>
-          );})}
-        </div>
-        {!isAllTime&&<div style={{marginTop:12,fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.75rem 1rem"}}>Giuseppe and Murillo call data starts from week of Mar 30, 2026. Earlier periods show 0 for their metrics.</div>}
+        {!isAllTime && <div style={{marginTop:12,fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.75rem 1rem"}}>Giuseppe and Murillo call data starts from week of Mar 30, 2026. Earlier periods show 0 for their metrics.</div>}
       </div>}
 
-      {tab==="quotes"&&<div>
+      {tab==="quotes" && <div>
         <ST>By quote status</ST>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:"1rem"}}>
-          <Card label="Total quoted" value={fmt$(qt.total)} sub={qt.count+" quotes"}/>
-          <Card label="Approved" value={fmt$(qt.approved)} sub={qt.approvedN+" quote(s)"} vc="#3B6D11"/>
-          <Card label="Issued (pending)" value={fmt$(qt.issued)} sub={qt.issuedN+" quotes"} vc="#185FA5"/>
-          <Card label="Lost" value={fmt$(qt.lost)} sub={qt.lostN+" quotes"} vc="#A32D2D"/>
-          <Card label="Not issued" value={qt.notIssuedN+" quotes"} sub="prepared, not sent"/>
+          <Card label="Total quoted"    value={fmt$(qt.total)}    sub={qt.count+" quotes"}/>
+          <Card label="Approved"        value={fmt$(qt.approved)} sub={qt.approvedN+" quote(s)"} vc="#3B6D11"/>
+          <Card label="Issued (pending)"value={fmt$(qt.issued)}   sub={qt.issuedN+" quotes"}     vc="#185FA5"/>
+          <Card label="Lost"            value={fmt$(qt.lost)}     sub={qt.lostN+" quotes"}        vc="#A32D2D"/>
+          <Card label="Not issued"      value={qt.notIssuedN+" quotes"} sub="prepared, not sent"/>
         </div>
         <ST>By award stage</ST>
         <div style={{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:10,marginBottom:"1rem"}}>
-          {[{k:"bidList",label:"Bid list",badge:"coldest",badgeStyle:{bg:"#F1EFE8",color:"#5F5E5A"},vc:"var(--text-primary)",v:qt.bidList,n:qt.bidListN},{k:"warmBid",label:"Warm bid",vc:"#633806",v:qt.warmBid,n:qt.warmBidN},{k:"awarded",label:"Awarded",badge:"warmest",badgeStyle:{bg:"#EAF3DE",color:"#3B6D11"},vc:"#3B6D11",v:qt.awarded,n:qt.awardedN}].map(a=>(
-            <div key={a.k} style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}}>
-              <div style={{fontSize:12,color:"var(--text-secondary)",marginBottom:6}}>{a.label}{a.badge&&<span style={{fontSize:10,background:a.badgeStyle.bg,color:a.badgeStyle.color,padding:"1px 6px",borderRadius:999,marginLeft:6}}>{a.badge}</span>}</div>
+          {[
+            {label:"Bid list",  badge:"coldest", badgeS:{bg:"#F1EFE8",color:"#5F5E5A"}, vc:"var(--text-primary)", v:qt.bidList, n:qt.bidListN},
+            {label:"Warm bid",  vc:"#633806", v:qt.warmBid, n:qt.warmBidN},
+            {label:"Awarded",   badge:"warmest", badgeS:{bg:"#EAF3DE",color:"#3B6D11"}, vc:"#3B6D11",            v:qt.awarded, n:qt.awardedN},
+          ].map((a,i) => (
+            <div key={i} style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}}>
+              <div style={{fontSize:12,color:"var(--text-secondary)",marginBottom:6}}>
+                {a.label}{a.badge && <span style={{fontSize:10,background:a.badgeS.bg,color:a.badgeS.color,padding:"1px 6px",borderRadius:999,marginLeft:6}}>{a.badge}</span>}
+              </div>
               <div style={{fontSize:20,fontWeight:500,color:a.vc}}>{fmt$(a.v)}</div>
               <div style={{fontSize:12,color:"var(--text-secondary)",marginTop:2}}>{a.n} quotes</div>
             </div>
@@ -335,7 +434,10 @@ function App(){
         </div>
         <ST>By service line</ST>
         <div style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem",marginBottom:"1rem"}}>
-          {Object.entries(SVC_META).map(([k,v])=>{const val=sqt[k]||0,max=Math.max(...Object.values(sqt).filter(Boolean),1);return <BarRow key={k} label={v.label} value={val} max={max} color={v.color} meta={fmt$(val)}/>;  })}
+          {Object.entries(SVC_META).map(([k,v]) => {
+            const val=sqt[k]||0, max=Math.max(...Object.values(sqt).filter(Boolean),1);
+            return <BarRow key={k} label={v.label} value={val} max={max} color={v.color} meta={fmt$(val)}/>;
+          })}
         </div>
         <ST>All quotes</ST>
         <div style={{display:"flex",gap:"1.5rem",flexWrap:"wrap",marginBottom:"0.75rem"}}>
@@ -345,31 +447,35 @@ function App(){
         <div style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"auto"}}>
           <table style={{width:"100%",fontSize:12,tableLayout:"fixed",minWidth:600}}>
             <colgroup><col style={{width:"17%"}}/><col style={{width:"25%"}}/><col style={{width:"6%"}}/><col style={{width:"13%"}}/><col style={{width:"11%"}}/><col style={{width:"12%"}}/><col style={{width:"10%"}}/><col style={{width:"6%"}}/></colgroup>
-            <thead><tr>{["Client","Project","Svc","Amount","Date","Status","Award","Days"].map(h=><th key={h} style={thStyle}>{h}</th>)}</tr></thead>
+            <thead><tr>{["Client","Project","Svc","Amount","Date","Status","Award","Days"].map(h=><th key={h} style={thS}>{h}</th>)}</tr></thead>
             <tbody>
-              {fq.map((q,i)=>{
-                const ss=STATUS_STYLE[q.status]||STATUS_STYLE["Not Issued"],as=AWARD_STYLE[q.award]||AWARD_STYLE["Bid List"],sm=SVC_META[q.svc]||{label:q.svc,color:"#888"},days=Math.round((TODAY-new Date(q.date))/86400000);
+              {fq.map((q,i) => {
+                const ss=STATUS_STYLE[q.status]||STATUS_STYLE["Not Issued"];
+                const as=AWARD_STYLE[q.award]||AWARD_STYLE["Bid List"];
+                const sm=SVC_META[q.svc]||{label:q.svc,color:"#888"};
+                const days=Math.round((TODAY-new Date(q.date))/86400000);
                 return <tr key={i}>
-                  <td style={tdStyle} title={q.client}>{q.client}</td>
-                  <td style={tdStyle} title={q.project}>{q.project}</td>
-                  <td style={{...tdStyle}}><span style={{background:sm.color+"22",color:sm.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}}>{q.svc}</span></td>
-                  <td style={{...tdStyle,fontWeight:500}}>{fmt$(q.amount)}</td>
-                  <td style={{...tdStyle,fontSize:11,color:"var(--text-secondary)"}}>{q.date}</td>
-                  <td style={tdStyle}><span style={{background:ss.bg,color:ss.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}}>{q.status}</span></td>
-                  <td style={tdStyle}><span style={{background:as.bg,color:as.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}}>{q.award}</span></td>
-                  <td style={{...tdStyle,fontSize:11,color:"var(--text-secondary)"}}>{days}d</td>
+                  <td style={tdS} title={q.client}>{q.client}</td>
+                  <td style={tdS} title={q.project}>{q.project}</td>
+                  <td style={tdS}><span style={{background:sm.color+"22",color:sm.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}}>{q.svc}</span></td>
+                  <td style={{...tdS,fontWeight:500}}>{fmt$(q.amount)}</td>
+                  <td style={{...tdS,fontSize:11,color:"var(--text-secondary)"}}>{q.date}</td>
+                  <td style={tdS}><span style={{background:ss.bg,color:ss.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}}>{q.status}</span></td>
+                  <td style={tdS}><span style={{background:as.bg,color:as.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}}>{q.award}</span></td>
+                  <td style={{...tdS,fontSize:11,color:"var(--text-secondary)"}}>{days}d</td>
                 </tr>;
               })}
-              {fq.length===0&&<tr><td colSpan={8} style={{padding:"1.5rem",textAlign:"center",color:"var(--text-secondary)",fontSize:13}}>No quotes match this filter.</td></tr>}
+              {fq.length===0 && <tr><td colSpan={8} style={{padding:"1.5rem",textAlign:"center",color:"var(--text-secondary)",fontSize:13}}>No quotes match this filter.</td></tr>}
             </tbody>
           </table>
         </div>
       </div>}
 
-      {tab==="pipeline"&&<div>
+      {tab==="pipeline" && <div>
+        <div style={{fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.65rem 1rem",marginBottom:"1rem"}}>All data on this tab is all-time only and is not affected by the time filter above.</div>
         <ST>Pipeline overview</ST>
         <div style={{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:10,marginBottom:"1.5rem"}}>
-          {pipelines.map(p=>(
+          {pipelines.map(p => (
             <div key={p.name} style={{background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.85rem 1rem",borderLeft:`3px solid ${p.color}`}}>
               <div style={{fontSize:12,color:"var(--text-secondary)",marginBottom:4}}>{p.name}</div>
               <div style={{fontSize:24,fontWeight:500,marginBottom:2}}>{p.total}</div>
@@ -377,7 +483,7 @@ function App(){
             </div>
           ))}
         </div>
-        {pipelines.map(p=>(
+        {pipelines.map(p => (
           <div key={p.name} style={{marginBottom:"1.5rem"}}>
             <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:"0.75rem"}}>
               <div style={{width:10,height:10,borderRadius:2,background:p.color}}/>
@@ -387,21 +493,39 @@ function App(){
             <div style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"hidden"}}>
               <table style={{width:"100%",fontSize:13}}>
                 <thead><tr>
-                  <th style={{...thStyle,width:"40%"}}>Stage</th>
-                  <th style={{...thStyle,textAlign:"right"}}>Deals</th>
-                  <th style={{...thStyle,textAlign:"right"}}>Share</th>
-                  <th style={{...thStyle,width:"35%"}}></th>
+                  <th style={{...thS,width:"40%"}}>Stage</th>
+                  <th style={{...thS,textAlign:"right"}}>Deals</th>
+                  <th style={{...thS,textAlign:"right"}}>Share</th>
+                  <th style={{...thS,width:"35%"}}></th>
                 </tr></thead>
                 <tbody>
-                  {p.stages.filter(s=>s.deals>0).map((s,i,arr)=>{
-                    const max=Math.max(...arr.map(x=>x.deals));
+                  {p.stages.filter(s=>s.deals>0).map((s,i,arr) => {
+                    const max = Math.max(...arr.map(x=>x.deals));
+                    const isRed   = s.highlight==="red";
+                    const isGreen = s.highlight==="green";
+                    const nameColor = isRed?"#A32D2D":isGreen?"#3B6D11":"var(--text-primary)";
+                    const barColor  = isRed?"#E24B4A":isGreen?"#639922":p.color;
+                    const isLast = i === arr.filter(x=>x.deals>0).length - 1;
+                    const isFirst = i === 0;
                     return <tr key={s.name} style={{borderBottom:"1px solid var(--border)"}}>
-                      <td style={{padding:"7px 12px"}}>{s.name}</td>
-                      <td style={{padding:"7px 12px",textAlign:"right",fontWeight:500}}>{s.deals}</td>
+                      <td style={{padding:"7px 12px"}}>
+                        <div style={{display:"flex",alignItems:"center",gap:8}}>
+                          <div style={{display:"flex",flexDirection:"column",alignItems:"center",width:16,flexShrink:0}}>
+                            {isFirst
+                              ? <span style={{fontSize:13}}>▽</span>
+                              : isLast
+                                ? <span style={{fontSize:11,color:nameColor}}>▼</span>
+                                : <span style={{fontSize:10,color:"var(--text-secondary)"}}>│</span>
+                            }
+                          </div>
+                          <span style={{color:nameColor,fontWeight:isRed||isGreen?500:400}}>{s.name}</span>
+                        </div>
+                      </td>
+                      <td style={{padding:"7px 12px",textAlign:"right",fontWeight:500,color:nameColor}}>{s.deals}</td>
                       <td style={{padding:"7px 12px",textAlign:"right",color:"var(--text-secondary)",fontSize:12}}>{Math.round((s.deals/p.total)*100)}%</td>
                       <td style={{padding:"7px 12px"}}>
                         <div style={{height:8,background:"var(--bg-secondary)",borderRadius:4,overflow:"hidden"}}>
-                          <div style={{height:"100%",width:Math.round((s.deals/max)*100)+"%",background:p.color,opacity:0.75,borderRadius:4}}/>
+                          <div style={{height:"100%",width:Math.round((s.deals/max)*100)+"%",background:barColor,opacity:0.8,borderRadius:4}}/>
                         </div>
                       </td>
                     </tr>;
@@ -411,19 +535,16 @@ function App(){
             </div>
           </div>
         ))}
-      </div>}
 
-      {tab==="services"&&<div>
-        <div style={{fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.65rem 1rem",marginBottom:"1rem"}}>Service line deal data is all-time only. Time filter applies to quotes and call activity only.</div>
-        <ST>Deals by service</ST>
+        <ST>Deals by service line</ST>
         <div style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"hidden",marginBottom:"1rem"}}>
           <table style={{width:"100%",fontSize:13}}>
             <thead><tr>
-              {["Service","Deals","Deal movement","Move rate","Tasks"].map(h=><th key={h} style={{...thStyle,textAlign:h==="Service"?"left":"right"}}>{h}</th>)}
+              {["Service","Deals","Deal movement","Move rate","Tasks"].map(h=><th key={h} style={{...thS,textAlign:h==="Service"?"left":"right"}}>{h}</th>)}
             </tr></thead>
             <tbody>
-              {serviceLines.map((s,i)=>{
-                const rate=Math.round((s.movement/s.deals)*100),meta=SVC_META[s.svc]||{color:"#888"};
+              {serviceLines.map((s,i) => {
+                const rate=Math.round((s.movement/s.deals)*100), meta=SVC_META[s.svc]||{color:"#888"};
                 return <tr key={i} style={{borderBottom:"1px solid var(--border)"}}>
                   <td style={{padding:"8px 12px"}}>{s.label}</td>
                   <td style={{padding:"8px 12px",textAlign:"right",fontWeight:500}}>{s.deals}</td>
@@ -439,11 +560,16 @@ function App(){
             </tbody>
           </table>
         </div>
-        <ST>Deal volume</ST>
+        <ST>Deal volume by service</ST>
         <div style={{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}}>
-          {serviceLines.map(s=>{const meta=SVC_META[s.svc]||{color:"#888"},max=Math.max(...serviceLines.map(x=>x.deals));return <BarRow key={s.svc} label={s.label} value={s.deals} max={max} color={meta.color} meta={Math.round(s.movement/s.deals*100)+"% movement"}/>;  })}
+          {serviceLines.map(s => {
+            const meta=SVC_META[s.svc]||{color:"#888"}, max=Math.max(...serviceLines.map(x=>x.deals));
+            return <BarRow key={s.svc} label={s.label} value={s.deals} max={max} color={meta.color} meta={Math.round(s.movement/s.deals*100)+"% movement"}/>;
+          })}
         </div>
       </div>}
+
+      
     </div>
   );
 }
