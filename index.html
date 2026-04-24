@@ -29,7 +29,12 @@
 <script type="text/babel">
 const { useState, useMemo } = React;
 
-const SELLERS = ["Petrus", "Giuseppe", "Murillo"];
+const SELLERS = ["Petrus", "Giuseppe", "Murillo"  {client:"ICS Industrial",project:"Carlsbad by the Sea",svc:"PL",amount:108150,date:"2026-04-22",status:"Issued",award:"Awarded"},
+  {client:"ICS Industrial",project:"The Verb Hotel",svc:"PL",amount:113750,date:"2026-04-22",status:"Issued",award:"Warm Bid"},
+  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:183540,date:"2026-04-23",status:"Issued",award:"Awarded"},
+  {client:"ArcoMurray",project:"Westlake Residential",svc:"FR",amount:26030,date:"2026-04-21",status:"Issued",award:"Awarded"},
+  {client:"Component Assembly",project:"343 Madison",svc:"FR",amount:23256,date:"2026-04-22",status:"Issued",award:"Awarded"},
+];
 const COLORS = { Petrus:"#7F77DD", Giuseppe:"#1D9E75", Murillo:"#BA7517" };
 const AVATARS = {
   Petrus:   {bg:"#EEEDFE", color:"#3C3489", initials:"PR"},
@@ -87,14 +92,14 @@ const weeklyData = [
   {week:"2026-03-23",P:{calls:7,conn:3,pos:1,neg:0,email:1,deals:0,mov:5},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:7,mov:8},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:6,mov:5}},
   {week:"2026-03-30",P:{calls:42,conn:7,pos:1,neg:3,email:0,deals:0,mov:8},G:{calls:76,conn:9,pos:4,neg:2,email:0,deals:4,mov:5},M:{calls:45,conn:12,pos:4,neg:1,email:0,deals:1,mov:2}},
   {week:"2026-04-06",P:{calls:39,conn:9,pos:4,neg:1,email:0,deals:0,mov:0},G:{calls:320,conn:59,pos:17,neg:25,email:5,deals:0,mov:0},M:{calls:191,conn:49,pos:21,neg:5,email:0,deals:0,mov:0}},
-  {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,deals:0,mov:5},G:{calls:353,conn:55,pos:12,neg:30,email:0,deals:11,mov:1},M:{calls:170,conn:24,pos:6,neg:7,email:0,deals:5,mov:3}},
-  {week:"2026-04-20",P:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:28,conn:10,pos:0,neg:3,email:1,deals:0,mov:0},M:{calls:16,conn:1,pos:1,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,deals:0,mov:1},G:{calls:58,conn:11,pos:3,neg:5,email:0,deals:1,mov:0},M:{calls:24,conn:6,pos:1,neg:0,email:0,deals:0,mov:2}},
+  {week:"2026-04-20",P:{calls:41,conn:8,pos:1,neg:3,email:0,deals:4,mov:2},G:{calls:199,conn:31,pos:6,neg:7,email:1,deals:2,mov:7},M:{calls:113,conn:10,pos:6,neg:0,email:0,deals:1,mov:4}},
 ];
 
 const allTimeTotals = {
-  Petrus:   {calls:3316, conn:527, pos:135, neg:199, email:49, deals:87,  mov:85},
-  Giuseppe: {calls:1655, conn:291, pos:72,  neg:135, email:12, deals:52,  mov:16},
-  Murillo:  {calls:1073, conn:190, pos:55,  neg:39,  email:3,  deals:31,  mov:13},
+  Petrus:   {calls:3357, conn:535, pos:136, neg:202, email:49, deals:91,  mov:88},
+  Giuseppe: {calls:1514, conn:313, pos:81,  neg:147, email:13, deals:54,  mov:23},
+  Murillo:  {calls:1110, conn:202, pos:62,  neg:39,  email:3,  deals:32,  mov:19},
 };
 
 const pipelines = [
