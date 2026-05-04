@@ -14,6 +14,7 @@
   :root { --bg-primary:#ffffff; --bg-secondary:#f1efe8; --text-primary:#1a1a18; --text-secondary:#73726c; --border:rgba(0,0,0,0.12); --radius-md:8px; --radius-lg:12px; }
   button { font-family: inherit; cursor: pointer; }
   table { border-collapse: collapse; }
+  select { font-family: inherit; }
 </style>
 </head>
 <body>
@@ -44,6 +45,17 @@ const AWARD_STYLE = {
   "Bid List":{bg:"#F1EFE8",color:"#5F5E5A"},
   "Warm Bid":{bg:"#FAEEDA",color:"#633806"},
   "Awarded":{bg:"#EAF3DE",color:"#3B6D11"}
+};
+
+const SELLER_QUOTE_MAP = {
+  "CESG":"Petrus","TempCon":"Petrus","KREIT":"Petrus","Right Way PL":"Petrus",
+  "RLP Mechanical":"Petrus","Modern Air":"Petrus","Atlas Mechanical":"Petrus",
+  "ICS Industrial":"Petrus","Brighton Ventures":"Petrus","Skyline Construction":"Petrus",
+  "Fusion Electric":"Petrus","Florida Mechanical":"Petrus","Hedrick Brothers":"Petrus",
+  "Tropic Mechanical":"Petrus","JND Mechanical":"Petrus","2020 PL":"Petrus",
+  "ArcoMurray":"Petrus","Component Assembly":"Petrus","Malek Mechanical":"Petrus",
+  "Muller Construction":"Petrus",
+  "Thornton Construction":"Murillo","Coastal Construction":"Murillo","EC Electric":"Murillo"
 };
 
 const dealMovementByWeek = [
@@ -107,27 +119,11 @@ const allTimeTotals = {
 
 const pipelines = [
   {name:"Research & Development",color:"#1D9E75",description:"Early stage — future opportunities worth continuing to call",total:91,
-    stages:[
-      {name:"Initial Contact",deals:42},
-      {name:"Mapping Stakeholders",deals:24},
-      {name:"Qualified Opportunity",deals:1,highlight:"green"},
-      {name:"No Opportunity Here",deals:14,highlight:"red"}
-    ]},
+    stages:[{name:"Initial Contact",deals:42},{name:"Mapping Stakeholders",deals:24},{name:"Qualified Opportunity",deals:1,highlight:"green"},{name:"No Opportunity Here",deals:14,highlight:"red"}]},
   {name:"Qualified Opportunities",color:"#7F77DD",description:"Pain identified — investing time and mapping stakeholders",total:62,
-    stages:[
-      {name:"Oppty Identified",deals:19},
-      {name:"Added to Bid List",deals:14},
-      {name:"Meeting Booked/Held",deals:8},
-      {name:"Becoming a Preferred Vendor",deals:8},
-      {name:"Pricing Sent",deals:6},
-      {name:"Closed Won",deals:3,highlight:"green"},
-      {name:"Closed Lost",deals:11,highlight:"red"}
-    ]},
+    stages:[{name:"Oppty Identified",deals:19},{name:"Added to Bid List",deals:14},{name:"Meeting Booked/Held",deals:8},{name:"Becoming a Preferred Vendor",deals:8},{name:"Pricing Sent",deals:6},{name:"Closed Won",deals:3,highlight:"green"},{name:"Closed Lost",deals:11,highlight:"red"}]},
   {name:"Circle Back Later",color:"#BA7517",description:"Went cold or lost a bid — nurture for future opportunities",total:17,
-    stages:[
-      {name:"On Hold",deals:16},
-      {name:"Big Fat NO",deals:1,highlight:"red"}
-    ]}
+    stages:[{name:"On Hold",deals:16},{name:"Big Fat NO",deals:1,highlight:"red"}]}
 ];
 
 const serviceLines = [
@@ -139,164 +135,181 @@ const serviceLines = [
 ];
 
 const quotes = [
-  {client:"CESG",project:"DFW Terminal C",svc:"EL",amount:171000,date:"2026-01-09",status:"Approved",award:"Awarded"},
-  {client:"TempCon",project:"Lawrence Middle School",svc:"GS",amount:39680,date:"2025-09-15",status:"Lost",award:"Awarded"},
-  {client:"KREIT",project:"Spool Sheets Test Estimate",svc:"PL",amount:3360,date:"2025-10-07",status:"Lost",award:"Awarded"},
-  {client:"Right Way PL",project:"1755 JFK Causeway",svc:"PL",amount:186900,date:"2025-10-31",status:"Issued",award:"Bid List"},
-  {client:"RLP Mechanical",project:"Frankford Middle School Kitchen",svc:"PL",amount:57225,date:"2025-11-18",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Mable Ave Assisted Living",svc:"PL",amount:84000,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Merced Self Storage",svc:"PL",amount:3325,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Amazon SSJ2",svc:"PL",amount:21000,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Denair Elementary HVAC",svc:"PL",amount:10500,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"North Palisade 300 Whitney",svc:"PL",amount:10500,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Planada ES New Library",svc:"PL",amount:10500,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"EquipmentShare",svc:"PL",amount:14700,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"MCOE Los Banos VCS",svc:"PL",amount:5250,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"MCOE Merced VCS",svc:"PL",amount:7000,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Village of Hope Bldg 5",svc:"PL",amount:27825,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Village of Hope Bldg 4",svc:"PL",amount:12250,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Tuolumne County Child Office",svc:"PL",amount:4550,date:"2025-12-02",status:"Issued",award:"Bid List"},
-  {client:"Atlas Mechanical",project:"USD Campus",svc:"PL",amount:164150,date:"2025-12-11",status:"Issued",award:"Warm Bid"},
-  {client:"Atlas Mechanical",project:"Symphony Park Parcel E",svc:"PL",amount:187950,date:"2025-12-11",status:"Issued",award:"Warm Bid"},
-  {client:"Atlas Mechanical",project:"Hines Riverwalk Bldg A-D",svc:"PL",amount:307440,date:"2025-12-11",status:"Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"SCA University",svc:"PL",amount:98000,date:"2025-12-11",status:"Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"San Diego Freedom Ranch",svc:"PL",amount:201600,date:"2025-12-11",status:"Issued",award:"Warm Bid"},
-  {client:"Modern Air",project:"Terry P Bradley Edu Center",svc:"PL",amount:154000,date:"2025-12-12",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"New Bus Maintenance",svc:"PL",amount:10500,date:"2025-12-12",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Fresno Chaffee Zoo Facility",svc:"PL",amount:17550,date:"2025-12-22",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Eagle Hamilton K-89 Gym HVAC",svc:"PL",amount:11700,date:"2025-12-22",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"UOP Jie Du Inn",svc:"PL",amount:33735,date:"2025-12-22",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Eagle Food Link Tulare",svc:"PL",amount:11310,date:"2025-12-22",status:"Issued",award:"Bid List"},
-  {client:"Skyline Construction",project:"Ethos San Marcos",svc:"FR",amount:43680,date:"2026-01-07",status:"Lost",award:"Awarded"},
-  {client:"Modern Air",project:"Washington Academic MS Cafe",svc:"PL",amount:19110,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"New Admin Facility Expansion",svc:"PL",amount:154986,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Save Mart TI-Macteca",svc:"PL",amount:31200,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Tripoint Logistics Center",svc:"PL",amount:13200,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"BH Fresno",svc:"PL",amount:76050,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Central Library Ceiling Upgrade",svc:"PL",amount:23010,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Central Valley HS Phase 2",svc:"PL",amount:12870,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"CCC Health & Psych Remodel",svc:"PL",amount:27300,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Community Day School (Brown)",svc:"PL",amount:15600,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Community Day School (Kumetat)",svc:"PL",amount:16770,date:"2026-01-08",status:"Issued",award:"Bid List"},
-  {client:"ICS Industrial",project:"Campus Point PS1",svc:"PL",amount:54600,date:"2026-01-08",status:"Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"Mission Bay Family Health Ctr",svc:"PL",amount:153270,date:"2026-01-08",status:"Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"Seaworld Bayside Restaurant",svc:"PL",amount:140790,date:"2026-01-08",status:"Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"Monte Vista Apartments",svc:"PL",amount:257010,date:"2026-01-08",status:"Issued",award:"Warm Bid"},
-  {client:"Brighton Ventures",project:"Ten Mile Crossing",svc:"FR",amount:247800,date:"2026-01-08",status:"Lost",award:"Awarded"},
-  {client:"Modern Air",project:"Health & Psych Services Remodel",svc:"PL",amount:14600,date:"2026-01-27",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"COS University Center",svc:"PL",amount:85500,date:"2026-01-27",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"CUSD SSSA & Police Services",svc:"PL",amount:17000,date:"2026-01-27",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Merced City SD MARS-ELOP",svc:"PL",amount:34200,date:"2026-01-27",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"New Admin Facility Expansion v2",svc:"PL",amount:85880,date:"2026-01-27",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Central Library Ceiling v2",svc:"PL",amount:18200,date:"2026-01-27",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Save Mart TI-Manteca v2",svc:"PL",amount:15000,date:"2026-01-27",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Alberta Martone ES",svc:"PL",amount:0,date:"2026-01-27",status:"Not Issued",award:"Bid List"},
-  {client:"Atlas Mechanical",project:"Belmont Encinitas",svc:"PL",amount:78750,date:"2026-02-05",status:"Lost",award:"Awarded"},
-  {client:"Fusion Electric",project:"Community Center & Events",svc:"EL",amount:52782,date:"2026-02-05",status:"Lost",award:"Bid List"},
-  {client:"Florida Mechanical",project:"District 19 Medical Examiners",svc:"PL",amount:41040,date:"2026-02-09",status:"Lost",award:"Awarded"},
-  {client:"Hedrick Brothers",project:"19 Indian Creek",svc:"GS",amount:40180,date:"2026-02-09",status:"Lost",award:"Awarded"},
-  {client:"Modern Air",project:"Amazon OGS9 Visalia",svc:"PL",amount:26600,date:"2026-02-11",status:"Issued",award:"Bid List"},
-  {client:"Tropic Mechanical",project:"Broward Health MOB",svc:"PL",amount:154700,date:"2026-02-11",status:"Lost",award:"Awarded"},
-  {client:"Modern Air",project:"GVHC Le Grand",svc:"PL",amount:18025,date:"2026-02-13",status:"Issued",award:"Bid List"},
-  {client:"JND Mechanical",project:"Cape Coral Animal Shelter II",svc:"PL",amount:41040,date:"2026-02-19",status:"Not Issued",award:"Bid List"},
-  {client:"JND Mechanical",project:"Baycare South Tampa",svc:"PL",amount:37240,date:"2026-02-19",status:"Not Issued",award:"Bid List"},
-  {client:"JND Mechanical",project:"Calusa Country Club",svc:"PL",amount:42180,date:"2026-02-23",status:"Not Issued",award:"Bid List"},
-  {client:"JND Mechanical",project:"Palazzo (The Tides)",svc:"PL",amount:28310,date:"2026-02-25",status:"Not Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Tulare UHS Shop Bldg",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List"},
-  {client:"Modern Air",project:"Amazon OAK5 Sortation Center",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List"},
-  {client:"2020 PL",project:"485 Long Beach Blvd",svc:"PL",amount:67200,date:"2026-02-25",status:"Issued",award:"Warm Bid"},
-  {client:"CESG",project:"UTA University Center",svc:"EL",amount:80408,date:"2026-03-04",status:"Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"Allian",svc:"PL",amount:61950,date:"2026-03-10",status:"Not Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"Davis Reed",svc:"PL",amount:86450,date:"2026-03-10",status:"Issued",award:"Warm Bid"},
-  {client:"JND Mechanical",project:"Fairfield Ave Apartments",svc:"PL",amount:62964,date:"2026-03-10",status:"Lost",award:"Awarded"},
-  {client:"2020 PL",project:"2120 Main St The Seacliff",svc:"PL",amount:88320,date:"2026-04-02",status:"Issued",award:"Awarded"},
-  {client:"Malek Mechanical",project:"Banquete ISD",svc:"PL",amount:240584,date:"2026-04-03",status:"Issued",award:"Awarded"},
-  {client:"ICS Industrial",project:"VA Clinic",svc:"PL",amount:129920,date:"2026-03-30",status:"Issued",award:"Warm Bid"},
-  {client:"JND Mechanical",project:"Siesta Promenade",svc:"PL",amount:93000,date:"2026-04-01",status:"Issued",award:"Warm Bid"},
-  {client:"JND Mechanical",project:"Convivial LifeStar Living",svc:"PL",amount:285000,date:"2026-04-01",status:"Lost",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"Reyes La Admin",svc:"PL",amount:198740,date:"2026-04-14",status:"Issued",award:"Warm Bid"},
-  {client:"ICS Industrial",project:"Carlsbad by the Sea",svc:"PL",amount:108150,date:"2026-04-22",status:"Lost",award:"Awarded"},
-  {client:"ICS Industrial",project:"The Verb Hotel",svc:"PL",amount:113750,date:"2026-04-22",status:"Issued",award:"Warm Bid"},
-  {client:"ArcoMurray",project:"Westlake Residential",svc:"FR",amount:26030,date:"2026-04-21",status:"Issued",award:"Awarded"},
-  {client:"Component Assembly",project:"343 Madison",svc:"FR",amount:23256,date:"2026-04-22",status:"Approved",award:"Awarded"},
-  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:183540,date:"2026-04-23",status:"Issued",award:"Awarded"},
-  {client:"Coastal Construction",project:"South Bank Residences",svc:"FR",amount:77885,date:"2026-05-01",status:"Issued",award:"Awarded"},
-  {client:"Muller Construction",project:"Sandy Beach FRP",svc:"GS",amount:1900,date:"2026-05-01",status:"Issued",award:"Awarded"},
-  {client:"JND Mechanical",project:"Somar Residences",svc:"FR",amount:41800,date:"2026-05-01",status:"Not Issued",award:"Bid List"}
+  {client:"CESG",project:"DFW Terminal C",svc:"EL",amount:171000,date:"2026-01-09",status:"Approved",award:"Awarded",seller:"Petrus"},
+  {client:"TempCon",project:"Lawrence Middle School",svc:"GS",amount:39680,date:"2025-09-15",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"KREIT",project:"Spool Sheets Test Estimate",svc:"PL",amount:3360,date:"2025-10-07",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Right Way PL",project:"1755 JFK Causeway",svc:"PL",amount:186900,date:"2025-10-31",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"RLP Mechanical",project:"Frankford Middle School Kitchen",svc:"PL",amount:57225,date:"2025-11-18",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Mable Ave Assisted Living",svc:"PL",amount:84000,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Merced Self Storage",svc:"PL",amount:3325,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Amazon SSJ2",svc:"PL",amount:21000,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Denair Elementary HVAC",svc:"PL",amount:10500,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"North Palisade 300 Whitney",svc:"PL",amount:10500,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Planada ES New Library",svc:"PL",amount:10500,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"EquipmentShare",svc:"PL",amount:14700,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"MCOE Los Banos VCS",svc:"PL",amount:5250,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"MCOE Merced VCS",svc:"PL",amount:7000,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Village of Hope Bldg 5",svc:"PL",amount:27825,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Village of Hope Bldg 4",svc:"PL",amount:12250,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Tuolumne County Child Office",svc:"PL",amount:4550,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Atlas Mechanical",project:"USD Campus",svc:"PL",amount:164150,date:"2025-12-11",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"Atlas Mechanical",project:"Symphony Park Parcel E",svc:"PL",amount:187950,date:"2025-12-11",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"Atlas Mechanical",project:"Hines Riverwalk Bldg A-D",svc:"PL",amount:307440,date:"2025-12-11",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"SCA University",svc:"PL",amount:98000,date:"2025-12-11",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"San Diego Freedom Ranch",svc:"PL",amount:201600,date:"2025-12-11",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"Modern Air",project:"Terry P Bradley Edu Center",svc:"PL",amount:154000,date:"2025-12-12",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"New Bus Maintenance",svc:"PL",amount:10500,date:"2025-12-12",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Fresno Chaffee Zoo Facility",svc:"PL",amount:17550,date:"2025-12-22",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Eagle Hamilton K-89 Gym HVAC",svc:"PL",amount:11700,date:"2025-12-22",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"UOP Jie Du Inn",svc:"PL",amount:33735,date:"2025-12-22",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Eagle Food Link Tulare",svc:"PL",amount:11310,date:"2025-12-22",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Skyline Construction",project:"Ethos San Marcos",svc:"FR",amount:43680,date:"2026-01-07",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Modern Air",project:"Washington Academic MS Cafe",svc:"PL",amount:19110,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"New Admin Facility Expansion",svc:"PL",amount:154986,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Save Mart TI-Macteca",svc:"PL",amount:31200,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Tripoint Logistics Center",svc:"PL",amount:13200,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"BH Fresno",svc:"PL",amount:76050,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Central Library Ceiling Upgrade",svc:"PL",amount:23010,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Central Valley HS Phase 2",svc:"PL",amount:12870,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"CCC Health & Psych Remodel",svc:"PL",amount:27300,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Community Day School (Brown)",svc:"PL",amount:15600,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Community Day School (Kumetat)",svc:"PL",amount:16770,date:"2026-01-08",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Campus Point PS1",svc:"PL",amount:54600,date:"2026-01-08",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Mission Bay Family Health Ctr",svc:"PL",amount:153270,date:"2026-01-08",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Seaworld Bayside Restaurant",svc:"PL",amount:140790,date:"2026-01-08",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Monte Vista Apartments",svc:"PL",amount:257010,date:"2026-01-08",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"Brighton Ventures",project:"Ten Mile Crossing",svc:"FR",amount:247800,date:"2026-01-08",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Modern Air",project:"Health & Psych Services Remodel",svc:"PL",amount:14600,date:"2026-01-27",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"COS University Center",svc:"PL",amount:85500,date:"2026-01-27",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"CUSD SSSA & Police Services",svc:"PL",amount:17000,date:"2026-01-27",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Merced City SD MARS-ELOP",svc:"PL",amount:34200,date:"2026-01-27",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"New Admin Facility Expansion v2",svc:"PL",amount:85880,date:"2026-01-27",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Central Library Ceiling v2",svc:"PL",amount:18200,date:"2026-01-27",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Save Mart TI-Manteca v2",svc:"PL",amount:15000,date:"2026-01-27",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Alberta Martone ES",svc:"PL",amount:0,date:"2026-01-27",status:"Not Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Atlas Mechanical",project:"Belmont Encinitas",svc:"PL",amount:78750,date:"2026-02-05",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Fusion Electric",project:"Community Center & Events",svc:"EL",amount:52782,date:"2026-02-05",status:"Lost",award:"Bid List",seller:"Petrus"},
+  {client:"Florida Mechanical",project:"District 19 Medical Examiners",svc:"PL",amount:41040,date:"2026-02-09",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Hedrick Brothers",project:"19 Indian Creek",svc:"GS",amount:40180,date:"2026-02-09",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Modern Air",project:"Amazon OGS9 Visalia",svc:"PL",amount:26600,date:"2026-02-11",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Tropic Mechanical",project:"Broward Health MOB",svc:"PL",amount:154700,date:"2026-02-11",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Modern Air",project:"GVHC Le Grand",svc:"PL",amount:18025,date:"2026-02-13",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Cape Coral Animal Shelter II",svc:"PL",amount:41040,date:"2026-02-19",status:"Not Issued",award:"Bid List",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Baycare South Tampa",svc:"PL",amount:37240,date:"2026-02-19",status:"Not Issued",award:"Bid List",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Calusa Country Club",svc:"PL",amount:42180,date:"2026-02-23",status:"Not Issued",award:"Bid List",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Palazzo (The Tides)",svc:"PL",amount:28310,date:"2026-02-25",status:"Not Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Tulare UHS Shop Bldg",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Modern Air",project:"Amazon OAK5 Sortation Center",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"2020 PL",project:"485 Long Beach Blvd",svc:"PL",amount:67200,date:"2026-02-25",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"CESG",project:"UTA University Center",svc:"EL",amount:80408,date:"2026-03-04",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Allian",svc:"PL",amount:61950,date:"2026-03-10",status:"Not Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Davis Reed",svc:"PL",amount:86450,date:"2026-03-10",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Fairfield Ave Apartments",svc:"PL",amount:62964,date:"2026-03-10",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"2020 PL",project:"2120 Main St The Seacliff",svc:"PL",amount:88320,date:"2026-04-02",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"Malek Mechanical",project:"Banquete ISD",svc:"PL",amount:240584,date:"2026-04-03",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"ICS Industrial",project:"VA Clinic",svc:"PL",amount:129920,date:"2026-03-30",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Siesta Promenade",svc:"PL",amount:93000,date:"2026-04-01",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Convivial LifeStar Living",svc:"PL",amount:285000,date:"2026-04-01",status:"Lost",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Reyes La Admin",svc:"PL",amount:198740,date:"2026-04-14",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ICS Industrial",project:"Carlsbad by the Sea",svc:"PL",amount:108150,date:"2026-04-22",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"ICS Industrial",project:"The Verb Hotel",svc:"PL",amount:113750,date:"2026-04-22",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"ArcoMurray",project:"Westlake Residential",svc:"FR",amount:26030,date:"2026-04-21",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"Component Assembly",project:"343 Madison",svc:"FR",amount:23256,date:"2026-04-22",status:"Approved",award:"Awarded",seller:"Petrus"},
+  {client:"Muller Construction",project:"Sandy Beach FRP",svc:"GS",amount:1900,date:"2026-05-01",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Somar Residences",svc:"FR",amount:41800,date:"2026-05-01",status:"Not Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:183540,date:"2026-04-23",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"Coastal Construction",project:"South Bank Residences",svc:"FR",amount:77885,date:"2026-05-01",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"EC Electric",project:"T&M Rate for Overflow Work",svc:"EL",amount:20160,date:"2026-04-20",status:"Approved",award:"Awarded",seller:"Murillo"}
 ];
 
 const TODAY = new Date("2026-05-03");
-const PERIODS = [
-  {label:"Last 7 days",days:7},
-  {label:"Last 30 days",days:30},
-  {label:"This month",thisMonth:true},
-  {label:"Last 60 days",days:60},
-  {label:"Last 90 days",days:90},
-  {label:"All time"}
-];
 
-function daysAgo(n){const d=new Date(TODAY);d.setDate(d.getDate()-n);return d;}
+// Generate month options from Sep 2025 to current month
+const MONTH_OPTIONS = [];
+let d = new Date(2025, 8, 1); // Sep 2025
+while (d <= TODAY) {
+  MONTH_OPTIONS.push({
+    label: d.toLocaleDateString("en-US",{month:"short",year:"numeric"}),
+    year: d.getFullYear(),
+    month: d.getMonth()
+  });
+  d = new Date(d.getFullYear(), d.getMonth()+1, 1);
+}
+
 function fmt$(n){return n?"$"+Math.round(n).toLocaleString():"—";}
 function pct(a,b){return b?Math.round((a/b)*100)+"%":"0%";}
 function fmtWeek(w){if(!w)return"—";const d=new Date(w);return d.toLocaleDateString("en-US",{month:"short",day:"numeric"});}
 
-function filterWeeks(period){
-  if(!period.days&&!period.thisMonth)return weeklyData;
-  const cutoff=period.thisMonth?new Date(TODAY.getFullYear(),TODAY.getMonth(),1):daysAgo(period.days);
-  return weeklyData.filter(w=>new Date(w.week)>=cutoff);
+function filterByPeriod(items, dateKey, period) {
+  if (period.type === "alltime") return items;
+  if (period.type === "days") {
+    const cutoff = new Date(TODAY); cutoff.setDate(cutoff.getDate()-period.days);
+    return items.filter(i => new Date(i[dateKey]) >= cutoff);
+  }
+  if (period.type === "month") {
+    return items.filter(i => {
+      const d = new Date(i[dateKey]);
+      return d.getFullYear()===period.year && d.getMonth()===period.month;
+    });
+  }
+  return items;
 }
-function filterQuotes(period){
-  if(!period.days&&!period.thisMonth)return quotes;
-  const cutoff=period.thisMonth?new Date(TODAY.getFullYear(),TODAY.getMonth(),1):daysAgo(period.days);
-  return quotes.filter(q=>new Date(q.date)>=cutoff);
+
+function filterWeeks(period) {
+  if (period.type === "alltime") return weeklyData;
+  if (period.type === "days") {
+    const cutoff = new Date(TODAY); cutoff.setDate(cutoff.getDate()-period.days);
+    return weeklyData.filter(w => new Date(w.week) >= cutoff);
+  }
+  if (period.type === "month") {
+    return weeklyData.filter(w => {
+      const d = new Date(w.week);
+      return d.getFullYear()===period.year && d.getMonth()===period.month;
+    });
+  }
+  return weeklyData;
 }
-function sumWeeks(weeks,key){
-  return weeks.reduce((acc,w)=>{
+
+function sumWeeks(weeks, key) {
+  return weeks.reduce((acc,w) => {
     const d=w[key];
-    acc.calls+=d.calls||0;acc.conn+=d.conn||0;acc.pos+=d.pos||0;
-    acc.neg+=d.neg||0;acc.email+=d.email||0;acc.deals+=d.deals||0;acc.mov+=d.mov||0;
+    acc.calls+=d.calls||0; acc.conn+=d.conn||0; acc.pos+=d.pos||0;
+    acc.neg+=d.neg||0; acc.email+=d.email||0; acc.deals+=d.deals||0; acc.mov+=d.mov||0;
     return acc;
   },{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0});
 }
-function teamSum(data){
-  return SELLERS.reduce((acc,s)=>{
-    const key=s==="Petrus"?"P":s==="Giuseppe"?"G":"M";
-    const d=data[key]||data[s]||{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0};
-    acc.calls+=d.calls||0;acc.conn+=d.conn||0;acc.pos+=d.pos||0;
-    acc.email+=d.email||0;acc.deals+=d.deals||0;acc.mov+=d.mov||0;
-    return acc;
-  },{calls:0,conn:0,pos:0,email:0,deals:0,mov:0});
-}
 
 function App(){
-  const [pi,setPi]=useState(5);
+  const [period, setPeriod] = useState({type:"alltime"});
+  const [monthVal, setMonthVal] = useState("");
   const [qsf,setQsf]=useState("All");
   const [qaf,setQaf]=useState("All");
   const [tab,setTab]=useState("activity");
-  const period=PERIODS[pi];
-  const isAllTime=!period.days&&!period.thisMonth;
 
-  const fw=useMemo(()=>filterWeeks(period),[pi]);
-  const st=useMemo(()=>{
-    if(isAllTime)return allTimeTotals;
+  const isAllTime = period.type==="alltime";
+
+  const fw = useMemo(()=>filterWeeks(period),[period]);
+  const st = useMemo(()=>{
+    if(isAllTime) return allTimeTotals;
     return{Petrus:sumWeeks(fw,"P"),Giuseppe:sumWeeks(fw,"G"),Murillo:sumWeeks(fw,"M")};
-  },[fw,pi]);
-  const tt=useMemo(()=>SELLERS.reduce((acc,s)=>{
+  },[fw,period]);
+  const tt = useMemo(()=>SELLERS.reduce((acc,s)=>{
     const d=st[s];
-    acc.calls+=d.calls||0;acc.conn+=d.conn||0;acc.pos+=d.pos||0;
-    acc.email+=d.email||0;acc.deals+=d.deals||0;acc.mov+=d.mov||0;
+    acc.calls+=d.calls||0; acc.conn+=d.conn||0; acc.pos+=d.pos||0;
+    acc.email+=d.email||0; acc.deals+=d.deals||0; acc.mov+=d.mov||0;
     return acc;
   },{calls:0,conn:0,pos:0,email:0,deals:0,mov:0}),[st]);
 
-  const pq=useMemo(()=>filterQuotes(period),[pi]);
-  const fq=useMemo(()=>{
-    let q=pq;
-    if(qsf!=="All")q=q.filter(x=>x.status===qsf);
-    if(qaf!=="All")q=q.filter(x=>x.award===qaf);
+  const pq = useMemo(()=>filterByPeriod(quotes,"date",period),[period]);
+  const fq = useMemo(()=>{
+    let q=[...pq].sort((a,b)=>new Date(b.date)-new Date(a.date));
+    if(qsf!=="All") q=q.filter(x=>x.status===qsf);
+    if(qaf!=="All") q=q.filter(x=>x.award===qaf);
     return q;
   },[pq,qsf,qaf]);
-  const qt=useMemo(()=>{
-    const all=pq,sum=arr=>arr.reduce((s,q)=>s+(q.amount||0),0);
+
+  const qt = useMemo(()=>{
+    const all=pq, sum=arr=>arr.reduce((s,q)=>s+(q.amount||0),0);
     return{
       total:sum(all),count:all.length,
       approved:sum(all.filter(q=>q.status==="Approved")),approvedN:all.filter(q=>q.status==="Approved").length,
@@ -308,24 +321,39 @@ function App(){
       awarded:sum(all.filter(q=>q.award==="Awarded")),awardedN:all.filter(q=>q.award==="Awarded").length,
     };
   },[pq]);
+
   const sqt=useMemo(()=>{const t={};pq.forEach(q=>{t[q.svc]=(t[q.svc]||0)+(q.amount||0);});return t;},[pq]);
 
-  // WoW data
+  // Per-seller quote stats (all time)
+  const sellerQuoteStats = useMemo(()=>{
+    return SELLERS.map(s=>{
+      const sq = quotes.filter(q=>q.seller===s);
+      const sum = arr=>arr.reduce((t,q)=>t+(q.amount||0),0);
+      return {
+        seller:s,
+        total:sum(sq), count:sq.length,
+        bidList:sum(sq.filter(q=>q.award==="Bid List")), bidListN:sq.filter(q=>q.award==="Bid List").length,
+        warmBid:sum(sq.filter(q=>q.award==="Warm Bid")), warmBidN:sq.filter(q=>q.award==="Warm Bid").length,
+        awarded:sum(sq.filter(q=>q.award==="Awarded")),  awardedN:sq.filter(q=>q.award==="Awarded").length,
+        won:sum(sq.filter(q=>q.status==="Approved")),    wonN:sq.filter(q=>q.status==="Approved").length,
+      };
+    });
+  },[]);
+
+  // WoW
   const wowData=useMemo(()=>{
     const last2=weeklyData.slice(-2);
     if(last2.length<2)return null;
-    const prevWeek=last2[0];const currWeek=last2[1];
-    const prev={P:prevWeek.P,G:prevWeek.G,M:prevWeek.M};
-    const curr={P:currWeek.P,G:currWeek.G,M:currWeek.M};
-
-    const prevQuotes=quotes.filter(q=>{const d=new Date(q.date);const s=new Date(prevWeek.week);const e=new Date(currWeek.week);return d>=s&&d<e;});
-    const currQuotes=quotes.filter(q=>{const d=new Date(q.date);const s=new Date(currWeek.week);const e=new Date(TODAY);e.setDate(e.getDate()+1);return d>=s&&d<=e;});
+    const pw=last2[0],cw=last2[1];
+    const prevQ=quotes.filter(q=>{const d=new Date(q.date);return d>=new Date(pw.week)&&d<new Date(cw.week);});
+    const currQ=quotes.filter(q=>{const d=new Date(q.date);const e=new Date(TODAY);e.setDate(e.getDate()+1);return d>=new Date(cw.week)&&d<=e;});
     const sumQ=arr=>arr.reduce((s,q)=>s+(q.amount||0),0);
-
+    const ps=pw.P,gs=pw.G,ms=pw.M;
+    const pc=cw.P,gc=cw.G,mc=cw.M;
     return{
-      prevLabel:prevWeek.week,currLabel:currWeek.week,
-      prev:{calls:prev.P.calls+prev.G.calls+prev.M.calls,conn:prev.P.conn+prev.G.conn+prev.M.conn,pos:prev.P.pos+prev.G.pos+prev.M.pos,deals:prev.P.deals+prev.G.deals+prev.M.deals,mov:prev.P.mov+prev.G.mov+prev.M.mov,quoteAmt:sumQ(prevQuotes),quoteCount:prevQuotes.length},
-      curr:{calls:curr.P.calls+curr.G.calls+curr.M.calls,conn:curr.P.conn+curr.G.conn+curr.M.conn,pos:curr.P.pos+curr.G.pos+curr.M.pos,deals:curr.P.deals+curr.G.deals+curr.M.deals,mov:curr.P.mov+curr.G.mov+curr.M.mov,quoteAmt:sumQ(currQuotes),quoteCount:currQuotes.length},
+      prevLabel:pw.week,currLabel:cw.week,
+      prev:{calls:ps.calls+gs.calls+ms.calls,conn:ps.conn+gs.conn+ms.conn,pos:ps.pos+gs.pos+ms.pos,deals:ps.deals+gs.deals+ms.deals,mov:ps.mov+gs.mov+ms.mov,quoteAmt:sumQ(prevQ),quoteCount:prevQ.length},
+      curr:{calls:pc.calls+gc.calls+mc.calls,conn:pc.conn+gc.conn+mc.conn,pos:pc.pos+gc.pos+mc.pos,deals:pc.deals+gc.deals+mc.deals,mov:pc.mov+gc.mov+mc.mov,quoteAmt:sumQ(currQ),quoteCount:currQ.length},
     };
   },[]);
 
@@ -375,14 +403,49 @@ function App(){
 
   const tabs=[{id:"activity",label:"Outbound Activity"},{id:"quotes",label:"Quotes"},{id:"pipeline",label:"Pipeline"},{id:"wow",label:"Week over Week"}];
 
+  const handlePeriodBtn = (type, days) => {
+    setPeriod({type,days});
+    setMonthVal("");
+  };
+  const handleMonthChange = (e) => {
+    const val = e.target.value;
+    setMonthVal(val);
+    if(val==="") { setPeriod({type:"alltime"}); return; }
+    const [yr,mo] = val.split("-").map(Number);
+    setPeriod({type:"month",year:yr,month:mo});
+  };
+
+  const activeDays = period.type==="days";
+  const btnStyle = (active) => ({
+    fontSize:12,padding:"5px 14px",borderRadius:999,
+    border:`1px solid ${active?"#888":"#ccc"}`,
+    background:active?"#e8e6df":"transparent",
+    color:active?"var(--text-primary)":"var(--text-secondary)",
+    fontWeight:active?500:400
+  });
+
   return React.createElement('div',{style:{fontFamily:"inherit"}},
     React.createElement('div',{style:{marginBottom:"0.5rem"}},
-      React.createElement('div',{style:{fontSize:26,fontWeight:600,color:"var(--text-primary)"}},"New Vision — Sales Dashboard"),
+      React.createElement('div',{style:{fontSize:26,fontWeight:600}},"New Vision — Sales Dashboard"),
       React.createElement('div',{style:{fontSize:13,color:"var(--text-secondary)",marginTop:4}},"Petrus · Giuseppe · Murillo")
     ),
-    React.createElement('div',{style:{display:"flex",gap:6,flexWrap:"wrap",margin:"1.25rem 0"}},
-      ...PERIODS.map((p,i)=>React.createElement('button',{key:i,onClick:()=>setPi(i),style:{fontSize:12,padding:"5px 14px",borderRadius:999,border:`1px solid ${pi===i?"#888":"#ccc"}`,background:pi===i?"#e8e6df":"transparent",color:pi===i?"var(--text-primary)":"var(--text-secondary)",fontWeight:pi===i?500:400}},p.label))
+
+    // Period filters
+    React.createElement('div',{style:{display:"flex",gap:8,flexWrap:"wrap",alignItems:"center",margin:"1.25rem 0"}},
+      React.createElement('button',{onClick:()=>handlePeriodBtn("days",7),style:btnStyle(period.type==="days"&&period.days===7)},"Last 7 days"),
+      React.createElement('button',{onClick:()=>handlePeriodBtn("days",30),style:btnStyle(period.type==="days"&&period.days===30)},"Last 30 days"),
+      React.createElement('select',{
+        value:monthVal,
+        onChange:handleMonthChange,
+        style:{fontSize:12,padding:"5px 12px",borderRadius:999,border:`1px solid ${period.type==="month"?"#888":"#ccc"}`,background:period.type==="month"?"#e8e6df":"var(--bg-primary)",color:period.type==="month"?"var(--text-primary)":"var(--text-secondary)",fontWeight:period.type==="month"?500:400,cursor:"pointer",appearance:"auto"}
+      },
+        React.createElement('option',{value:""},"Month ▾"),
+        ...MONTH_OPTIONS.map(m=>React.createElement('option',{key:m.label,value:`${m.year}-${m.month}`},m.label))
+      ),
+      React.createElement('button',{onClick:()=>handlePeriodBtn("alltime"),style:btnStyle(period.type==="alltime")},"All time")
     ),
+
+    // Tabs
     React.createElement('div',{style:{display:"flex",borderBottom:"1px solid var(--border)",marginBottom:"1.5rem"}},
       ...tabs.map(t=>React.createElement('button',{key:t.id,onClick:()=>setTab(t.id),style:{fontSize:13,padding:"8px 18px",border:"none",borderBottom:tab===t.id?"2px solid var(--text-primary)":"2px solid transparent",background:"transparent",color:tab===t.id?"var(--text-primary)":"var(--text-secondary)",fontWeight:tab===t.id?500:400}},t.label))
     ),
@@ -468,6 +531,34 @@ function App(){
           React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",lineHeight:1.5,borderTop:"1px solid var(--border)",paddingTop:8}},a.desc)
         ))
       ),
+
+      // Per-seller stats
+      React.createElement('div',{style:{display:"flex",justifyContent:"space-between",alignItems:"center",margin:"1.75rem 0 0.75rem"}},
+        React.createElement('div',{style:{fontSize:11,fontWeight:500,color:"var(--text-secondary)",textTransform:"uppercase",letterSpacing:"0.05em"}},"Quotes by seller"),
+        React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",background:"var(--bg-secondary)",padding:"2px 10px",borderRadius:999}},"All time only")
+      ),
+      React.createElement('div',{style:{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:12,marginBottom:"1rem"}},
+        ...sellerQuoteStats.map(s=>{
+          const av=AVATARS[s.seller];
+          return React.createElement('div',{key:s.seller,style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}},
+            React.createElement('div',{style:{display:"flex",alignItems:"center",gap:8,marginBottom:12,fontSize:14,fontWeight:500}},
+              React.createElement('div',{style:{width:28,height:28,borderRadius:"50%",background:av.bg,color:av.color,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:500}},av.initials),
+              s.seller
+            ),
+            ...[
+              ["Total quoted",fmt$(s.total)+" ("+s.count+")"],
+              ["Bid list",fmt$(s.bidList)+" ("+s.bidListN+")"],
+              ["Warm bid",fmt$(s.warmBid)+" ("+s.warmBidN+")"],
+              ["Awarded",fmt$(s.awarded)+" ("+s.awardedN+")"],
+              ["Won (Approved)",fmt$(s.won)+" ("+s.wonN+")"],
+            ].map(([l,v])=>React.createElement('div',{key:l,style:{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid var(--border)",fontSize:13}},
+              React.createElement('span',{style:{color:"var(--text-secondary)"}},l),
+              React.createElement('span',{style:{fontWeight:500,color:l==="Won (Approved)"?"#3B6D11":"var(--text-primary)"}},v)
+            ))
+          );
+        })
+      ),
+
       React.createElement(ST,{c:"By service line"}),
       React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem",marginBottom:"1rem"}},
         ...Object.entries(SVC_META).map(([k,v])=>{
@@ -487,15 +578,15 @@ function App(){
         )
       ),
       React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"auto"}},
-        React.createElement('table',{style:{width:"100%",fontSize:12,tableLayout:"fixed",minWidth:600}},
+        React.createElement('table',{style:{width:"100%",fontSize:12,tableLayout:"fixed",minWidth:640}},
           React.createElement('colgroup',null,
-            React.createElement('col',{style:{width:"17%"}}),React.createElement('col',{style:{width:"25%"}}),
-            React.createElement('col',{style:{width:"6%"}}),React.createElement('col',{style:{width:"13%"}}),
-            React.createElement('col',{style:{width:"11%"}}),React.createElement('col',{style:{width:"12%"}}),
-            React.createElement('col',{style:{width:"10%"}}),React.createElement('col',{style:{width:"6%"}})
+            React.createElement('col',{style:{width:"15%"}}),React.createElement('col',{style:{width:"22%"}}),
+            React.createElement('col',{style:{width:"6%"}}),React.createElement('col',{style:{width:"12%"}}),
+            React.createElement('col',{style:{width:"10%"}}),React.createElement('col',{style:{width:"11%"}}),
+            React.createElement('col',{style:{width:"9%"}}),React.createElement('col',{style:{width:"9%"}}),React.createElement('col',{style:{width:"6%"}})
           ),
           React.createElement('thead',null,React.createElement('tr',null,
-            ...["Client","Project","Svc","Amount","Date","Status","Award","Days"].map(h=>React.createElement('th',{key:h,style:thS},h))
+            ...["Client","Project","Svc","Amount","Date","Status","Award","Seller","Days"].map(h=>React.createElement('th',{key:h,style:thS},h))
           )),
           React.createElement('tbody',null,
             ...fq.map((q,i)=>{
@@ -503,6 +594,7 @@ function App(){
               const as=AWARD_STYLE[q.award]||AWARD_STYLE["Bid List"];
               const sm=SVC_META[q.svc]||{label:q.svc,color:"#888"};
               const days=Math.round((TODAY-new Date(q.date))/86400000);
+              const av=q.seller?AVATARS[q.seller]:null;
               return React.createElement('tr',{key:i},
                 React.createElement('td',{style:tdS,title:q.client},q.client),
                 React.createElement('td',{style:tdS,title:q.project},q.project),
@@ -511,10 +603,11 @@ function App(){
                 React.createElement('td',{style:{...tdS,fontSize:11,color:"var(--text-secondary)"}},q.date),
                 React.createElement('td',{style:tdS},React.createElement('span',{style:{background:ss.bg,color:ss.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}},q.status)),
                 React.createElement('td',{style:tdS},React.createElement('span',{style:{background:as.bg,color:as.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}},q.award)),
+                React.createElement('td',{style:tdS},av?React.createElement('span',{style:{background:av.bg,color:av.color,fontSize:10,padding:"2px 6px",borderRadius:999,fontWeight:500}},av.initials):"—"),
                 React.createElement('td',{style:{...tdS,fontSize:11,color:"var(--text-secondary)"}},days+"d")
               );
             }),
-            fq.length===0&&React.createElement('tr',null,React.createElement('td',{colSpan:8,style:{padding:"1.5rem",textAlign:"center",color:"var(--text-secondary)",fontSize:13}},"No quotes match this filter."))
+            fq.length===0&&React.createElement('tr',null,React.createElement('td',{colSpan:9,style:{padding:"1.5rem",textAlign:"center",color:"var(--text-secondary)",fontSize:13}},"No quotes match this filter."))
           )
         )
       )
@@ -549,25 +642,23 @@ function App(){
               ...p.stages.filter(s=>s.deals>0).map((s,i,arr)=>{
                 const max=Math.max(...arr.map(x=>x.deals));
                 const isRed=s.highlight==="red",isGreen=s.highlight==="green";
-                const nameColor=isRed?"#A32D2D":isGreen?"#3B6D11":"var(--text-primary)";
-                const barColor=isRed?"#E24B4A":isGreen?"#639922":p.color;
+                const nc=isRed?"#A32D2D":isGreen?"#3B6D11":"var(--text-primary)";
+                const bc=isRed?"#E24B4A":isGreen?"#639922":p.color;
                 const isFirst=i===0,isLast=i===arr.filter(x=>x.deals>0).length-1;
                 return React.createElement('tr',{key:s.name,style:{borderBottom:"1px solid var(--border)"}},
                   React.createElement('td',{style:{padding:"7px 12px"}},
                     React.createElement('div',{style:{display:"flex",alignItems:"center",gap:8}},
-                      React.createElement('div',{style:{display:"flex",flexDirection:"column",alignItems:"center",width:16,flexShrink:0}},
-                        isFirst?React.createElement('span',{style:{fontSize:13}},"▽"):
-                        isLast?React.createElement('span',{style:{fontSize:11,color:nameColor}},"▼"):
-                        React.createElement('span',{style:{fontSize:10,color:"var(--text-secondary)"}},"│")
+                      React.createElement('div',{style:{width:16,flexShrink:0,textAlign:"center"}},
+                        isFirst?"▽":isLast?React.createElement('span',{style:{color:nc}},"▼"):"│"
                       ),
-                      React.createElement('span',{style:{color:nameColor,fontWeight:isRed||isGreen?500:400}},s.name)
+                      React.createElement('span',{style:{color:nc,fontWeight:isRed||isGreen?500:400}},s.name)
                     )
                   ),
-                  React.createElement('td',{style:{padding:"7px 12px",textAlign:"right",fontWeight:500,color:nameColor}},s.deals),
+                  React.createElement('td',{style:{padding:"7px 12px",textAlign:"right",fontWeight:500,color:nc}},s.deals),
                   React.createElement('td',{style:{padding:"7px 12px",textAlign:"right",color:"var(--text-secondary)",fontSize:12}},Math.round((s.deals/p.total)*100)+"%"),
                   React.createElement('td',{style:{padding:"7px 12px"}},
                     React.createElement('div',{style:{height:8,background:"var(--bg-secondary)",borderRadius:4,overflow:"hidden"}},
-                      React.createElement('div',{style:{height:"100%",width:Math.round((s.deals/max)*100)+"%",background:barColor,opacity:0.8,borderRadius:4}})
+                      React.createElement('div',{style:{height:"100%",width:Math.round((s.deals/max)*100)+"%",background:bc,opacity:0.8,borderRadius:4}})
                     )
                   )
                 );
@@ -611,7 +702,7 @@ function App(){
       )
     ),
 
-    // WEEK OVER WEEK TAB
+    // WOW TAB
     tab==="wow"&&React.createElement('div',null,
       React.createElement('div',{style:{fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.65rem 1rem",marginBottom:"1.25rem"}},
         "Team totals only — individual seller breakdowns are in the Outbound Activity tab."
@@ -620,20 +711,20 @@ function App(){
         React.createElement('table',{style:{width:"100%",fontSize:13}},
           React.createElement('thead',null,React.createElement('tr',null,
             React.createElement('th',{style:{...thS,width:"28%"}},"Metric"),
-            React.createElement('th',{style:{...thS,textAlign:"right"}},"Prev week ("+fmtWeek(wowData.prevLabel)+")"),
-            React.createElement('th',{style:{...thS,textAlign:"right"}},"Last week ("+fmtWeek(wowData.currLabel)+")"),
+            React.createElement('th',{style:{...thS,textAlign:"right"}},"Prev ("+fmtWeek(wowData.prevLabel)+")"),
+            React.createElement('th',{style:{...thS,textAlign:"right"}},"Last ("+fmtWeek(wowData.currLabel)+")"),
             React.createElement('th',{style:{...thS,textAlign:"right"}},"Change"),
-            React.createElement('th',{style:{...thS,width:"18%"}})
+            React.createElement('th',{style:{...thS,width:"14%"}})
           )),
           React.createElement('tbody',null,
             ...[
-              {label:"Calls logged",key:"calls",desc:"Total dials across the team",isCurrency:false},
-              {label:"Connected",key:"conn",desc:"Calls where someone picked up",isCurrency:false},
-              {label:"Positive calls",key:"pos",desc:"Pickups with a positive outcome",isCurrency:false},
-              {label:"Deals created",key:"deals",desc:"New deals added to pipeline",isCurrency:false},
-              {label:"Deal movement",key:"mov",desc:"Deals that changed stage",isCurrency:false},
-              {label:"Quotes sent ($)",key:"quoteAmt",desc:"Total value of quotes issued this week",isCurrency:true},
-              {label:"Quotes sent (#)",key:"quoteCount",desc:"Number of quotes sent this week",isCurrency:false},
+              {label:"Calls logged",key:"calls",desc:"Total dials",isCurrency:false},
+              {label:"Connected",key:"conn",desc:"Calls picked up",isCurrency:false},
+              {label:"Positive calls",key:"pos",desc:"Positive outcomes",isCurrency:false},
+              {label:"Deals created",key:"deals",desc:"New deals added",isCurrency:false},
+              {label:"Deal movement",key:"mov",desc:"Stage changes",isCurrency:false},
+              {label:"Quotes sent ($)",key:"quoteAmt",desc:"Total value quoted",isCurrency:true},
+              {label:"Quotes sent (#)",key:"quoteCount",desc:"Number of quotes",isCurrency:false},
             ].map(m=>{
               const c=wowData.curr[m.key],p=wowData.prev[m.key];
               const d=c-p;
@@ -642,22 +733,22 @@ function App(){
               const cc=isUp?"#3B6D11":isDown?"#A32D2D":"var(--text-secondary)";
               const arrow=isUp?"▲":isDown?"▼":"—";
               const barMax=Math.max(c,p,1);
-              const fmtVal=v=>m.isCurrency?fmt$(v):v.toLocaleString();
-              const fmtDelta=v=>m.isCurrency?fmt$(Math.abs(v)):Math.abs(v).toLocaleString();
+              const fv=v=>m.isCurrency?fmt$(v):v.toLocaleString();
+              const fd=v=>m.isCurrency?fmt$(Math.abs(v)):Math.abs(v).toLocaleString();
               return React.createElement('tr',{key:m.key,style:{borderBottom:"1px solid var(--border)"}},
                 React.createElement('td',{style:{padding:"10px 12px"}},
-                  React.createElement('div',{style:{fontWeight:500,color:"var(--text-primary)",marginBottom:2}},m.label),
+                  React.createElement('div',{style:{fontWeight:500,marginBottom:2}},m.label),
                   React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)"}},m.desc)
                 ),
-                React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",color:"var(--text-secondary)"}},fmtVal(p)),
-                React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",fontWeight:500}},fmtVal(c)),
+                React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",color:"var(--text-secondary)"}},fv(p)),
+                React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",fontWeight:500}},fv(c)),
                 React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",fontWeight:500,color:cc}},
-                  d!==0?React.createElement('span',null,arrow+" ",fmtDelta(d),pctChg!==null?React.createElement('span',{style:{fontSize:11,fontWeight:400,marginLeft:4}},"("+Math.abs(pctChg)+"%)"):null):"—"
+                  d!==0?React.createElement('span',null,arrow+" ",fd(d),pctChg!==null?React.createElement('span',{style:{fontSize:11,fontWeight:400,marginLeft:4}},"("+Math.abs(pctChg)+"%)"):null):"—"
                 ),
                 React.createElement('td',{style:{padding:"10px 12px"}},
                   React.createElement('div',{style:{display:"flex",gap:4,alignItems:"flex-end",height:24}},
-                    React.createElement('div',{style:{width:16,background:"#ccc",borderRadius:"2px 2px 0 0",height:Math.max(Math.round((p/barMax)*24),2)},title:"Prev: "+p}),
-                    React.createElement('div',{style:{width:16,background:isUp?COLORS.Giuseppe:isDown?"#E24B4A":COLORS.Petrus,borderRadius:"2px 2px 0 0",height:Math.max(Math.round((c/barMax)*24),2)},title:"Last: "+c})
+                    React.createElement('div',{style:{width:16,background:"#ccc",borderRadius:"2px 2px 0 0",height:Math.max(Math.round((p/barMax)*24),2)},title:"Prev: "+fv(p)}),
+                    React.createElement('div',{style:{width:16,background:isUp?COLORS.Giuseppe:isDown?"#E24B4A":COLORS.Petrus,borderRadius:"2px 2px 0 0",height:Math.max(Math.round((c/barMax)*24),2)},title:"Last: "+fv(c)})
                   )
                 )
               );
