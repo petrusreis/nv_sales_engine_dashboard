@@ -69,8 +69,8 @@ const dealMovementByWeek = [
   {week:"Jan 26",P:6,G:0,M:0},{week:"Feb 02",P:29,G:0,M:0},{week:"Feb 09",P:19,G:0,M:0},
   {week:"Feb 16",P:2,G:0,M:0},{week:"Feb 23",P:2,G:0,M:0},{week:"Mar 02",P:9,G:0,M:0},
   {week:"Mar 09",P:3,G:0,M:1},{week:"Mar 16",P:13,G:1,M:1},{week:"Mar 23",P:2,G:8,M:5},
-  {week:"Mar 30",P:8,G:5,M:2},{week:"Apr 06",P:0,G:5,M:1},{week:"Apr 13",P:4,G:1,M:3},
-  {week:"Apr 20",P:0,G:9,M:4},{week:"Apr 27",P:2,G:7,M:0}
+  {week:"Mar 30",P:0,G:4,M:0},{week:"Apr 06",P:0,G:5,M:1},{week:"Apr 13",P:5,G:1,M:3},
+  {week:"Apr 20",P:2,G:7,M:4},{week:"Apr 27",P:2,G:7,M:0},{week:"May 04",P:0,G:2,M:2}
 ];
 
 const weeklyData = [
@@ -104,11 +104,12 @@ const weeklyData = [
   {week:"2026-03-09",P:{calls:61,conn:7,pos:2,neg:2,email:0,deals:0,mov:3},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:3,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:4,mov:0}},
   {week:"2026-03-16",P:{calls:95,conn:8,pos:2,neg:1,email:0,deals:2,mov:13},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:8,mov:1},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:6,mov:1}},
   {week:"2026-03-23",P:{calls:7,conn:3,pos:1,neg:0,email:1,deals:0,mov:5},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:7,mov:8},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:6,mov:5}},
-  {week:"2026-03-30",P:{calls:42,conn:7,pos:1,neg:3,email:0,deals:0,mov:8},G:{calls:76,conn:9,pos:4,neg:2,email:0,deals:4,mov:5},M:{calls:45,conn:12,pos:4,neg:1,email:0,deals:1,mov:2}},
-  {week:"2026-04-06",P:{calls:39,conn:9,pos:4,neg:1,email:0,deals:0,mov:0},G:{calls:320,conn:59,pos:17,neg:25,email:5,deals:0,mov:0},M:{calls:191,conn:49,pos:21,neg:5,email:0,deals:0,mov:0}},
-  {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,deals:0,mov:5},G:{calls:353,conn:55,pos:12,neg:30,email:0,deals:11,mov:1},M:{calls:170,conn:24,pos:6,neg:7,email:0,deals:5,mov:3}},
+  {week:"2026-03-30",P:{calls:10,conn:1,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:116,conn:19,pos:3,neg:11,email:0,deals:0,mov:4},M:{calls:79,conn:11,pos:3,neg:2,email:1,deals:0,mov:0}},
+  {week:"2026-04-06",P:{calls:39,conn:9,pos:4,neg:1,email:0,deals:1,mov:0},G:{calls:237,conn:48,pos:17,neg:19,email:1,deals:9,mov:5},M:{calls:204,conn:18,pos:3,neg:4,email:1,deals:5,mov:1}},
+  {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,deals:0,mov:5},G:{calls:353,conn:55,pos:12,neg:30,email:0,deals:10,mov:1},M:{calls:170,conn:24,pos:6,neg:7,email:0,deals:5,mov:3}},
   {week:"2026-04-20",P:{calls:41,conn:9,pos:2,neg:3,email:0,deals:4,mov:2},G:{calls:199,conn:31,pos:6,neg:7,email:1,deals:2,mov:7},M:{calls:118,conn:12,pos:6,neg:1,email:0,deals:1,mov:4}},
-  {week:"2026-04-27",P:{calls:18,conn:2,pos:1,neg:0,email:0,deals:1,mov:2},G:{calls:257,conn:27,pos:6,neg:15,email:0,deals:4,mov:7},M:{calls:59,conn:4,pos:2,neg:0,email:0,deals:0,mov:0}}
+  {week:"2026-04-27",P:{calls:18,conn:2,pos:1,neg:0,email:0,deals:1,mov:2},G:{calls:257,conn:27,pos:6,neg:15,email:0,deals:4,mov:7},M:{calls:59,conn:4,pos:2,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-05-04",P:{calls:23,conn:6,pos:2,neg:0,email:3,deals:0,mov:0},G:{calls:213,conn:22,pos:12,neg:3,email:0,deals:5,mov:2},M:{calls:142,conn:4,pos:2,neg:1,email:0,deals:3,mov:2}}
 ];
 
 const allTimeTotals = {
@@ -118,11 +119,11 @@ const allTimeTotals = {
 };
 
 const pipelines = [
-  {name:"Research & Development",color:"#B8860B",description:"Early stage — future opportunities worth continuing to call",total:91,
-    stages:[{name:"Initial Contact",deals:42},{name:"Mapping Stakeholders",deals:24},{name:"Qualified Opportunity",deals:1,highlight:"green"},{name:"No Opportunity Here",deals:14,highlight:"red"}]},
-  {name:"Qualified Opportunities",color:"#7F77DD",description:"Pain identified — investing time and mapping stakeholders",total:62,
-    stages:[{name:"Oppty Identified",deals:19},{name:"Added to Bid List",deals:14},{name:"Meeting Booked/Held",deals:8},{name:"Becoming a Preferred Vendor",deals:8},{name:"Pricing Sent",deals:6},{name:"Closed Won",deals:3,highlight:"green"},{name:"Closed Lost",deals:11,highlight:"red"}]},
-  {name:"Circle Back Later",color:"#BA7517",description:"Went cold or lost a bid — nurture for future opportunities",total:17,
+  {name:"Research & Development",color:"#B8860B",description:"Early stage — future opportunities worth continuing to call",total:79,
+    stages:[{name:"Initial Contact",deals:42},{name:"Mapping Stakeholders",deals:22},{name:"Qualified Opportunity",deals:1,highlight:"green"},{name:"No Opportunity Here",deals:14,highlight:"red"}]},
+  {name:"Qualified Opportunities",color:"#7F77DD",description:"Pain identified — investing time and mapping stakeholders",total:79,
+    stages:[{name:"Oppty Identified",deals:24},{name:"Added to Bid List",deals:15},{name:"Meeting Booked/Held",deals:11},{name:"Becoming a Preferred Vendor",deals:9},{name:"Pricing Sent",deals:6},{name:"Closed Won",deals:3,highlight:"green"},{name:"Closed Lost",deals:11,highlight:"red"}]},
+  {name:"Circle Back Later",color:"#4A4A4A",description:"Went cold or lost a bid — nurture for future opportunities",total:17,
     stages:[{name:"On Hold",deals:16},{name:"Big Fat NO",deals:1,highlight:"red"}]}
 ];
 
@@ -217,12 +218,14 @@ const quotes = [
   {client:"Component Assembly",project:"343 Madison",svc:"FR",amount:23256,date:"2026-04-22",status:"Approved",award:"Awarded",seller:"Petrus"},
   {client:"Muller Construction",project:"Sandy Beach FRP",svc:"GS",amount:1900,date:"2026-05-01",status:"Issued",award:"Awarded",seller:"Petrus"},
   {client:"JND Mechanical",project:"Somar Residences",svc:"FR",amount:41800,date:"2026-05-01",status:"Not Issued",award:"Bid List",seller:"Petrus"},
-  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:183540,date:"2026-04-23",status:"Issued",award:"Awarded",seller:"Murillo"},
-  {client:"Coastal Construction",project:"South Bank Residences",svc:"FR",amount:77885,date:"2026-05-01",status:"Issued",award:"Awarded",seller:"Murillo"},
-  {client:"EC Electric",project:"T&M Rate for Overflow Work",svc:"EL",amount:20160,date:"2026-04-20",status:"Approved",award:"Awarded",seller:"Murillo"}
+  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:183558,date:"2026-04-23",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"Coastal Construction",project:"South Bank Residences",svc:"FR",amount:77885,date:"2026-05-01",status:"Lost",award:"Awarded",seller:"Murillo"},
+  {client:"EC Electric",project:"T&M Rate for Overflow Work",svc:"EL",amount:20160,date:"2026-04-20",status:"Approved",award:"Awarded",seller:"Murillo"},
+  {client:"Coastal Construction",project:"South Bank Residential",svc:"FR",amount:62733,date:"2026-05-08",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"Coastal Construction",project:"AC-Moxy Hotel",svc:"FR",amount:22829,date:"2026-05-08",status:"Issued",award:"Awarded",seller:"Murillo"},
 ];
 
-const TODAY = new Date(2026, 4, 3);
+const TODAY = new Date(2026, 4, 10);
 
 // Generate month options from Sep 2025 to current month
 const MONTH_OPTIONS = [];
@@ -323,6 +326,7 @@ function App(){
   },[pq]);
 
   const sqt=useMemo(()=>{const t={};pq.forEach(q=>{t[q.svc]=(t[q.svc]||0)+(q.amount||0);});return t;},[pq]);
+  const sqtHot=useMemo(()=>{const t={};pq.filter(q=>q.award==="Warm Bid"||q.award==="Awarded").forEach(q=>{t[q.svc]=(t[q.svc]||0)+(q.amount||0);});return t;},[pq]);
 
   // Per-seller quote stats (all time)
   const sellerQuoteStats = useMemo(()=>{
@@ -566,9 +570,10 @@ function App(){
       ),
 
       React.createElement(ST,{c:"By service line"}),
+      React.createElement('div',{style:{fontSize:12,color:"var(--text-secondary)",marginBottom:"0.6rem"}},"Warm Bid and Awarded quotes only — Bid List excluded. These are the opportunities most likely to convert to real work."),
       React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem",marginBottom:"1rem"}},
         ...Object.entries(SVC_META).map(([k,v])=>{
-          const val=sqt[k]||0,max=Math.max(...Object.values(sqt).filter(Boolean),1);
+          const val=sqtHot[k]||0,max=Math.max(...Object.values(sqtHot).filter(Boolean),1);
           return React.createElement(BarRow,{key:k,label:v.label,value:val,max:max,color:v.color,meta:fmt$(val)});
         })
       ),
