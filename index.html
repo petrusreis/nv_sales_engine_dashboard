@@ -68,7 +68,7 @@ const dealMovementByWeek = [
   {week:"Feb 23",P:2,G:0,M:0},{week:"Mar 2",P:9,G:0,M:0},{week:"Mar 9",P:3,G:0,M:0},
   {week:"Mar 16",P:13,G:1,M:1},{week:"Mar 23",P:5,G:8,M:5},{week:"Mar 30",P:8,G:5,M:2},
   {week:"Apr 6",P:0,G:5,M:1},{week:"Apr 13",P:5,G:1,M:3},{week:"Apr 20",P:2,G:7,M:4},
-  {week:"Apr 27",P:2,G:7,M:0},{week:"May 4",P:0,G:2,M:2},{week:"May 11",P:5,G:9,M:6},{week:"May 18",P:16,G:20,M:17}
+  {week:"Apr 27",P:2,G:7,M:0},{week:"May 4",P:0,G:2,M:2},{week:"May 11",P:5,G:9,M:6},{week:"May 18",P:16,G:20,M:17},{week:"May 25",P:4,G:7,M:1}
 ];
 
 const weeklyData = [
@@ -108,39 +108,40 @@ const weeklyData = [
   {week:"2026-04-27",P:{calls:18,conn:2,pos:1,neg:0,email:0,deals:1,mov:2},G:{calls:257,conn:27,pos:6,neg:15,email:0,deals:4,mov:7},M:{calls:59,conn:4,pos:2,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-05-04",P:{calls:23,conn:6,pos:2,neg:0,email:3,deals:0,mov:0},G:{calls:213,conn:22,pos:12,neg:3,email:0,deals:5,mov:2},M:{calls:147,conn:4,pos:2,neg:1,email:0,deals:3,mov:2}},
   {week:"2026-05-11",P:{calls:28,conn:4,pos:0,neg:0,email:0,deals:0,mov:5},G:{calls:312,conn:35,pos:10,neg:22,email:0,deals:4,mov:9},M:{calls:85,conn:6,pos:3,neg:2,email:0,deals:6,mov:6}},
-  {week:"2026-05-18",P:{calls:16,conn:5,pos:3,neg:0,email:0,deals:0,mov:16},G:{calls:185,conn:27,pos:11,neg:6,email:0,deals:3,mov:20},M:{calls:95,conn:5,pos:0,neg:2,email:0,deals:1,mov:17}}
+  {week:"2026-05-18",P:{calls:16,conn:5,pos:3,neg:0,email:0,deals:0,mov:16},G:{calls:185,conn:27,pos:11,neg:6,email:0,deals:3,mov:20},M:{calls:95,conn:5,pos:0,neg:2,email:0,deals:1,mov:17}},
+  {week:"2026-05-25",P:{calls:39,conn:10,pos:2,neg:2,email:0,deals:0,mov:4},G:{calls:278,conn:49,pos:18,neg:19,email:0,deals:12,mov:7},M:{calls:100,conn:12,pos:8,neg:0,email:1,deals:3,mov:1}}
 ];
 
 const allTimeTotals = {
-  Petrus:   {calls:3401,conn:544,pos:138,neg:200,email:51,deals:92,mov:203},
-  Giuseppe: {calls:2594,conn:394,pos:108,neg:167,email:13,deals:59,mov:65},
-  Murillo:  {calls:1472,conn:209,pos:65,neg:38,email:3,deals:38,mov:41}
+  Petrus:   {calls:3440,conn:554,pos:140,neg:202,email:51,deals:92,mov:207},
+  Giuseppe: {calls:2872,conn:443,pos:126,neg:186,email:13,deals:71,mov:72},
+  Murillo:  {calls:1572,conn:221,pos:73,neg:38,email:4,deals:41,mov:42}
 };
 
 const pipelines = [
-  {name:"1. Early Engagement",color:"#B8860B",description:"First touches — mapping who's who, booking meetings, qualifying fit",total:105,
+  {name:"1. Early Engagement",color:"#B8860B",description:"First touches — mapping who's who, booking meetings, qualifying fit",total:109,
     stages:[
-      {name:"Initial Contact",deals:50},
-      {name:"Mapping Stakeholders",deals:37},
-      {name:"Meeting Booked",deals:1},
+      {name:"Initial Contact",deals:49},
+      {name:"Mapping Stakeholders",deals:38},
+      {name:"Meeting Booked",deals:3},
       {name:"Meeting Held",deals:2},
       {name:"Qualified Opportunity",deals:1,highlight:"green"},
-      {name:"No Opportunity Here",deals:14,highlight:"red"}
+      {name:"No Opportunity Here",deals:16,highlight:"red"}
     ]},
-  {name:"2. Qualified Opps (Bid List)",color:"#185FA5",description:"Client is bidding on work — they haven't won the project yet. Colder.",total:46,
+  {name:"2. Qualified Opps (Bid List)",color:"#185FA5",description:"Client is bidding on work — they haven't won the project yet. Colder.",total:51,
     stages:[
-      {name:"Added to Bid List",deals:16},
+      {name:"Added to Bid List",deals:21},
       {name:"Quote Sent (Bid List)",deals:4},
       {name:"Building Business Case",deals:12},
       {name:"Closed Won",deals:2,highlight:"green"},
       {name:"Closed Lost",deals:12,highlight:"red"}
     ]},
-  {name:"3. Qualified Opps (Awarded)",color:"#7F77DD",description:"Client has won the project and is buying out BIM scope. Much warmer.",total:10,
+  {name:"3. Qualified Opps (Awarded)",color:"#7F77DD",description:"Client has won the project and is buying out BIM scope. Much warmer.",total:11,
     stages:[
       {name:"Quote Sent (Awarded)",deals:6},
       {name:"Estimating Internally",deals:0},
       {name:"Pending Executive Approval",deals:4},
-      {name:"Closed Won",deals:0,highlight:"green"},
+      {name:"Closed Won",deals:1,highlight:"green"},
       {name:"Closed Lost",deals:0,highlight:"red"}
     ]},
   {name:"4. Client Onboarding",color:"#3B6D11",description:"Deal is closed — aligning on billing, kicking off with ops, getting paid.",total:2,
@@ -151,9 +152,9 @@ const pipelines = [
       {name:"First Payment Received",deals:0,highlight:"green"},
       {name:"Closed Lost",deals:0,highlight:"red"}
     ]},
-  {name:"Circle Back Later",color:"#4A4A4A",description:"Stalled or cold — still worth keeping in orbit.",total:26,
+  {name:"Circle Back Later",color:"#4A4A4A",description:"Stalled or cold — still worth keeping in orbit.",total:31,
     stages:[
-      {name:"On Hold",deals:25},
+      {name:"On Hold",deals:30},
       {name:"Reached Back Out",deals:0},
       {name:"Qualified Opportunity",deals:0,highlight:"green"},
       {name:"Big Fat NO",deals:1,highlight:"red"}
@@ -240,7 +241,7 @@ const quotes = [
   {client:"ICS Industrial",project:"Davis Reed",svc:"PL",amount:86450,date:"2026-03-10",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"JND Mechanical",project:"Fairfield Ave Apartments",svc:"PL",amount:62964,date:"2026-03-10",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"2020 PL",project:"2120 Main St The Seacliff",svc:"PL",amount:88320,date:"2026-04-02",status:"Issued",award:"Awarded",seller:"Petrus"},
-  {client:"Malek Mechanical",project:"Banquete ISD",svc:"PL",amount:240584,date:"2026-04-03",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"Malek Mechanical",project:"Banquete ISD",svc:"PL",amount:240584,date:"2026-04-03",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"ICS Industrial",project:"VA Clinic",svc:"PL",amount:129920,date:"2026-03-30",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"JND Mechanical",project:"Siesta Promenade",svc:"PL",amount:93000,date:"2026-04-01",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"JND Mechanical",project:"Convivial LifeStar Living",svc:"PL",amount:285000,date:"2026-04-01",status:"Lost",award:"Warm Bid",seller:"Petrus"},
@@ -256,15 +257,17 @@ const quotes = [
   {client:"EC Electric",project:"T&M Rate for Overflow Work",svc:"EL",amount:20160,date:"2026-04-20",status:"Approved",award:"Awarded",seller:"Murillo"},
   {client:"Coastal Construction",project:"South Bank Residential",svc:"FR",amount:62733,date:"2026-05-08",status:"Issued",award:"Awarded",seller:"Murillo"},
   {client:"Coastal Construction",project:"AC-Moxy Hotel",svc:"FR",amount:22829,date:"2026-05-08",status:"Approved",award:"Awarded",seller:"Murillo"},
-  {client:"Moss & Associates",project:"Westside Village",svc:"PL",amount:22800,date:"2026-05-13",status:"Lost",award:"Bid List",seller:"Murillo"},
-  {client:"Moss & Associates",project:"Westside Village",svc:"PL",amount:18600,date:"2026-05-13",status:"Approved",award:"Bid List",seller:"Murillo"},
+  {client:"Moss & Associates",project:"Westside Village",svc:"PL",amount:22800,date:"2026-05-13",status:"Lost",award:"Awarded",seller:"Murillo"},
+  {client:"Moss & Associates",project:"Westside Village",svc:"PL",amount:18600,date:"2026-05-13",status:"Approved",award:"Awarded",seller:"Murillo"},
   {client:"Sunshine State Plumbing",project:"South Bank Residences",svc:"PL",amount:86800,date:"2026-05-14",status:"Issued",award:"Awarded",seller:"Murillo"},
-  {client:"Rightway Plumbing",project:"WBP Hotel",svc:"PL",amount:134400,date:"2026-05-15",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"JND Mechanical",project:"Nautilus South Condo",svc:"PL",amount:8050,date:"2026-05-04",status:"Issued",award:"Bid List",seller:"Petrus"},
-  {client:"RTL Construction",project:"Datacenter 1",svc:"FR",amount:24960,date:"2026-05-19",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"RTL Construction",project:"Datacenter 1",svc:"FR",amount:28080,date:"2026-05-19",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"Rightway Plumbing",project:"WBP Hotel",svc:"PL",amount:128000,date:"2026-05-15",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Epique Condo",svc:"PL",amount:107100,date:"2026-05-19",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Malek Mechanical",project:"Bay Area Bed Expansion",svc:"PL",amount:133500,date:"2026-05-28",status:"Issued",award:"Bid List",seller:"Petrus"},
 ];
 
-const TODAY = new Date(2026, 4, 25);
+const TODAY = new Date(2026, 4, 31);
 
 // Generate month options from Sep 2025 to current month
 const MONTH_OPTIONS = [];
