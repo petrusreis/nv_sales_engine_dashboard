@@ -68,7 +68,7 @@ const dealMovementByWeek = [
   {week:"Feb 23",P:2,G:0,M:0},{week:"Mar 2",P:9,G:0,M:0},{week:"Mar 9",P:3,G:0,M:0},
   {week:"Mar 16",P:13,G:1,M:1},{week:"Mar 23",P:5,G:8,M:5},{week:"Mar 30",P:8,G:5,M:2},
   {week:"Apr 6",P:0,G:5,M:1},{week:"Apr 13",P:5,G:1,M:3},{week:"Apr 20",P:2,G:7,M:4},
-  {week:"Apr 27",P:2,G:7,M:0},{week:"May 4",P:0,G:2,M:2},{week:"May 11",P:5,G:9,M:6},{week:"May 18",P:16,G:20,M:17},{week:"May 25",P:4,G:7,M:1}
+  {week:"Apr 27",P:2,G:7,M:0},{week:"May 4",P:0,G:2,M:2},{week:"May 11",P:5,G:9,M:6},{week:"May 18",P:16,G:20,M:17},{week:"May 25",P:4,G:7,M:1},{week:"Jun 1",P:3,G:8,M:6},{week:"Jun 8",P:1,G:0,M:0}
 ];
 
 const weeklyData = [
@@ -106,16 +106,18 @@ const weeklyData = [
   {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,deals:0,mov:5},G:{calls:353,conn:55,pos:12,neg:30,email:0,deals:10,mov:1},M:{calls:170,conn:24,pos:6,neg:7,email:0,deals:5,mov:3}},
   {week:"2026-04-20",P:{calls:41,conn:9,pos:2,neg:3,email:0,deals:4,mov:2},G:{calls:199,conn:31,pos:6,neg:7,email:1,deals:2,mov:7},M:{calls:118,conn:12,pos:6,neg:1,email:0,deals:1,mov:4}},
   {week:"2026-04-27",P:{calls:18,conn:2,pos:1,neg:0,email:0,deals:1,mov:2},G:{calls:257,conn:27,pos:6,neg:15,email:0,deals:4,mov:7},M:{calls:59,conn:4,pos:2,neg:0,email:0,deals:0,mov:0}},
-  {week:"2026-05-04",P:{calls:23,conn:6,pos:2,neg:0,email:3,deals:0,mov:0},G:{calls:213,conn:22,pos:12,neg:3,email:0,deals:5,mov:2},M:{calls:147,conn:4,pos:2,neg:1,email:0,deals:3,mov:2}},
+  {week:"2026-05-04",P:{calls:23,conn:6,pos:2,neg:0,email:3,deals:0,mov:0},G:{calls:213,conn:22,pos:12,neg:3,email:0,deals:0,mov:0},M:{calls:147,conn:4,pos:2,neg:1,email:0,deals:0,mov:0}},
   {week:"2026-05-11",P:{calls:28,conn:4,pos:0,neg:0,email:0,deals:0,mov:5},G:{calls:312,conn:35,pos:10,neg:22,email:0,deals:4,mov:9},M:{calls:85,conn:6,pos:3,neg:2,email:0,deals:6,mov:6}},
   {week:"2026-05-18",P:{calls:16,conn:5,pos:3,neg:0,email:0,deals:0,mov:16},G:{calls:185,conn:27,pos:11,neg:6,email:0,deals:3,mov:20},M:{calls:95,conn:5,pos:0,neg:2,email:0,deals:1,mov:17}},
-  {week:"2026-05-25",P:{calls:39,conn:10,pos:2,neg:2,email:0,deals:0,mov:4},G:{calls:278,conn:49,pos:18,neg:19,email:0,deals:12,mov:7},M:{calls:100,conn:12,pos:8,neg:0,email:1,deals:3,mov:1}}
+  {week:"2026-05-25",P:{calls:39,conn:10,pos:2,neg:2,email:0,deals:0,mov:4},G:{calls:278,conn:49,pos:18,neg:19,email:0,deals:12,mov:11},M:{calls:100,conn:12,pos:8,neg:0,email:1,deals:3,mov:2}},
+  {week:"2026-06-01",P:{calls:9,conn:0,pos:0,neg:0,email:0,deals:0,mov:3},G:{calls:273,conn:35,pos:18,neg:10,email:1,deals:6,mov:8},M:{calls:55,conn:3,pos:2,neg:0,email:0,deals:0,mov:6}},
+  {week:"2026-06-08",P:{calls:2,conn:1,pos:1,neg:0,email:0,deals:0,mov:1},G:{calls:4,conn:1,pos:1,neg:0,email:0,deals:1,mov:0},M:{calls:14,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}}
 ];
 
 const allTimeTotals = {
-  Petrus:   {calls:3440,conn:554,pos:140,neg:202,email:51,deals:92,mov:207},
-  Giuseppe: {calls:2872,conn:443,pos:126,neg:186,email:13,deals:71,mov:72},
-  Murillo:  {calls:1572,conn:221,pos:73,neg:38,email:4,deals:41,mov:42}
+  Petrus:   {calls:3451,conn:555,pos:141,neg:202,email:51,deals:92,mov:211},
+  Giuseppe: {calls:3149,conn:479,pos:145,neg:196,email:14,deals:73,mov:82},
+  Murillo:  {calls:1641,conn:224,pos:75,neg:38,email:4,deals:38,mov:47}
 };
 
 const pipelines = [
@@ -138,9 +140,9 @@ const pipelines = [
     ]},
   {name:"3. Qualified Opps (Awarded)",color:"#7F77DD",description:"Client has won the project and is buying out BIM scope. Much warmer.",total:11,
     stages:[
-      {name:"Quote Sent (Awarded)",deals:6},
+      {name:"Quote Sent (Awarded)",deals:5},
       {name:"Estimating Internally",deals:0},
-      {name:"Pending Executive Approval",deals:4},
+      {name:"Pending Executive Approval",deals:5},
       {name:"Closed Won",deals:1,highlight:"green"},
       {name:"Closed Lost",deals:0,highlight:"red"}
     ]},
@@ -173,7 +175,7 @@ const quotes = [
   {client:"CESG",project:"DFW Terminal C",svc:"EL",amount:171000,date:"2026-01-09",status:"Approved",award:"Awarded",seller:"Petrus"},
   {client:"TempCon",project:"Lawrence Middle School",svc:"GS",amount:39680,date:"2025-09-15",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"KREIT",project:"Spool Sheets Test Estimate",svc:"PL",amount:3360,date:"2025-10-07",status:"Lost",award:"Awarded",seller:"Petrus"},
-  {client:"Right Way PL",project:"1755 JFK Causeway",svc:"PL",amount:186900,date:"2025-10-31",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Right Way PL",project:"1755 JFK Causeway",svc:"PL",amount:186900,date:"2025-10-31",status:"Lost",award:"Bid List",seller:"Petrus"},
   {client:"RLP Mechanical",project:"Frankford Middle School Kitchen",svc:"PL",amount:57225,date:"2025-11-18",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Modern Air",project:"Mable Ave Assisted Living",svc:"PL",amount:84000,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Modern Air",project:"Merced Self Storage",svc:"PL",amount:3325,date:"2025-12-02",status:"Issued",award:"Bid List",seller:"Petrus"},
@@ -236,7 +238,7 @@ const quotes = [
   {client:"Modern Air",project:"Tulare UHS Shop Bldg",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Modern Air",project:"Amazon OAK5 Sortation Center",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"2020 PL",project:"485 Long Beach Blvd",svc:"PL",amount:67200,date:"2026-02-25",status:"Issued",award:"Warm Bid",seller:"Petrus"},
-  {client:"CESG",project:"UTA University Center",svc:"EL",amount:80408,date:"2026-03-04",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"CESG",project:"UTA University Center",svc:"EL",amount:80408,date:"2026-03-04",status:"Lost",award:"Warm Bid",seller:"Petrus"},
   {client:"ICS Industrial",project:"Allian",svc:"PL",amount:61950,date:"2026-03-10",status:"Not Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"ICS Industrial",project:"Davis Reed",svc:"PL",amount:86450,date:"2026-03-10",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"JND Mechanical",project:"Fairfield Ave Apartments",svc:"PL",amount:62964,date:"2026-03-10",status:"Lost",award:"Awarded",seller:"Petrus"},
@@ -248,26 +250,30 @@ const quotes = [
   {client:"ICS Industrial",project:"Reyes La Admin",svc:"PL",amount:198740,date:"2026-04-14",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"ICS Industrial",project:"Carlsbad by the Sea",svc:"PL",amount:108150,date:"2026-04-22",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"ICS Industrial",project:"The Verb Hotel",svc:"PL",amount:113750,date:"2026-04-22",status:"Issued",award:"Warm Bid",seller:"Petrus"},
-  {client:"ArcoMurray",project:"Westlake Residential",svc:"FR",amount:26030,date:"2026-04-21",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"ArcoMurray",project:"Westlake Residential",svc:"FR",amount:26030,date:"2026-04-21",status:"Approved",award:"Awarded",seller:"Petrus"},
   {client:"Component Assembly",project:"343 Madison",svc:"FR",amount:23256,date:"2026-04-22",status:"Approved",award:"Awarded",seller:"Petrus"},
   {client:"Muller Construction",project:"Sandy Beach FRP",svc:"GS",amount:1900,date:"2026-05-01",status:"Issued",award:"Awarded",seller:"Petrus"},
   {client:"JND Mechanical",project:"Somar Residences",svc:"FR",amount:41800,date:"2026-05-01",status:"Issued",award:"Bid List",seller:"Petrus"},
-  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:183558,date:"2026-04-23",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:175332,date:"2026-04-23",status:"Issued",award:"Awarded",seller:"Murillo"},
   {client:"Coastal Construction",project:"South Bank Residences",svc:"FR",amount:77885,date:"2026-05-01",status:"Lost",award:"Awarded",seller:"Murillo"},
   {client:"EC Electric",project:"T&M Rate for Overflow Work",svc:"EL",amount:20160,date:"2026-04-20",status:"Approved",award:"Awarded",seller:"Murillo"},
-  {client:"Coastal Construction",project:"South Bank Residential",svc:"FR",amount:62733,date:"2026-05-08",status:"Issued",award:"Awarded",seller:"Murillo"},
-  {client:"Coastal Construction",project:"AC-Moxy Hotel",svc:"FR",amount:22829,date:"2026-05-08",status:"Approved",award:"Awarded",seller:"Murillo"},
+  {client:"Coastal Construction",project:"South Bank Residential",svc:"FR",amount:62733,date:"2026-05-08",status:"Approved",award:"Awarded",seller:"Murillo"},
+  {client:"Coastal Construction",project:"AC-Moxy Hotel",svc:"FR",amount:22829,date:"2026-05-08",status:"Issued",award:"Awarded",seller:"Murillo"},
   {client:"Moss & Associates",project:"Westside Village",svc:"PL",amount:22800,date:"2026-05-13",status:"Lost",award:"Awarded",seller:"Murillo"},
-  {client:"Moss & Associates",project:"Westside Village",svc:"PL",amount:18600,date:"2026-05-13",status:"Approved",award:"Awarded",seller:"Murillo"},
+  {client:"Moss & Associates",project:"Westside Village (Plumbing)",svc:"PL",amount:18600,date:"2026-05-13",status:"Approved",award:"Awarded",seller:"Murillo"},
   {client:"Sunshine State Plumbing",project:"South Bank Residences",svc:"PL",amount:86800,date:"2026-05-14",status:"Issued",award:"Awarded",seller:"Murillo"},
   {client:"JND Mechanical",project:"Nautilus South Condo",svc:"PL",amount:8050,date:"2026-05-04",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"RTL Construction",project:"Datacenter 1",svc:"FR",amount:28080,date:"2026-05-19",status:"Issued",award:"Bid List",seller:"Giuseppe"},
   {client:"Rightway Plumbing",project:"WBP Hotel",svc:"PL",amount:128000,date:"2026-05-15",status:"Issued",award:"Awarded",seller:"Petrus"},
   {client:"JND Mechanical",project:"Epique Condo",svc:"PL",amount:107100,date:"2026-05-19",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Malek Mechanical",project:"Bay Area Bed Expansion",svc:"PL",amount:133500,date:"2026-05-28",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"Thornton Construction",project:"FIU CasaCuba",svc:"GS",amount:183558,date:"2026-04-22",status:"Lost",award:"Awarded",seller:"Murillo"},
+  {client:"Moss & Associates",project:"Westside Village (Mechanical)",svc:"PL",amount:4200,date:"2026-05-28",status:"Approved",award:"Awarded",seller:"Murillo"},
+  {client:"Mark III Construction",project:"Nippon Shokken",svc:"PL",amount:117000,date:"2026-04-27",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"QPS",project:"OBH Beverly Aman Hotel Tower 3",svc:"FR",amount:25792,date:"2026-06-01",status:"Issued",award:"Awarded",seller:"Giuseppe"},
 ];
 
-const TODAY = new Date(2026, 4, 31);
+const TODAY = new Date(2026, 5, 8);
 
 // Generate month options from Sep 2025 to current month
 const MONTH_OPTIONS = [];
