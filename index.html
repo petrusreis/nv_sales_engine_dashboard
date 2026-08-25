@@ -418,6 +418,11 @@ function App(){
   const [qaf,setQaf]=useState("All");
   const [tab,setTab]=useState("activity");
   const [sellerOpen,setSellerOpen]=useState(false);
+  const [topTab,setTopTab]=useState("sales");
+  const [unlocked,setUnlocked]=useState(false);
+  const [showPwModal,setShowPwModal]=useState(false);
+  const [pwInput,setPwInput]=useState("");
+  const [pwError,setPwError]=useState(false);
 
   const isAllTime = period.type==="alltime";
 
@@ -520,12 +525,23 @@ function App(){
     );
   };
 
-  const tabs=[{id:"activity",label:"Outbound Activity"},{id:"pipeline",label:"Pipeline"},{id:"quotes",label:"Quotes"},{id:"revenue",label:"Revenue"}];
+  const salesTabs=[{id:"activity",label:"Outbound Activity"},{id:"pipeline",label:"Pipeline"}];
+  const moneyTabs=[{id:"quotes",label:"Quotes"},{id:"revenue",label:"Revenue"}];
 
   const handlePeriodBtn = (type, days) => {
     setPeriod({type,days});
   };
   const prevCycle = getPrevCycle();
+  const handleTopTab = (t) => {
+    if(t==="money"&&!unlocked){ setShowPwModal(true); return; }
+    setTopTab(t);
+    if(t==="sales"&&!["activity","pipeline"].includes(tab)) setTab("activity");
+    if(t==="money"&&!["quotes","revenue"].includes(tab)) setTab("quotes");
+  };
+  const handlePassword = () => {
+    if(pwInput==="SLAVAUKRAINI"){ setUnlocked(true); setShowPwModal(false); setPwInput(""); setPwError(false); setTopTab("money"); setTab("quotes"); }
+    else { setPwError(true); setPwInput(""); }
+  };
 
   const btnStyle = (active) => ({
     fontSize:12,padding:"5px 14px",borderRadius:999,
@@ -547,21 +563,54 @@ function App(){
       )
     ),
 
-    // Period filters
-    React.createElement('div',{style:{display:"flex",gap:8,flexWrap:"wrap",alignItems:"center",margin:"1.25rem 0"}},
-      React.createElement('button',{onClick:()=>handlePeriodBtn("alltime"),style:btnStyle(period.type==="alltime")},"All time"),
-      React.createElement('button',{onClick:()=>handlePeriodBtn("days",30),style:btnStyle(period.type==="days"&&period.days===30)},"Last 30 days"),
-      React.createElement('button',{
-        onClick:()=>prevCycle?handlePeriodBtn("cycle"):null,
-        style:{...btnStyle(period.type==="cycle"),opacity:prevCycle?1:0.4,cursor:prevCycle?"pointer":"default"},
-        title:prevCycle?`${prevCycle.label}: ${prevCycle.start} — ${prevCycle.end}`:"Cycle tracking starts September 2026"
-      },prevCycle?`Previous Cycle (${prevCycle.label})`:"Previous Cycle")
+    // Password modal
+    showPwModal&&React.createElement('div',{style:{position:"fixed",top:0,left:0,width:"100%",height:"100%",background:"rgba(0,0,0,0.55)",zIndex:1000,display:"flex",alignItems:"center",justifyContent:"center"}},
+      React.createElement('div',{style:{background:"var(--bg-primary)",borderRadius:12,padding:"2rem",width:320,boxShadow:"0 8px 32px rgba(0,0,0,0.18)"}},
+        React.createElement('div',{style:{fontSize:18,fontWeight:600,marginBottom:6}},"🔒 Money"),
+        React.createElement('div',{style:{fontSize:13,color:"var(--text-secondary)",marginBottom:"1.25rem"}},"This section is restricted. Enter the password to continue."),
+        React.createElement('input',{
+          type:"password",
+          value:pwInput,
+          onChange:e=>{setPwInput(e.target.value);setPwError(false);},
+          onKeyDown:e=>e.key==="Enter"&&handlePassword(),
+          placeholder:"Password",
+          autoFocus:true,
+          style:{width:"100%",padding:"10px 12px",fontSize:14,border:`1px solid ${pwError?"#E24B4A":"var(--border)"}`,borderRadius:8,marginBottom:pwError?6:"1rem",boxSizing:"border-box",outline:"none"}
+        }),
+        pwError&&React.createElement('div',{style:{fontSize:12,color:"#E24B4A",marginBottom:"1rem"}},"Incorrect password. Try again."),
+        React.createElement('div',{style:{display:"flex",gap:8}},
+          React.createElement('button',{onClick:()=>{setShowPwModal(false);setPwInput("");setPwError(false);},style:{flex:1,padding:"9px",border:"1px solid var(--border)",borderRadius:8,background:"transparent",cursor:"pointer",fontSize:13}},"Cancel"),
+          React.createElement('button',{onClick:handlePassword,style:{flex:1,padding:"9px",border:"none",borderRadius:8,background:"var(--text-primary)",color:"var(--bg-primary)",cursor:"pointer",fontSize:13,fontWeight:500}},"Unlock")
+        )
+      )
     ),
 
-    React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",marginTop:-12,marginBottom:"1rem",fontStyle:"italic"}},"⚠ Cycle-based filtering starts September 2026. Previous Cycle will activate once cycles are defined."),
-    // Tabs
-    React.createElement('div',{style:{display:"flex",borderBottom:"1px solid var(--border)",marginBottom:"1.5rem"}},
-      ...tabs.map(t=>React.createElement('button',{key:t.id,onClick:()=>setTab(t.id),style:{fontSize:13,padding:"8px 18px",border:"none",borderBottom:tab===t.id?"2px solid var(--text-primary)":"2px solid transparent",background:"transparent",color:tab===t.id?"var(--text-primary)":"var(--text-secondary)",fontWeight:tab===t.id?500:400}},t.label))
+    // Top-level nav
+    React.createElement('div',{style:{display:"flex",gap:4,marginBottom:"1rem",borderBottom:"2px solid var(--border)",paddingBottom:0}},
+      React.createElement('button',{onClick:()=>handleTopTab("sales"),style:{fontSize:14,fontWeight:600,padding:"10px 22px",border:"none",borderBottom:topTab==="sales"?"3px solid var(--text-primary)":"3px solid transparent",marginBottom:-2,background:"transparent",color:topTab==="sales"?"var(--text-primary)":"var(--text-secondary)",cursor:"pointer",letterSpacing:"0.02em"}},"SALES EFFORTS"),
+      React.createElement('button',{onClick:()=>handleTopTab("money"),style:{fontSize:14,fontWeight:600,padding:"10px 22px",border:"none",borderBottom:topTab==="money"?"3px solid var(--text-primary)":"3px solid transparent",marginBottom:-2,background:"transparent",color:topTab==="money"?"var(--text-primary)":"var(--text-secondary)",cursor:"pointer",letterSpacing:"0.02em"}},unlocked?"MONEY 💰":"MONEY 🔒")
+    ),
+
+    // Sub-tabs + period filters (Sales Efforts only)
+    topTab==="sales"&&React.createElement('div',null,
+      React.createElement('div',{style:{display:"flex",gap:8,flexWrap:"wrap",alignItems:"center",margin:"1rem 0"}},
+        React.createElement('button',{onClick:()=>handlePeriodBtn("alltime"),style:btnStyle(period.type==="alltime")},"All time"),
+        React.createElement('button',{onClick:()=>handlePeriodBtn("days",30),style:btnStyle(period.type==="days"&&period.days===30)},"Last 30 days"),
+        React.createElement('button',{
+          onClick:()=>prevCycle?handlePeriodBtn("cycle"):null,
+          style:{...btnStyle(period.type==="cycle"),opacity:prevCycle?1:0.4,cursor:prevCycle?"pointer":"default"},
+          title:prevCycle?`${prevCycle.label}: ${prevCycle.start} — ${prevCycle.end}`:"Cycle tracking starts September 2026"
+        },prevCycle?`Previous Cycle (${prevCycle.label})`:"Previous Cycle")
+      ),
+      React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",marginTop:-8,marginBottom:"0.75rem",fontStyle:"italic"}},"⚠ Cycle-based filtering starts September 2026. Previous Cycle will activate once cycles are defined."),
+      React.createElement('div',{style:{display:"flex",borderBottom:"1px solid var(--border)",marginBottom:"1.5rem"}},
+        ...salesTabs.map(t=>React.createElement('button',{key:t.id,onClick:()=>setTab(t.id),style:{fontSize:13,padding:"8px 18px",border:"none",borderBottom:tab===t.id?"2px solid var(--text-primary)":"2px solid transparent",background:"transparent",color:tab===t.id?"var(--text-primary)":"var(--text-secondary)",fontWeight:tab===t.id?500:400}},t.label))
+      )
+    ),
+
+    // Money sub-tabs
+    topTab==="money"&&React.createElement('div',{style:{display:"flex",borderBottom:"1px solid var(--border)",marginBottom:"1.5rem",marginTop:"1rem"}},
+      ...moneyTabs.map(t=>React.createElement('button',{key:t.id,onClick:()=>setTab(t.id),style:{fontSize:13,padding:"8px 18px",border:"none",borderBottom:tab===t.id?"2px solid var(--text-primary)":"2px solid transparent",background:"transparent",color:tab===t.id?"var(--text-primary)":"var(--text-secondary)",fontWeight:tab===t.id?500:400}},t.label))
     ),
 
     // ACTIVITY TAB
