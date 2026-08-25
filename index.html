@@ -58,33 +58,21 @@ const SELLER_QUOTE_MAP = {
   "Thornton Construction":"Murillo","Coastal Construction":"Murillo","EC Electric":"Murillo"
 };
 
-const dealMovementByWeek = [
-  {week:"Sep 1",P:0,G:0,M:0},{week:"Sep 8",P:1,G:0,M:0},{week:"Sep 15",P:2,G:0,M:0},{week:"Sep 22",P:1,G:0,M:0},
-  {week:"Sep 29",P:7,G:0,M:0},{week:"Oct 6",P:0,G:0,M:0},{week:"Oct 13",P:7,G:0,M:0},{week:"Oct 20",P:2,G:0,M:0},
-  {week:"Oct 27",P:18,G:0,M:0},{week:"Nov 3",P:6,G:0,M:0},{week:"Nov 10",P:5,G:0,M:0},{week:"Nov 17",P:4,G:0,M:0},
-  {week:"Nov 24",P:4,G:0,M:0},{week:"Dec 1",P:2,G:0,M:0},{week:"Dec 8",P:15,G:0,M:0},{week:"Dec 15",P:0,G:0,M:0},
-  {week:"Dec 29",P:0,G:0,M:0},{week:"Jan 5",P:1,G:0,M:0},{week:"Jan 12",P:1,G:0,M:0},{week:"Jan 19",P:1,G:0,M:0},
-  {week:"Jan 26",P:6,G:0,M:0},{week:"Feb 2",P:29,G:0,M:0},{week:"Feb 9",P:19,G:0,M:0},{week:"Feb 16",P:2,G:0,M:0},
-  {week:"Feb 23",P:2,G:0,M:0},{week:"Mar 2",P:9,G:0,M:0},{week:"Mar 9",P:3,G:0,M:0},
-  {week:"Mar 16",P:13,G:1,M:1},{week:"Mar 23",P:5,G:8,M:5},{week:"Mar 30",P:8,G:5,M:2},
-  {week:"Apr 6",P:0,G:5,M:1},{week:"Apr 13",P:5,G:1,M:3},{week:"Apr 20",P:2,G:7,M:4},
-  {week:"Apr 27",P:2,G:7,M:0},{week:"May 4",P:0,G:2,M:2},{week:"May 11",P:5,G:9,M:6},{week:"May 18",P:16,G:20,M:17},{week:"May 25",P:4,G:7,M:1},{week:"Jun 1",P:3,G:8,M:6},{week:"Jun 8",P:1,G:0,M:0}
-];
 
 const weeklyData = [
   {week:"2025-09-01",P:{calls:30,conn:3,pos:1,neg:0,email:2,deals:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
-  {week:"2025-09-08",P:{calls:263,conn:42,pos:9,neg:18,email:7,deals:6,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-09-08",P:{calls:263,conn:42,pos:9,neg:18,email:7,deals:5,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-09-15",P:{calls:313,conn:36,pos:8,neg:13,email:2,deals:5,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-09-22",P:{calls:169,conn:23,pos:1,neg:8,email:1,deals:2,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-09-29",P:{calls:150,conn:21,pos:4,neg:9,email:2,deals:5,mov:7},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-10-06",P:{calls:156,conn:33,pos:5,neg:14,email:3,deals:5,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
-  {week:"2025-10-13",P:{calls:95,conn:15,pos:0,neg:4,email:7,deals:10,mov:7},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
-  {week:"2025-10-20",P:{calls:132,conn:20,pos:6,neg:7,email:4,deals:5,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-10-13",P:{calls:95,conn:15,pos:0,neg:4,email:7,deals:8,mov:7},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-10-20",P:{calls:132,conn:20,pos:6,neg:7,email:4,deals:4,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-10-27",P:{calls:161,conn:23,pos:7,neg:10,email:0,deals:2,mov:18},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-11-03",P:{calls:144,conn:28,pos:5,neg:14,email:0,deals:4,mov:6},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-11-10",P:{calls:133,conn:21,pos:5,neg:12,email:0,deals:2,mov:5},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-11-17",P:{calls:95,conn:21,pos:4,neg:15,email:0,deals:5,mov:4},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
-  {week:"2025-11-24",P:{calls:120,conn:24,pos:6,neg:9,email:3,deals:6,mov:4},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2025-11-24",P:{calls:120,conn:24,pos:6,neg:9,email:3,deals:5,mov:4},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-12-01",P:{calls:121,conn:24,pos:5,neg:6,email:1,deals:4,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-12-08",P:{calls:63,conn:8,pos:3,neg:4,email:1,deals:1,mov:15},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2025-12-15",P:{calls:117,conn:23,pos:3,neg:14,email:1,deals:0,mov:0},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
@@ -92,87 +80,160 @@ const weeklyData = [
   {week:"2026-01-05",P:{calls:52,conn:10,pos:4,neg:0,email:0,deals:3,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-01-12",P:{calls:33,conn:4,pos:2,neg:1,email:0,deals:0,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-01-19",P:{calls:77,conn:13,pos:1,neg:5,email:4,deals:1,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
-  {week:"2026-01-26",P:{calls:148,conn:22,pos:8,neg:9,email:3,deals:9,mov:6},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-01-26",P:{calls:148,conn:22,pos:8,neg:9,email:3,deals:7,mov:6},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-02-02",P:{calls:166,conn:23,pos:10,neg:7,email:3,deals:5,mov:29},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-02-09",P:{calls:44,conn:6,pos:3,neg:2,email:1,deals:1,mov:19},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-02-16",P:{calls:20,conn:9,pos:6,neg:1,email:0,deals:1,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-02-23",P:{calls:32,conn:3,pos:2,neg:0,email:0,deals:1,mov:2},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
   {week:"2026-03-02",P:{calls:116,conn:15,pos:3,neg:6,email:1,deals:1,mov:9},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
-  {week:"2026-03-09",P:{calls:61,conn:7,pos:2,neg:2,email:0,deals:0,mov:3},G:{calls:76,conn:9,pos:4,neg:2,email:0,deals:3,mov:0},M:{calls:45,conn:12,pos:4,neg:1,email:0,deals:4,mov:0}},
-  {week:"2026-03-16",P:{calls:95,conn:8,pos:2,neg:1,email:0,deals:2,mov:13},G:{calls:320,conn:59,pos:17,neg:25,email:5,deals:8,mov:1},M:{calls:191,conn:49,pos:21,neg:5,email:0,deals:6,mov:1}},
-  {week:"2026-03-23",P:{calls:7,conn:3,pos:1,neg:0,email:1,deals:0,mov:5},G:{calls:247,conn:48,pos:7,neg:21,email:4,deals:7,mov:8},M:{calls:192,conn:46,pos:11,neg:7,email:1,deals:6,mov:5}},
+  {week:"2026-03-09",P:{calls:61,conn:7,pos:2,neg:2,email:0,deals:0,mov:3},G:{calls:76,conn:9,pos:4,neg:2,email:0,deals:3,mov:0},M:{calls:45,conn:12,pos:4,neg:1,email:0,deals:3,mov:0}},
+  {week:"2026-03-16",P:{calls:95,conn:8,pos:2,neg:1,email:0,deals:2,mov:13},G:{calls:320,conn:59,pos:17,neg:25,email:5,deals:8,mov:1},M:{calls:191,conn:49,pos:21,neg:5,email:0,deals:5,mov:1}},
+  {week:"2026-03-23",P:{calls:7,conn:3,pos:1,neg:0,email:1,deals:0,mov:5},G:{calls:247,conn:48,pos:7,neg:21,email:4,deals:5,mov:8},M:{calls:192,conn:46,pos:11,neg:7,email:1,deals:5,mov:5}},
   {week:"2026-03-30",P:{calls:42,conn:7,pos:1,neg:3,email:0,deals:0,mov:8},G:{calls:195,conn:33,pos:6,neg:17,email:2,deals:4,mov:5},M:{calls:166,conn:29,pos:7,neg:8,email:1,deals:1,mov:2}},
   {week:"2026-04-06",P:{calls:39,conn:9,pos:4,neg:1,email:0,deals:1,mov:0},G:{calls:237,conn:48,pos:17,neg:19,email:1,deals:9,mov:5},M:{calls:204,conn:18,pos:3,neg:4,email:1,deals:5,mov:1}},
   {week:"2026-04-13",P:{calls:48,conn:14,pos:9,neg:2,email:1,deals:0,mov:5},G:{calls:353,conn:55,pos:12,neg:30,email:0,deals:10,mov:1},M:{calls:170,conn:24,pos:6,neg:7,email:0,deals:5,mov:3}},
   {week:"2026-04-20",P:{calls:41,conn:9,pos:2,neg:3,email:0,deals:4,mov:2},G:{calls:199,conn:31,pos:6,neg:7,email:1,deals:2,mov:7},M:{calls:118,conn:12,pos:6,neg:1,email:0,deals:1,mov:4}},
   {week:"2026-04-27",P:{calls:18,conn:2,pos:1,neg:0,email:0,deals:1,mov:2},G:{calls:257,conn:27,pos:6,neg:15,email:0,deals:4,mov:7},M:{calls:59,conn:4,pos:2,neg:0,email:0,deals:0,mov:0}},
-  {week:"2026-05-04",P:{calls:23,conn:6,pos:2,neg:0,email:3,deals:0,mov:0},G:{calls:213,conn:22,pos:12,neg:3,email:0,deals:0,mov:0},M:{calls:147,conn:4,pos:2,neg:1,email:0,deals:0,mov:0}},
+  {week:"2026-05-04",P:{calls:23,conn:6,pos:2,neg:0,email:3,deals:0,mov:0},G:{calls:213,conn:22,pos:12,neg:3,email:0,deals:5,mov:2},M:{calls:147,conn:4,pos:2,neg:1,email:0,deals:3,mov:2}},
   {week:"2026-05-11",P:{calls:28,conn:4,pos:0,neg:0,email:0,deals:0,mov:5},G:{calls:312,conn:35,pos:10,neg:22,email:0,deals:4,mov:9},M:{calls:85,conn:6,pos:3,neg:2,email:0,deals:6,mov:6}},
   {week:"2026-05-18",P:{calls:16,conn:5,pos:3,neg:0,email:0,deals:0,mov:16},G:{calls:185,conn:27,pos:11,neg:6,email:0,deals:3,mov:20},M:{calls:95,conn:5,pos:0,neg:2,email:0,deals:1,mov:17}},
   {week:"2026-05-25",P:{calls:39,conn:10,pos:2,neg:2,email:0,deals:0,mov:4},G:{calls:278,conn:49,pos:18,neg:19,email:0,deals:12,mov:11},M:{calls:100,conn:12,pos:8,neg:0,email:1,deals:3,mov:2}},
   {week:"2026-06-01",P:{calls:9,conn:0,pos:0,neg:0,email:0,deals:0,mov:3},G:{calls:273,conn:35,pos:18,neg:10,email:1,deals:6,mov:8},M:{calls:55,conn:3,pos:2,neg:0,email:0,deals:0,mov:6}},
-  {week:"2026-06-08",P:{calls:2,conn:1,pos:1,neg:0,email:0,deals:0,mov:1},G:{calls:4,conn:1,pos:1,neg:0,email:0,deals:1,mov:0},M:{calls:14,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}}
+  {week:"2026-06-08",P:{calls:19,conn:1,pos:1,neg:0,email:0,deals:0,mov:3},G:{calls:236,conn:36,pos:17,neg:11,email:0,deals:8,mov:8},M:{calls:76,conn:1,pos:1,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-06-15",P:{calls:4,conn:0,pos:0,neg:0,email:0,deals:1,mov:0},G:{calls:285,conn:24,pos:9,neg:9,email:0,deals:4,mov:5},M:{calls:89,conn:7,pos:7,neg:0,email:0,deals:2,mov:7}},
+  {week:"2026-06-22",P:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:32,conn:6,pos:4,neg:0,email:0,deals:2,mov:2},M:{calls:0,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}},
+  {week:"2026-06-29",P:{calls:2,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:4,conn:0,pos:0,neg:0,email:0,deals:0,mov:2},M:{calls:5,conn:1,pos:0,neg:1,email:0,deals:0,mov:0}},
+  {week:"2026-07-06",P:{calls:1,conn:0,pos:1,neg:0,email:0,deals:0,mov:1},G:{calls:46,conn:15,pos:5,neg:2,email:0,deals:0,mov:4},M:{calls:48,conn:1,pos:1,neg:0,email:0,deals:0,mov:3}},
+  {week:"2026-07-13",P:{calls:19,conn:3,pos:0,neg:0,email:2,deals:9,mov:1},G:{calls:0,conn:0,pos:0,neg:0,email:0,deals:4,mov:0},M:{calls:51,conn:3,pos:1,neg:0,email:0,deals:5,mov:0}},
+  {week:"2026-07-20",P:{calls:16,conn:8,pos:2,neg:1,email:0,deals:0,mov:3},G:{calls:150,conn:27,pos:13,neg:8,email:0,deals:6,mov:9},M:{calls:99,conn:3,pos:2,neg:1,email:0,deals:0,mov:2}},
+  {week:"2026-07-27",P:{calls:47,conn:11,pos:1,neg:4,email:1,deals:0,mov:14},G:{calls:153,conn:29,pos:12,neg:11,email:0,deals:4,mov:9},M:{calls:130,conn:8,pos:4,neg:3,email:0,deals:1,mov:1}},
+  {week:"2026-08-03",P:{calls:12,conn:2,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:202,conn:30,pos:19,neg:5,email:1,deals:9,mov:7},M:{calls:161,conn:11,pos:1,neg:5,email:0,deals:0,mov:1}},
+  {week:"2026-08-10",P:{calls:4,conn:1,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:206,conn:29,pos:6,neg:12,email:0,deals:4,mov:5},M:{calls:57,conn:3,pos:1,neg:2,email:0,deals:1,mov:1}},
+  {week:"2026-08-17",P:{calls:42,conn:5,pos:3,neg:1,email:0,deals:0,mov:9},G:{calls:158,conn:18,pos:6,neg:12,email:0,deals:7,mov:3},M:{calls:20,conn:0,pos:0,neg:0,email:0,deals:1,mov:5}},
+  {week:"2026-08-24",P:{calls:1,conn:0,pos:0,neg:0,email:0,deals:0,mov:0},G:{calls:31,conn:6,pos:2,neg:2,email:0,deals:1,mov:2},M:{calls:44,conn:0,pos:0,neg:0,email:0,deals:0,mov:0}}
 ];
 
 const allTimeTotals = {
-  Petrus:   {calls:3451,conn:555,pos:141,neg:202,email:51,deals:92,mov:211},
-  Giuseppe: {calls:3149,conn:479,pos:145,neg:196,email:14,deals:73,mov:82},
-  Murillo:  {calls:1641,conn:224,pos:75,neg:38,email:4,deals:38,mov:47}
+  Petrus:   {calls:3616,conn:585,pos:148,neg:208,email:54,deals:95,mov:241},
+  Giuseppe: {calls:4648,conn:698,pos:237,neg:268,email:15,deals:124,mov:140},
+  Murillo:  {calls:2407,conn:262,pos:93,neg:50,email:4,deals:48,mov:69}
 };
 
+// 2-week prospecting cycles — add one entry per completed cycle
+const cycles = [
+  // {label:"Cycle 1",start:"2026-07-21",end:"2026-08-03"}
+];
+
+// Vertical sequence data — one row per seller per cycle
+// verticals: "FR","M&P","EL","GCS","CONSEDGE"
+const verticalSequences = [
+  {seller:"Petrus",vertical:"M&P",calls:896,conn:182,pos:0,deals:0},
+  {seller:"Giuseppe",vertical:"M&P",calls:1143,conn:184,pos:0,deals:0},
+  {seller:"Murillo",vertical:"M&P",calls:502,conn:92,pos:0,deals:0},
+  {seller:"Petrus",vertical:"FR",calls:392,conn:44,pos:0,deals:0},
+  {seller:"Giuseppe",vertical:"FR",calls:801,conn:109,pos:0,deals:0},
+  {seller:"Murillo",vertical:"FR",calls:469,conn:30,pos:0,deals:0},
+  {seller:"Petrus",vertical:"EL",calls:529,conn:104,pos:0,deals:0},
+  {seller:"Giuseppe",vertical:"EL",calls:124,conn:19,pos:0,deals:0},
+  {seller:"Murillo",vertical:"EL",calls:112,conn:14,pos:0,deals:0},
+  {seller:"Petrus",vertical:"GCS",calls:211,conn:46,pos:0,deals:0},
+  {seller:"Giuseppe",vertical:"GCS",calls:338,conn:55,pos:0,deals:0},
+  {seller:"Murillo",vertical:"GCS",calls:527,conn:29,pos:0,deals:0},
+  {seller:"Giuseppe",vertical:"CONSEDGE",calls:118,conn:16,pos:0,deals:0},
+  {seller:"Petrus",vertical:"GENERIC",calls:164,conn:18,pos:0,deals:0},
+  {seller:"Giuseppe",vertical:"GENERIC",calls:634,conn:90,pos:0,deals:0},
+  {seller:"Murillo",vertical:"GENERIC",calls:227,conn:7,pos:0,deals:0},
+];
+
+// Deals created per vertical (from Apollo service offered field — incomplete due to untagged GC deals and data gaps)
+const verticalDeals = {"M&P":101,"FR":42,"EL":35,"GCS":70,"CONSEDGE":8,"GENERIC":0};
+// Note: MEP (Mech+Elec+Plumb combined) shows 10 additional deals in Apollo — not included above pending clarification
+
+// Invoiced revenue — actual work billed to clients
+const invoices = [
+  {seller:"Petrus",client:"CESG",num:"0012026CESG",type:"T&M",monthWork:"2026-01",monthInv:"2026-02",amount:7410,hours:195,paid:true},
+  {seller:"Petrus",client:"CESG",num:"0022026CESG",type:"T&M",monthWork:"2026-02",monthInv:"2026-03",amount:41325,hours:1087.5,paid:true},
+  {seller:"Petrus",client:"CESG",num:"0032026CESG",type:"T&M",monthWork:"2026-03",monthInv:"2026-04",amount:60458,hours:1591,paid:true},
+  {seller:"Petrus",client:"CESG",num:"0042026CESG",type:"T&M",monthWork:"2026-04",monthInv:"2026-05",amount:59622,hours:1569,paid:true},
+  {seller:"Petrus",client:"Component Assembly Systems",num:"0012026CAS",type:"NTE",monthWork:"2026-04",monthInv:"2026-05",amount:456,hours:12,paid:true},
+  {seller:"Petrus",client:"CESG",num:"0052026CESG",type:"T&M",monthWork:"2026-05",monthInv:"2026-06",amount:50483,hours:1328.5,paid:true},
+  {seller:"Murillo",client:"EC Electric",num:"0012026EC",type:"T&M",monthWork:"2026-05",monthInv:"2026-06",amount:7980,hours:190,paid:true},
+  {seller:"Petrus",client:"Component Assembly Systems",num:"0022026CAS",type:"T&M",monthWork:"2026-05",monthInv:"2026-06",amount:7676,hours:202,paid:true},
+  {seller:"Murillo",client:"Moss",num:"0012026MOSS",type:"T&M",monthWork:"2026-05",monthInv:"2026-06",amount:5680,hours:142,paid:true},
+  {seller:"Petrus",client:"CESG",num:"0062026CESG",type:"T&M",monthWork:"2026-06",monthInv:"2026-07",amount:58786,hours:1547,paid:true},
+  {seller:"Murillo",client:"EC Electric",num:"0022026EC",type:"T&M",monthWork:"2026-06",monthInv:"2026-07",amount:17829,hours:424.5,paid:true},
+  {seller:"Murillo",client:"EC Electric",num:"0032026EC",type:"T&M",monthWork:"2026-06",monthInv:"2026-07",amount:14532,hours:346,paid:true},
+  {seller:"Petrus",client:"Component Assembly Systems",num:"0032026CAS",type:"NTE",monthWork:"2026-06",monthInv:"2026-07",amount:11552,hours:304,paid:true},
+  {seller:"Petrus",client:"20/20 Plumbing",num:"0012026TWT",type:"T&M",monthWork:"2026-06",monthInv:"2026-07",amount:4200,hours:150,paid:true},
+  {seller:"Murillo",client:"Coastal Construction",num:"0012026CC",type:"NTE",monthWork:"2026-06",monthInv:"2026-07",amount:11962.5,hours:362.5,paid:false},
+  {seller:"Murillo",client:"Coastal Construction",num:"0022026CC",type:"NTE",monthWork:"2026-06",monthInv:"2026-07",amount:11269.5,hours:341.5,paid:false},
+  {seller:"Murillo",client:"Moss",num:"0022026MOSS",type:"NTE",monthWork:"2026-06",monthInv:"2026-07",amount:12260,hours:306.5,paid:true},
+  {seller:"Petrus",client:"CESG",num:"0072026CESG",type:"T&M",monthWork:"2026-07",monthInv:"2026-08",amount:28481,hours:749.5,paid:false},
+  {seller:"Petrus",client:"Component Assembly Systems",num:"0042026CAS",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:2185,hours:57.5,paid:false},
+  {seller:"Petrus",client:"ArcoMurray",num:"0062025ARCO",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:10469,hours:275.5,paid:false},
+  {seller:"Murillo",client:"EC Electric",num:"0042026EC",type:"T&M",monthWork:"2026-07",monthInv:"2026-08",amount:504,hours:12,paid:false},
+  {seller:"Murillo",client:"EC Electric",num:"0062026EC",type:"T&M",monthWork:"2026-07",monthInv:"2026-08",amount:10521,hours:250.5,paid:false},
+  {seller:"Murillo",client:"EC Electric",num:"0052026EC",type:"T&M",monthWork:"2026-07",monthInv:"2026-08",amount:31941,hours:760.5,paid:false},
+  {seller:"Murillo",client:"Moss",num:"0062026MOSS",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:3520,hours:88,paid:false},
+  {seller:"Murillo",client:"Moss",num:"0042026MOSS",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:4860,hours:162,paid:false},
+  {seller:"Murillo",client:"Coastal Construction",num:"0032026CC",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:13183.5,hours:399.5,paid:false},
+  {seller:"Murillo",client:"Coastal Construction",num:"0042026CC",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:15592.5,hours:472.5,paid:false},
+  {seller:"Petrus",client:"Hedrick Brothers Construction",num:"0022026HB",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:2600,hours:65,paid:false},
+  {seller:"Petrus",client:"Hedrick Brothers Construction",num:"0012026HB",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:4240,hours:106,paid:false},
+  {seller:"Giuseppe",client:"K&S Air Conditioning",num:"0012026KS",type:"NTE",monthWork:"2026-07",monthInv:"2026-08",amount:2800,hours:80,paid:true},
+];
+
 const pipelines = [
-  {name:"1. Early Engagement",color:"#B8860B",description:"First touches — mapping who's who, booking meetings, qualifying fit",total:109,
+  {name:"1. Early Engagement",color:"#B8860B",description:"First touches — mapping who's who, booking meetings, qualifying fit",total:119,
     stages:[
-      {name:"Initial Contact",deals:49},
-      {name:"Mapping Stakeholders",deals:38},
-      {name:"Meeting Booked",deals:3},
+      {name:"Initial Contact",deals:40},
+      {name:"Mapping Stakeholders",deals:39},
+      {name:"Meeting Booked",deals:6},
       {name:"Meeting Held",deals:2},
-      {name:"Qualified Opportunity",deals:1,highlight:"green"},
-      {name:"No Opportunity Here",deals:16,highlight:"red"}
+      {name:"No Opportunity Here",deals:32,highlight:"red"}
     ]},
-  {name:"2. Qualified Opps (Bid List)",color:"#185FA5",description:"Client is bidding on work — they haven't won the project yet. Colder.",total:51,
+  {name:"2. Qualified Opps (Bid List)",color:"#185FA5",description:"Client is bidding on work — they haven't won the project yet. Colder.",total:67,
     stages:[
-      {name:"Added to Bid List",deals:21},
-      {name:"Quote Sent (Bid List)",deals:4},
-      {name:"Building Business Case",deals:12},
-      {name:"Closed Won",deals:2,highlight:"green"},
+      {name:"Added to Bid List",deals:34},
+      {name:"Building Business Case",deals:14},
+      {name:"Quote Sent (Bid List)",deals:7},
+      {name:"Closed Won",deals:0,highlight:"green"},
       {name:"Closed Lost",deals:12,highlight:"red"}
     ]},
-  {name:"3. Qualified Opps (Awarded)",color:"#7F77DD",description:"Client has won the project and is buying out BIM scope. Much warmer.",total:11,
+  {name:"3. Qualified Opps (Awarded)",color:"#7F77DD",description:"Client has won the project and is buying out BIM scope. Much warmer.",total:6,
     stages:[
-      {name:"Quote Sent (Awarded)",deals:5},
-      {name:"Estimating Internally",deals:0},
-      {name:"Pending Executive Approval",deals:5},
+      {name:"Quote Sent (Awarded)",deals:0},
+      {name:"Estimating Internally",deals:2},
+      {name:"Pending Executive Approval",deals:0},
       {name:"Closed Won",deals:1,highlight:"green"},
-      {name:"Closed Lost",deals:0,highlight:"red"}
+      {name:"Closed Lost",deals:3,highlight:"red"}
     ]},
-  {name:"4. Client Onboarding",color:"#3B6D11",description:"Deal is closed — aligning on billing, kicking off with ops, getting paid.",total:2,
+  {name:"4. Client Onboarding",color:"#3B6D11",description:"Deal is closed — aligning on billing, kicking off with ops, getting paid.",total:9,
     stages:[
       {name:"AP/AR Alignment",deals:2},
-      {name:"Kick-off with Ops",deals:0},
-      {name:"Invoicing",deals:0},
-      {name:"First Payment Received",deals:0,highlight:"green"},
+      {name:"Kick-off with Ops",deals:1},
+      {name:"Invoicing",deals:3},
+      {name:"First Payment Received",deals:3,highlight:"green"},
       {name:"Closed Lost",deals:0,highlight:"red"}
     ]},
-  {name:"Circle Back Later",color:"#4A4A4A",description:"Stalled or cold — still worth keeping in orbit.",total:31,
+  {name:"Reengagement (Former Clients)",color:"#059669",description:"Former clients we're warming back up — high conversion probability.",total:16,
     stages:[
-      {name:"On Hold",deals:30},
+      {name:"Initial Contact",deals:7},
+      {name:"Mapping Stakeholders",deals:7},
+      {name:"Closed Lost",deals:2,highlight:"red"}
+    ]},
+  {name:"Circle Back Later",color:"#4A4A4A",description:"Stalled or cold — still worth keeping in orbit.",total:63,
+    stages:[
+      {name:"On Hold",deals:61},
       {name:"Reached Back Out",deals:0},
       {name:"Qualified Opportunity",deals:0,highlight:"green"},
-      {name:"Big Fat NO",deals:1,highlight:"red"}
+      {name:"Big Fat NO",deals:2,highlight:"red"}
     ]}
 ];
 
-const serviceLines = [
-  {svc:"PL",label:"Plumbing",deals:65,movement:49,tasks:82},
-  {svc:"EL",label:"Electrical",deals:28,movement:19,tasks:12},
-  {svc:"GS",label:"BIM Coord (GC)",deals:25,movement:11,tasks:14},
-  {svc:"FR",label:"Framing",deals:12,movement:8,tasks:10},
-  {svc:"MEP",label:"MEP (full)",deals:9,movement:6,tasks:21}
-];
 
 const quotes = [
-  {client:"CESG",project:"DFW Terminal C",svc:"EL",amount:171000,date:"2026-01-09",status:"Approved",award:"Awarded",seller:"Petrus"},
+  {client:"CESG",project:"DFW Terminal C",svc:"EL",amount:306565,date:"2026-01-09",status:"Approved",award:"Awarded",seller:"Petrus"},
   {client:"TempCon",project:"Lawrence Middle School",svc:"GS",amount:39680,date:"2025-09-15",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"KREIT",project:"Spool Sheets Test Estimate",svc:"PL",amount:3360,date:"2025-10-07",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"Right Way PL",project:"1755 JFK Causeway",svc:"PL",amount:186900,date:"2025-10-31",status:"Lost",award:"Bid List",seller:"Petrus"},
@@ -227,7 +288,7 @@ const quotes = [
   {client:"Atlas Mechanical",project:"Belmont Encinitas",svc:"PL",amount:78750,date:"2026-02-05",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"Fusion Electric",project:"Community Center & Events",svc:"EL",amount:52782,date:"2026-02-05",status:"Lost",award:"Bid List",seller:"Petrus"},
   {client:"Florida Mechanical",project:"District 19 Medical Examiners",svc:"PL",amount:41040,date:"2026-02-09",status:"Lost",award:"Awarded",seller:"Petrus"},
-  {client:"Hedrick Brothers",project:"19 Indian Creek",svc:"GS",amount:40180,date:"2026-02-09",status:"Lost",award:"Awarded",seller:"Petrus"},
+  {client:"Hedrick Brothers",project:"19 Indian Creek",svc:"GS",amount:39200,date:"2026-02-09",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"Modern Air",project:"Amazon OGS9 Visalia",svc:"PL",amount:26600,date:"2026-02-11",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Tropic Mechanical",project:"Broward Health MOB",svc:"PL",amount:154700,date:"2026-02-11",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"Modern Air",project:"GVHC Le Grand",svc:"PL",amount:18025,date:"2026-02-13",status:"Issued",award:"Bid List",seller:"Petrus"},
@@ -237,12 +298,12 @@ const quotes = [
   {client:"JND Mechanical",project:"Palazzo (The Tides)",svc:"PL",amount:28310,date:"2026-02-25",status:"Not Issued",award:"Bid List",seller:"Petrus"},
   {client:"Modern Air",project:"Tulare UHS Shop Bldg",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Modern Air",project:"Amazon OAK5 Sortation Center",svc:"PL",amount:7600,date:"2026-02-25",status:"Issued",award:"Bid List",seller:"Petrus"},
-  {client:"2020 PL",project:"485 Long Beach Blvd",svc:"PL",amount:67200,date:"2026-02-25",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"2020 PL",project:"485 Long Beach Blvd",svc:"PL",amount:67200,date:"2026-02-25",status:"Lost",award:"Warm Bid",seller:"Petrus"},
   {client:"CESG",project:"UTA University Center",svc:"EL",amount:80408,date:"2026-03-04",status:"Lost",award:"Warm Bid",seller:"Petrus"},
   {client:"ICS Industrial",project:"Allian",svc:"PL",amount:61950,date:"2026-03-10",status:"Not Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"ICS Industrial",project:"Davis Reed",svc:"PL",amount:86450,date:"2026-03-10",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"JND Mechanical",project:"Fairfield Ave Apartments",svc:"PL",amount:62964,date:"2026-03-10",status:"Lost",award:"Awarded",seller:"Petrus"},
-  {client:"2020 PL",project:"2120 Main St The Seacliff",svc:"PL",amount:88320,date:"2026-04-02",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"2020 PL",project:"2120 Main St The Seacliff",svc:"PL",amount:84480,date:"2026-04-02",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"Malek Mechanical",project:"Banquete ISD",svc:"PL",amount:240584,date:"2026-04-03",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"ICS Industrial",project:"VA Clinic",svc:"PL",amount:129920,date:"2026-03-30",status:"Issued",award:"Warm Bid",seller:"Petrus"},
   {client:"JND Mechanical",project:"Siesta Promenade",svc:"PL",amount:93000,date:"2026-04-01",status:"Issued",award:"Warm Bid",seller:"Petrus"},
@@ -254,54 +315,76 @@ const quotes = [
   {client:"Component Assembly",project:"343 Madison",svc:"FR",amount:23256,date:"2026-04-22",status:"Approved",award:"Awarded",seller:"Petrus"},
   {client:"Muller Construction",project:"Sandy Beach FRP",svc:"GS",amount:1900,date:"2026-05-01",status:"Issued",award:"Awarded",seller:"Petrus"},
   {client:"JND Mechanical",project:"Somar Residences",svc:"FR",amount:41800,date:"2026-05-01",status:"Issued",award:"Bid List",seller:"Petrus"},
-  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:175332,date:"2026-04-23",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"Thornton Construction",project:"Casa Cuba",svc:"GS",amount:175332,date:"2026-04-23",status:"Lost",award:"Awarded",seller:"Murillo"},
   {client:"Coastal Construction",project:"South Bank Residences",svc:"FR",amount:77885,date:"2026-05-01",status:"Lost",award:"Awarded",seller:"Murillo"},
-  {client:"EC Electric",project:"T&M Rate for Overflow Work",svc:"EL",amount:20160,date:"2026-04-20",status:"Approved",award:"Awarded",seller:"Murillo"},
+  {client:"EC Electric",project:"T&M Rate for Overflow Work",svc:"EL",amount:83307,date:"2026-04-20",status:"Approved",award:"Awarded",seller:"Murillo"},
   {client:"Coastal Construction",project:"South Bank Residential",svc:"FR",amount:62733,date:"2026-05-08",status:"Approved",award:"Awarded",seller:"Murillo"},
   {client:"Coastal Construction",project:"AC-Moxy Hotel",svc:"FR",amount:22829,date:"2026-05-08",status:"Issued",award:"Awarded",seller:"Murillo"},
   {client:"Moss & Associates",project:"Westside Village",svc:"PL",amount:22800,date:"2026-05-13",status:"Lost",award:"Awarded",seller:"Murillo"},
   {client:"Moss & Associates",project:"Westside Village (Plumbing)",svc:"PL",amount:18600,date:"2026-05-13",status:"Approved",award:"Awarded",seller:"Murillo"},
-  {client:"Sunshine State Plumbing",project:"South Bank Residences",svc:"PL",amount:86800,date:"2026-05-14",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"Sunshine State Plumbing",project:"South Bank Residences",svc:"PL",amount:86800,date:"2026-05-14",status:"Lost",award:"Awarded",seller:"Murillo"},
   {client:"JND Mechanical",project:"Nautilus South Condo",svc:"PL",amount:8050,date:"2026-05-04",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"RTL Construction",project:"Datacenter 1",svc:"FR",amount:28080,date:"2026-05-19",status:"Issued",award:"Bid List",seller:"Giuseppe"},
-  {client:"Rightway Plumbing",project:"WBP Hotel",svc:"PL",amount:128000,date:"2026-05-15",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"Rightway Plumbing",project:"WBP Hotel",svc:"PL",amount:128000,date:"2026-05-15",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"JND Mechanical",project:"Epique Condo",svc:"PL",amount:107100,date:"2026-05-19",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Malek Mechanical",project:"Bay Area Bed Expansion",svc:"PL",amount:133500,date:"2026-05-28",status:"Issued",award:"Bid List",seller:"Petrus"},
   {client:"Thornton Construction",project:"FIU CasaCuba",svc:"GS",amount:183558,date:"2026-04-22",status:"Lost",award:"Awarded",seller:"Murillo"},
   {client:"Moss & Associates",project:"Westside Village (Mechanical)",svc:"PL",amount:4200,date:"2026-05-28",status:"Approved",award:"Awarded",seller:"Murillo"},
   {client:"Mark III Construction",project:"Nippon Shokken",svc:"PL",amount:117000,date:"2026-04-27",status:"Lost",award:"Awarded",seller:"Petrus"},
   {client:"QPS",project:"OBH Beverly Aman Hotel Tower 3",svc:"FR",amount:25792,date:"2026-06-01",status:"Issued",award:"Awarded",seller:"Giuseppe"},
+  {client:"Thornton Construction",project:"FIU CasaCuba (Rev.2)",svc:"GS",amount:142310,date:"2026-06-10",status:"Lost",award:"Awarded",seller:"Murillo"},
+  {client:"McDonald Air",project:"Hernando County Fire Station",svc:"PL",amount:6600,date:"2026-06-10",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"Children's Learning Center",svc:"PL",amount:7360,date:"2026-06-29",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"DLF4 Project Rainbow",svc:"PL",amount:4800,date:"2026-06-29",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"Baycare Health Valrisco FSED",svc:"PL",amount:19200,date:"2026-06-29",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"Gather 242 Urban Food Hall Reno",svc:"PL",amount:7000,date:"2026-07-06",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"The Villages Fire Station 51",svc:"PL",amount:7700,date:"2026-07-06",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"BAER'S Furniture Daytona Beach",svc:"PL",amount:22750,date:"2026-07-06",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"K&S Air Conditioning",project:"Reyes La Admin Renovation",svc:"PL",amount:7350,date:"2026-07-07",status:"Approved",award:"Awarded",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"Lake CI Modernization",svc:"PL",amount:99940,date:"2026-07-13",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"The Learning Experience Pt St Lucie",svc:"PL",amount:9500,date:"2026-07-14",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"Johnson & Jordan",project:"New London Hospital",svc:"PL",amount:178600,date:"2026-07-14",status:"Issued",award:"Bid List",seller:"Murillo"},
+  {client:"JND Mechanical",project:"1000 Bota",svc:"PL",amount:88160,date:"2026-07-16",status:"Lost",award:"Warm Bid",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Tampa Heights",svc:"PL",amount:30400,date:"2026-07-16",status:"Issued",award:"Warm Bid",seller:"Petrus"},
+  {client:"JND Mechanical",project:"Avenue 1000",svc:"PL",amount:88160,date:"2026-07-17",status:"Issued",award:"Bid List",seller:"Petrus"},
+  {client:"20/20 Plumbing",project:"City Ventures South Gate 1",svc:"PL",amount:41600,date:"2026-07-17",status:"Lost",award:"Bid List",seller:"Petrus"},
+  {client:"McDonald Air",project:"Oakley Health & Rehabilitation",svc:"PL",amount:45500,date:"2026-07-24",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"TJ Maxx Distribution Center",svc:"PL",amount:10500,date:"2026-07-27",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"Hedricks Brothers",project:"Hilltop Gardens",svc:"GS",amount:13880,date:"2026-07-27",status:"Approved",award:"Awarded",seller:"Petrus"},
+  {client:"Moss & Associates",project:"Westside Village L1-L2 (Mechanical)",svc:"PL",amount:24000,date:"2026-07-28",status:"Lost",award:"Awarded",seller:"Murillo"},
+  {client:"Moss & Associates",project:"Westside Village L1-L2 (Plumbing)",svc:"PL",amount:36000,date:"2026-07-28",status:"Lost",award:"Awarded",seller:"Murillo"},
+  {client:"Atlas Mechanical",project:"USD Campus",svc:"PL",amount:72960,date:"2026-07-30",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"Atlas Mechanical",project:"La Jolla Village Drive",svc:"PL",amount:91200,date:"2026-07-30",status:"Approved",award:"Awarded",seller:"Petrus"},
+  {client:"Atlas Mechanical",project:"Dos Lunos",svc:"PL",amount:39520,date:"2026-07-30",status:"Issued",award:"Awarded",seller:"Petrus"},
+  {client:"McDonald Air",project:"St Cloud EC",svc:"PL",amount:58800,date:"2026-08-05",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"Thomas Mechanical",project:"Charleston ELC",svc:"PL",amount:25200,date:"2026-08-05",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"Thomas Mechanical",project:"Broome HS Weight Room",svc:"PL",amount:12600,date:"2026-08-05",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"McDonald Air",project:"Advent Health Poinciana MOB",svc:"PL",amount:60800,date:"2026-08-07",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"Advance Mechanical Systems",project:"Corrections FDC BAS Replacement",svc:"PL",amount:13600,date:"2026-08-07",status:"Issued",award:"Bid List",seller:"Giuseppe"},
+  {client:"Express Plumbing",project:"South Bank Residences",svc:"PL",amount:98800,date:"2026-08-17",status:"Issued",award:"Awarded",seller:"Murillo"},
+  {client:"Coastal Construction",project:"South Bank Residences RFI 66",svc:"FR",amount:3686,date:"2026-08-19",status:"Approved",award:"Awarded",seller:"Murillo"},
 ];
 
-const TODAY = new Date(2026, 5, 8);
-
-// Generate month options from Sep 2025 to current month
-const MONTH_OPTIONS = [];
-let d = new Date(2025, 8, 1); // Sep 2025
-while (d <= TODAY) {
-  MONTH_OPTIONS.push({
-    label: d.toLocaleDateString("en-US",{month:"short",year:"numeric"}),
-    year: d.getFullYear(),
-    month: d.getMonth()
-  });
-  d = new Date(d.getFullYear(), d.getMonth()+1, 1);
-}
+const TODAY = new Date(2026, 7, 25);
 
 function fmt$(n){return n?"$"+Math.round(n).toLocaleString():"—";}
 function pct(a,b){return b?Math.round((a/b)*100)+"%":"0%";}
 function fmtWeek(w){if(!w)return"—";const d=new Date(w);return d.toLocaleDateString("en-US",{month:"short",day:"numeric"});}
 
+function getPrevCycle(){
+  const completed=cycles.filter(c=>new Date(c.end)<TODAY);
+  return completed.length>0?completed[completed.length-1]:null;
+}
 function filterByPeriod(items, dateKey, period) {
   if (period.type === "alltime") return items;
   if (period.type === "days") {
     const cutoff = new Date(TODAY); cutoff.setDate(cutoff.getDate()-period.days);
     return items.filter(i => new Date(i[dateKey]) >= cutoff);
   }
-  if (period.type === "month") {
-    return items.filter(i => {
-      const d = new Date(i[dateKey]);
-      return d.getFullYear()===period.year && d.getMonth()===period.month;
-    });
+  if (period.type === "cycle") {
+    const c=getPrevCycle(); if(!c) return items;
+    const s=new Date(c.start),e=new Date(c.end); e.setDate(e.getDate()+7);
+    return items.filter(i=>{const d=new Date(i[dateKey]);return d>=s&&d<=e;});
   }
   return items;
 }
@@ -312,11 +395,10 @@ function filterWeeks(period) {
     const cutoff = new Date(TODAY); cutoff.setDate(cutoff.getDate()-period.days);
     return weeklyData.filter(w => new Date(w.week) >= cutoff);
   }
-  if (period.type === "month") {
-    return weeklyData.filter(w => {
-      const d = new Date(w.week);
-      return d.getFullYear()===period.year && d.getMonth()===period.month;
-    });
+  if (period.type === "cycle") {
+    const c=getPrevCycle(); if(!c) return weeklyData;
+    const s=new Date(c.start),e=new Date(c.end); e.setDate(e.getDate()+7);
+    return weeklyData.filter(w=>{const d=new Date(w.week);return d>=s&&d<=e;});
   }
   return weeklyData;
 }
@@ -332,10 +414,10 @@ function sumWeeks(weeks, key) {
 
 function App(){
   const [period, setPeriod] = useState({type:"alltime"});
-  const [monthVal, setMonthVal] = useState("");
   const [qsf,setQsf]=useState("All");
   const [qaf,setQaf]=useState("All");
   const [tab,setTab]=useState("activity");
+  const [sellerOpen,setSellerOpen]=useState(false);
 
   const isAllTime = period.type==="alltime";
 
@@ -354,7 +436,8 @@ function App(){
   const pq = useMemo(()=>filterByPeriod(quotes,"date",period),[period]);
   const fq = useMemo(()=>{
     let q=[...pq].sort((a,b)=>new Date(b.date)-new Date(a.date));
-    if(qsf!=="All") q=q.filter(x=>x.status===qsf);
+    if(qsf==="Stale") q=q.filter(x=>(x.status==="Issued"||x.status==="Not Issued")&&(TODAY-new Date(x.date))>90*24*60*60*1000);
+    else if(qsf!=="All") q=q.filter(x=>x.status===qsf);
     if(qaf!=="All") q=q.filter(x=>x.award===qaf);
     return q;
   },[pq,qsf,qaf]);
@@ -367,13 +450,14 @@ function App(){
       issued:sum(all.filter(q=>q.status==="Issued")),issuedN:all.filter(q=>q.status==="Issued").length,
       lost:sum(all.filter(q=>q.status==="Lost")),lostN:all.filter(q=>q.status==="Lost").length,
       notIssuedN:all.filter(q=>q.status==="Not Issued").length,
+      stale:sum(all.filter(q=>(q.status==="Issued"||q.status==="Not Issued")&&(TODAY-new Date(q.date))>90*24*60*60*1000)),
+      staleN:all.filter(q=>(q.status==="Issued"||q.status==="Not Issued")&&(TODAY-new Date(q.date))>90*24*60*60*1000).length,
       bidList:sum(all.filter(q=>q.award==="Bid List")),bidListN:all.filter(q=>q.award==="Bid List").length,
       warmBid:sum(all.filter(q=>q.award==="Warm Bid")),warmBidN:all.filter(q=>q.award==="Warm Bid").length,
       awarded:sum(all.filter(q=>q.award==="Awarded")),awardedN:all.filter(q=>q.award==="Awarded").length,
     };
   },[pq]);
 
-  const sqt=useMemo(()=>{const t={};pq.forEach(q=>{t[q.svc]=(t[q.svc]||0)+(q.amount||0);});return t;},[pq]);
   const sqtHot=useMemo(()=>{const t={};pq.filter(q=>q.award==="Warm Bid"||q.award==="Awarded").forEach(q=>{t[q.svc]=(t[q.svc]||0)+(q.amount||0);});return t;},[pq]);
 
   // Per-seller quote stats (all time)
@@ -393,8 +477,6 @@ function App(){
   },[]);
 
   // WoW
-  const wowData=useMemo(()=>{
-    const last2=weeklyData.slice(-2);
     if(last2.length<2)return null;
     const pw=last2[0],cw=last2[1];
     const prevQ=quotes.filter(q=>{const d=new Date(q.date);return d>=new Date(pw.week)&&d<new Date(cw.week);});
@@ -453,21 +535,13 @@ function App(){
     );
   };
 
-  const tabs=[{id:"activity",label:"Outbound Activity"},{id:"quotes",label:"Quotes"},{id:"pipeline",label:"Pipeline"},{id:"wow",label:"Last Week vs. The Week Before"}];
+  const tabs=[{id:"activity",label:"Outbound Activity"},{id:"pipeline",label:"Pipeline"},{id:"quotes",label:"Quotes"},{id:"revenue",label:"Revenue"}];
 
   const handlePeriodBtn = (type, days) => {
     setPeriod({type,days});
-    setMonthVal("");
   };
-  const handleMonthChange = (e) => {
-    const val = e.target.value;
-    setMonthVal(val);
-    if(val==="") { setPeriod({type:"alltime"}); return; }
-    const [yr,mo] = val.split("-").map(Number);
-    setPeriod({type:"month",year:yr,month:mo});
-  };
+  const prevCycle = getPrevCycle();
 
-  const activeDays = period.type==="days";
   const btnStyle = (active) => ({
     fontSize:12,padding:"5px 14px",borderRadius:999,
     border:`1px solid ${active?"#888":"#ccc"}`,
@@ -484,25 +558,22 @@ function App(){
       React.createElement('div',{style:{fontSize:26,fontWeight:600}},"Sales Dashboard"),
       React.createElement('div',{style:{fontSize:13,color:"var(--text-secondary)",marginTop:4}},"Petrus · Giuseppe · Murillo"),
       React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",marginTop:6,background:"var(--bg-secondary)",display:"inline-block",padding:"3px 10px",borderRadius:999}},
-        "Data current as of "+TODAY.toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+". Updates are entered manually each week."
+        "Data current as of "+TODAY.toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+". Updated every two weeks."
       )
     ),
 
     // Period filters
     React.createElement('div',{style:{display:"flex",gap:8,flexWrap:"wrap",alignItems:"center",margin:"1.25rem 0"}},
-      React.createElement('button',{onClick:()=>handlePeriodBtn("days",7),style:btnStyle(period.type==="days"&&period.days===7)},"Last 7 days"),
+      React.createElement('button',{onClick:()=>handlePeriodBtn("alltime"),style:btnStyle(period.type==="alltime")},"All time"),
       React.createElement('button',{onClick:()=>handlePeriodBtn("days",30),style:btnStyle(period.type==="days"&&period.days===30)},"Last 30 days"),
-      React.createElement('select',{
-        value:monthVal,
-        onChange:handleMonthChange,
-        style:{fontSize:12,padding:"5px 12px",borderRadius:999,border:`1px solid ${period.type==="month"?"#888":"#ccc"}`,background:period.type==="month"?"#e8e6df":"var(--bg-primary)",color:period.type==="month"?"var(--text-primary)":"var(--text-secondary)",fontWeight:period.type==="month"?500:400,cursor:"pointer",appearance:"auto"}
-      },
-        React.createElement('option',{value:""},"Month ▾"),
-        ...MONTH_OPTIONS.map(m=>React.createElement('option',{key:m.label,value:`${m.year}-${m.month}`},m.label))
-      ),
-      React.createElement('button',{onClick:()=>handlePeriodBtn("alltime"),style:btnStyle(period.type==="alltime")},"All time")
+      React.createElement('button',{
+        onClick:()=>prevCycle?handlePeriodBtn("cycle"):null,
+        style:{...btnStyle(period.type==="cycle"),opacity:prevCycle?1:0.4,cursor:prevCycle?"pointer":"default"},
+        title:prevCycle?`${prevCycle.label}: ${prevCycle.start} — ${prevCycle.end}`:"Cycle tracking starts September 2026"
+      },prevCycle?`Previous Cycle (${prevCycle.label})`:"Previous Cycle")
     ),
 
+    React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",marginTop:-12,marginBottom:"1rem",fontStyle:"italic"}},"⚠ Cycle-based filtering starts September 2026. Previous Cycle will activate once cycles are defined."),
     // Tabs
     React.createElement('div',{style:{display:"flex",borderBottom:"1px solid var(--border)",marginBottom:"1.5rem"}},
       ...tabs.map(t=>React.createElement('button',{key:t.id,onClick:()=>setTab(t.id),style:{fontSize:13,padding:"8px 18px",border:"none",borderBottom:tab===t.id?"2px solid var(--text-primary)":"2px solid transparent",background:"transparent",color:tab===t.id?"var(--text-primary)":"var(--text-secondary)",fontWeight:tab===t.id?500:400}},t.label))
@@ -519,48 +590,65 @@ function App(){
         React.createElement(Card,{label:"Deals created",value:tt.deals.toLocaleString(),sub:"new deals"}),
         React.createElement(Card,{label:"Deal movement",value:tt.mov.toLocaleString(),sub:"stage changes"})
       ),
-      React.createElement(ST,{c:"By seller"}),
-      React.createElement('div',{style:{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:12}},
-        ...SELLERS.map(s=>React.createElement(SellerCard,{key:s,seller:s,data:st[s]}))
-      ),
-      !isAllTime&&React.createElement('div',{style:{marginTop:12,fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.75rem 1rem"}},
-        "Giuseppe and Murillo call data starts from week of Mar 30, 2026. Earlier periods show 0 for their metrics."
-      ),
-      React.createElement(ST,{c:"Deal movement by week"}),
-      React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}},
-        React.createElement('div',{style:{display:"flex",gap:16,marginBottom:12}},
-          ...SELLERS.map(s=>React.createElement('div',{key:s,style:{display:"flex",alignItems:"center",gap:6}},
-            React.createElement('div',{style:{width:10,height:10,borderRadius:2,background:COLORS[s],flexShrink:0}}),
-            React.createElement('span',{style:{fontSize:12,color:"var(--text-secondary)"}},s)
-          ))
-        ),
-        React.createElement('div',{style:{overflowX:"auto"}},
-          React.createElement('div',{style:{minWidth:700}},
-            (()=>{
-              const maxVal=Math.max(...dealMovementByWeek.map(w=>w.P+w.G+w.M),1);
-              const barH=120;
-              return React.createElement('div',{style:{display:"flex",alignItems:"flex-end",gap:3,height:barH+28}},
-                ...dealMovementByWeek.map((w,i)=>{
-                  const total=w.P+w.G+w.M;
-                  const totalPx=Math.round((total/maxVal)*barH);
-                  const pPx=total>0?Math.round((w.P/total)*totalPx):0;
-                  const gPx=total>0?Math.round((w.G/total)*totalPx):0;
-                  const mPx=totalPx-pPx-gPx;
-                  return React.createElement('div',{key:i,style:{display:"flex",flexDirection:"column",alignItems:"center",flex:1,minWidth:14}},
-                    React.createElement('div',{style:{display:"flex",flexDirection:"column",justifyContent:"flex-end",height:barH,width:"100%"},title:w.week+": P "+w.P+", G "+w.G+", M "+w.M},
-                      mPx>0&&React.createElement('div',{style:{height:mPx,background:COLORS.Murillo,borderRadius:"2px 2px 0 0",width:"100%"}}),
-                      gPx>0&&React.createElement('div',{style:{height:gPx,background:COLORS.Giuseppe,width:"100%"}}),
-                      pPx>0&&React.createElement('div',{style:{height:pPx,background:COLORS.Petrus,borderRadius:mPx===0&&gPx===0?"2px 2px 0 0":"0",width:"100%"}}),
-                      total===0&&React.createElement('div',{style:{height:2,background:"var(--bg-secondary)",width:"100%"}})
-                    ),
-                    (i%5===0||i===dealMovementByWeek.length-1)&&React.createElement('div',{style:{fontSize:9,color:"var(--text-secondary)",marginTop:4,textAlign:"center",transform:"rotate(-45deg)",transformOrigin:"top left",whiteSpace:"nowrap",marginLeft:8}},w.week)
-                  );
-                })
-              );
-            })()
+      React.createElement(ST,{c:"Calls per vertical"}),
+      (()=>{
+        const VERTICALS=["M&P","FR","EL","GCS","CONSEDGE","GENERIC"];
+        const VCOLS={FR:"#B8860B","M&P":"#185FA5",EL:"#7F77DD",GCS:"#4A4A4A",CONSEDGE:"#A0286A",GENERIC:"#888888"};
+        const agg=VERTICALS.map(v=>{
+          const rows=verticalSequences.filter(r=>r.vertical===v);
+          const calls=rows.reduce((s,r)=>s+r.calls,0);
+          const conn=rows.reduce((s,r)=>s+r.conn,0);
+          const pos=rows.reduce((s,r)=>s+r.pos,0);
+          const deals=verticalDeals[v]||0;
+          return{v,calls,conn,pos,deals,cpd:deals>0?Math.round(calls/deals):null};
+        });
+        if(verticalSequences.length===0) return React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"2rem",textAlign:"center",color:"var(--text-secondary)",fontSize:13}},"No sequence data yet — data will populate as cycles are logged.");
+        return React.createElement('div',null,
+          React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"hidden",marginBottom:"0.75rem"}},
+            React.createElement('table',{style:{width:"100%",borderCollapse:"collapse",fontSize:13}},
+              React.createElement('thead',null,
+                React.createElement('tr',{style:{borderBottom:"1px solid var(--border)",background:"var(--bg-secondary)"}},
+                  ...["Vertical","Calls","Connected","Pickup Rate","Calls Needed to Generate Deal"].map(h=>
+                    React.createElement('th',{key:h,style:{padding:"8px 14px",textAlign:h==="Vertical"?"left":"center",fontSize:11,fontWeight:500,color:"var(--text-secondary)",textTransform:"uppercase",letterSpacing:"0.05em"}},h)
+                  )
+                )
+              ),
+              React.createElement('tbody',null,
+                ...agg.map((r,i)=>React.createElement('tr',{key:r.v,style:{borderBottom:i<agg.length-1?"1px solid var(--border)":"none",background:"var(--bg-primary)"}},
+                  React.createElement('td',{style:{padding:"10px 14px"}},
+                    React.createElement('span',{style:{display:"inline-block",background:VCOLS[r.v]+"22",color:VCOLS[r.v],borderRadius:999,padding:"2px 10px",fontSize:12,fontWeight:500}},r.v)
+                  ),
+                  React.createElement('td',{style:{padding:"10px 14px",textAlign:"center"}},r.calls>0?r.calls.toLocaleString():"-"),
+                  React.createElement('td',{style:{padding:"10px 14px",textAlign:"center"}},r.conn>0?r.conn.toLocaleString():"-"),
+                  React.createElement('td',{style:{padding:"10px 14px",textAlign:"center",fontWeight:500,color:r.calls>0?VCOLS[r.v]:"var(--text-secondary)"}},r.calls>0?Math.round(r.conn/r.calls*100)+"%":"-"),
+                  React.createElement('td',{style:{padding:"10px 14px",textAlign:"center",fontWeight:500,color:r.cpd?VCOLS[r.v]:"var(--text-secondary)"}},r.cpd?r.cpd+" calls":"-")
+                ))
+              )
+            )
+          ),
+          React.createElement('ul',{style:{fontSize:11,color:"var(--text-secondary)",lineHeight:1.8,paddingLeft:"1.25rem",margin:0}},
+            React.createElement('li',null,"Calls tracked in Apollo sequences only — does not include manual calls or calls logged outside of a sequence."),
+            React.createElement('li',null,"Gap vs. all-time totals is due to calls made outside sequences for deal work on existing leads, or faulty data in Apollo."),
+            React.createElement('li',null,React.createElement('span',null,"Significant additional volume was logged on "),React.createElement('strong',null,"QUO"),React.createElement('span',null," — a separate calling platform — and cannot be tracked here.")),
+            React.createElement('li',null,"Deal counts are incomplete: GC deals without a defined service are untagged in Apollo, and some data may be missing.")
           )
+        );
+      })(),
+      React.createElement('div',{
+        onClick:()=>setSellerOpen(!sellerOpen),
+        style:{display:"flex",alignItems:"center",justifyContent:"space-between",cursor:"pointer",padding:"0.5rem 0",marginTop:"1rem",borderTop:"1px solid var(--border)"}
+      },
+        React.createElement('span',{style:{fontSize:13,fontWeight:500,color:"var(--text-secondary)"}},"By seller"),
+        React.createElement('span',{style:{fontSize:11,color:"var(--text-secondary)"}},sellerOpen?"▲ hide":"▼ show")
+      ),
+      sellerOpen&&React.createElement('div',null,
+        React.createElement('div',{style:{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:12,marginTop:8}},
+          ...SELLERS.map(s=>React.createElement(SellerCard,{key:s,seller:s,data:st[s]}))
+        ),
+        !isAllTime&&React.createElement('div',{style:{marginTop:12,fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.75rem 1rem"}},
+          "Giuseppe and Murillo call data starts from week of Mar 9, 2026. Earlier periods show 0 for their metrics."
         )
-      )
+      ),
     ),
 
     // QUOTES TAB
@@ -571,7 +659,13 @@ function App(){
         React.createElement(Card,{label:"Approved",value:fmt$(qt.approved),sub:qt.approvedN+" quote(s) · Received NTP, not necessarily invoiced",vc:"#3B6D11"}),
         React.createElement(Card,{label:"Issued (pending)",value:fmt$(qt.issued),sub:qt.issuedN+" quotes",vc:"#185FA5"}),
         React.createElement(Card,{label:"Lost",value:fmt$(qt.lost),sub:qt.lostN+" quotes",vc:"#A32D2D"}),
-        React.createElement(Card,{label:"Not issued",value:qt.notIssuedN+" quotes",sub:"prepared, not sent"})
+        React.createElement(Card,{label:"Not issued",value:qt.notIssuedN+" quotes",sub:"prepared, not sent"}),
+        React.createElement(Card,{label:"Stale",value:fmt$(qt.stale),sub:qt.staleN+" quotes · over 90 days with no decision",vc:"#888888"})
+      ),
+      React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.65rem 1rem",marginBottom:"1rem",lineHeight:1.6}},
+        "⚠ Any quote with status Issued or Not Issued for more than 90 days without a yes or no is considered ",
+        React.createElement('strong',null,"Stale"),
+        ". These are quotes where we never heard back. They remain tracked for historical purposes but are not counted toward active pipeline."
       ),
       React.createElement(ST,{c:"By award stage"}),
       React.createElement('div',{style:{display:"grid",gridTemplateColumns:"repeat(3,minmax(0,1fr))",gap:10,marginBottom:"1rem"}},
@@ -629,7 +723,7 @@ function App(){
       React.createElement('div',{style:{display:"flex",gap:"1.5rem",flexWrap:"wrap",marginBottom:"0.75rem"}},
         React.createElement('div',null,
           React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",marginBottom:4}},"Status"),
-          React.createElement(FB,{options:["All","Approved","Issued","Lost","Not Issued"],active:qsf,onChange:setQsf})
+          React.createElement(FB,{options:["All","Approved","Issued","Lost","Not Issued","Stale"],active:qsf,onChange:setQsf})
         ),
         React.createElement('div',null,
           React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)",marginBottom:4}},"Award stage"),
@@ -726,96 +820,52 @@ function App(){
           )
         )
       )),
-      React.createElement(ST,{c:"Deals by service line"}),
-      React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"hidden",marginBottom:"1rem"}},
-        React.createElement('table',{style:{width:"100%",fontSize:13}},
-          React.createElement('thead',null,React.createElement('tr',null,
-            ...["Service","Deals","Deal movement","Move rate","Tasks"].map(h=>React.createElement('th',{key:h,style:{...thS,textAlign:h==="Service"?"left":"right"}},h))
-          )),
-          React.createElement('tbody',null,
-            ...serviceLines.map((s,i)=>{
-              const rate=Math.round((s.movement/s.deals)*100),meta=SVC_META[s.svc]||{color:"#888"};
-              return React.createElement('tr',{key:i,style:{borderBottom:"1px solid var(--border)"}},
-                React.createElement('td',{style:{padding:"8px 12px"}},s.label),
-                React.createElement('td',{style:{padding:"8px 12px",textAlign:"right",fontWeight:500}},s.deals),
-                React.createElement('td',{style:{padding:"8px 12px",textAlign:"right"}},s.movement),
-                React.createElement('td',{style:{padding:"8px 12px",textAlign:"right"}},
-                  React.createElement('span',{style:{fontWeight:500}},rate+"%"),
-                  React.createElement('span',{style:{display:"inline-block",width:rate*0.4,height:6,borderRadius:3,background:meta.color,verticalAlign:"middle",marginLeft:6}})
-                ),
-                React.createElement('td',{style:{padding:"8px 12px",textAlign:"right",color:"var(--text-secondary)"}},s.tasks)
-              );
-            }),
-            React.createElement('tr',null,
-              ...["Total","139","93","67%","139"].map((v,i)=>React.createElement('td',{key:i,style:{padding:"8px 12px",textAlign:i===0?"left":"right",fontWeight:500,borderTop:"1px solid var(--border)"}},v))
-            )
-          )
-        )
-      ),
-      React.createElement(ST,{c:"Deal volume by service"}),
-      React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",padding:"1rem 1.1rem"}},
-        ...serviceLines.map(s=>{
-          const meta=SVC_META[s.svc]||{color:"#888"},max=Math.max(...serviceLines.map(x=>x.deals));
-          return React.createElement(BarRow,{key:s.svc,label:s.label,value:s.deals,max:max,color:meta.color,meta:Math.round(s.movement/s.deals*100)+"% movement"});
-        })
-      )
     ),
 
-    // WOW TAB
-    tab==="wow"&&React.createElement('div',null,
-      React.createElement('div',{style:{fontSize:12,color:"var(--text-secondary)",background:"var(--bg-secondary)",borderRadius:"var(--radius-md)",padding:"0.65rem 1rem",marginBottom:"1.25rem"}},
-        "Team totals only — individual seller breakdowns are in the Outbound Activity tab."
-      ),
-      wowData&&React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"hidden"}},
-        React.createElement('table',{style:{width:"100%",fontSize:13}},
-          React.createElement('thead',null,React.createElement('tr',null,
-            React.createElement('th',{style:{...thS,width:"28%"}},"Metric"),
-            React.createElement('th',{style:{...thS,textAlign:"right"}},"Prev ("+fmtWeek(wowData.prevLabel)+")"),
-            React.createElement('th',{style:{...thS,textAlign:"right"}},"Last ("+fmtWeek(wowData.currLabel)+")"),
-            React.createElement('th',{style:{...thS,textAlign:"right"}},"Change"),
-            React.createElement('th',{style:{...thS,width:"14%"}})
-          )),
-          React.createElement('tbody',null,
-            ...[
-              {label:"Calls logged",key:"calls",desc:"Total dials",isCurrency:false},
-              {label:"Connected",key:"conn",desc:"Calls picked up",isCurrency:false},
-              {label:"Positive calls",key:"pos",desc:"Positive outcomes",isCurrency:false},
-              {label:"Deals created",key:"deals",desc:"New deals added",isCurrency:false},
-              {label:"Deal movement",key:"mov",desc:"Stage changes",isCurrency:false},
-              {label:"Quotes sent ($)",key:"quoteAmt",desc:"Total value quoted",isCurrency:true},
-              {label:"Quotes sent (#)",key:"quoteCount",desc:"Number of quotes",isCurrency:false},
-            ].map(m=>{
-              const c=wowData.curr[m.key],p=wowData.prev[m.key];
-              const d=c-p;
-              const pctChg=p>0?Math.round((d/p)*100):null;
-              const isUp=d>0,isDown=d<0;
-              const cc=isUp?"#3B6D11":isDown?"#A32D2D":"var(--text-secondary)";
-              const arrow=isUp?"▲":isDown?"▼":"—";
-              const barMax=Math.max(c,p,1);
-              const fv=v=>m.isCurrency?fmt$(v):v.toLocaleString();
-              const fd=v=>m.isCurrency?fmt$(Math.abs(v)):Math.abs(v).toLocaleString();
-              return React.createElement('tr',{key:m.key,style:{borderBottom:"1px solid var(--border)"}},
-                React.createElement('td',{style:{padding:"10px 12px"}},
-                  React.createElement('div',{style:{fontWeight:500,marginBottom:2}},m.label),
-                  React.createElement('div',{style:{fontSize:11,color:"var(--text-secondary)"}},m.desc)
-                ),
-                React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",color:"var(--text-secondary)"}},fv(p)),
-                React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",fontWeight:500}},fv(c)),
-                React.createElement('td',{style:{padding:"10px 12px",textAlign:"right",fontWeight:500,color:cc}},
-                  d!==0?React.createElement('span',null,arrow+" ",fd(d),pctChg!==null?React.createElement('span',{style:{fontSize:11,fontWeight:400,marginLeft:4}},"("+Math.abs(pctChg)+"%)"):null):"—"
-                ),
-                React.createElement('td',{style:{padding:"10px 12px"}},
-                  React.createElement('div',{style:{display:"flex",gap:4,alignItems:"flex-end",height:24}},
-                    React.createElement('div',{style:{width:16,background:"#ccc",borderRadius:"2px 2px 0 0",height:Math.max(Math.round((p/barMax)*24),2)},title:"Prev: "+fv(p)}),
-                    React.createElement('div',{style:{width:16,background:isUp?COLORS.Giuseppe:isDown?"#E24B4A":COLORS.Petrus,borderRadius:"2px 2px 0 0",height:Math.max(Math.round((c/barMax)*24),2)},title:"Last: "+fv(c)})
+    // REVENUE TAB
+    tab==="revenue"&&React.createElement('div',null,
+      React.createElement('div',{style:{fontSize:12,color:"var(--text-secondary)",marginBottom:"0.75rem",lineHeight:1.6}},"Actual work invoiced to clients. Separate from quotes — this is money we've generated. T&M contracts (like CESG and EC Electric) are billed monthly and grow over time, so invoiced totals will exceed the original NTE quote amount. That's expected."),
+      (()=>{
+        const total=invoices.reduce((s,i)=>s+i.amount,0);
+        const sellerTotals=SELLERS.map(s=>({s,amt:invoices.filter(i=>i.seller===s).reduce((a,i)=>a+i.amount,0)}));
+        const clients=[...new Set(invoices.map(i=>i.client))];
+        const byClient=clients.map(c=>{
+          const rows=invoices.filter(i=>i.client===c);
+          const amt=rows.reduce((s,i)=>s+i.amount,0);
+          return{c,amt,seller:rows[0].seller,invoices:rows.length};
+        }).sort((a,b)=>b.amt-a.amt);
+        return React.createElement('div',null,
+          React.createElement('div',{style:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:"1rem"}},
+            React.createElement(Card,{label:"Total invoiced",value:fmt$(total),sub:invoices.length+" invoices"}),
+            ...sellerTotals.map(({s,amt})=>React.createElement(Card,{key:s,label:s,value:fmt$(amt),vc:COLORS[s]}))
+          ),
+          React.createElement(ST,{c:"By client"}),
+          React.createElement('div',{style:{background:"var(--bg-primary)",border:"1px solid var(--border)",borderRadius:"var(--radius-lg)",overflow:"hidden"}},
+            React.createElement('table',{style:{width:"100%",borderCollapse:"collapse",fontSize:13}},
+              React.createElement('thead',null,
+                React.createElement('tr',{style:{borderBottom:"1px solid var(--border)",background:"var(--bg-secondary)"}},
+                  ...["Client","Seller","Invoices","Total Billed"].map(h=>
+                    React.createElement('th',{key:h,style:{padding:"8px 14px",textAlign:h==="Client"||h==="Seller"?"left":"right",fontSize:11,fontWeight:500,color:"var(--text-secondary)",textTransform:"uppercase",letterSpacing:"0.05em"}},h)
                   )
                 )
-              );
-            })
+              ),
+              React.createElement('tbody',null,
+                ...byClient.map((r,i)=>React.createElement('tr',{key:r.c,style:{borderBottom:i<byClient.length-1?"1px solid var(--border)":"none"}},
+                  React.createElement('td',{style:{padding:"10px 14px",fontWeight:500}},r.c),
+                  React.createElement('td',{style:{padding:"10px 14px"}},
+                    React.createElement('span',{style:{fontSize:11,background:COLORS[r.seller]+"22",color:COLORS[r.seller],borderRadius:999,padding:"2px 8px"}},r.seller)
+                  ),
+                  React.createElement('td',{style:{padding:"10px 14px",textAlign:"right",color:"var(--text-secondary)"}},r.invoices),
+                  React.createElement('td',{style:{padding:"10px 14px",textAlign:"right",fontWeight:500}},fmt$(r.amt))
+                ))
+              )
+            )
           )
-        )
-      )
-    )
+        );
+      })()
+    ),
+
+
   );
 }
 
