@@ -140,13 +140,13 @@ const verticalSequences = [
   {seller:"Giuseppe",vertical:"GCS",calls:338,conn:55,pos:0,deals:0},
   {seller:"Murillo",vertical:"GCS",calls:527,conn:29,pos:0,deals:0},
   {seller:"Giuseppe",vertical:"CONSEDGE",calls:118,conn:16,pos:0,deals:0},
-  {seller:"Petrus",vertical:"GENERIC",calls:164,conn:18,pos:0,deals:0},
-  {seller:"Giuseppe",vertical:"GENERIC",calls:634,conn:90,pos:0,deals:0},
-  {seller:"Murillo",vertical:"GENERIC",calls:227,conn:7,pos:0,deals:0},
+  {seller:"Petrus",vertical:"DEAL WORK",calls:164,conn:18,pos:0,deals:0},
+  {seller:"Giuseppe",vertical:"DEAL WORK",calls:634,conn:90,pos:0,deals:0},
+  {seller:"Murillo",vertical:"DEAL WORK",calls:227,conn:7,pos:0,deals:0},
 ];
 
 // Deals created per vertical (from Apollo service offered field — incomplete due to untagged GC deals and data gaps)
-const verticalDeals = {"M&P":101,"FR":42,"EL":35,"GCS":70,"CONSEDGE":8,"GENERIC":0};
+const verticalDeals = {"M&P":101,"FR":42,"EL":35,"GCS":70,"CONSEDGE":8,"DEAL WORK":0};
 // Note: MEP (Mech+Elec+Plumb combined) shows 10 additional deals in Apollo — not included above pending clarification
 
 // Invoiced revenue — actual work billed to clients
@@ -577,7 +577,7 @@ function App(){
       ),
       React.createElement(ST,{c:"Calls per vertical"}),
       (()=>{
-        const VERTICALS=["M&P","FR","EL","GCS","CONSEDGE","GENERIC"];
+        const VERTICALS=["M&P","FR","EL","GCS","CONSEDGE","DEAL WORK"];
         const VCOLS={FR:"#B8860B","M&P":"#185FA5",EL:"#7F77DD",GCS:"#4A4A4A",CONSEDGE:"#A0286A",GENERIC:"#888888"};
         const agg=VERTICALS.map(v=>{
           const rows=verticalSequences.filter(r=>r.vertical===v);
@@ -593,7 +593,7 @@ function App(){
             React.createElement('table',{style:{width:"100%",borderCollapse:"collapse",fontSize:13}},
               React.createElement('thead',null,
                 React.createElement('tr',{style:{borderBottom:"1px solid var(--border)",background:"var(--bg-secondary)"}},
-                  ...["Vertical","Calls","Connected","Pickup Rate","Calls Needed to Generate Deal"].map(h=>
+                  ...["Vertical","Calls","Connected","Pickup Rate","Deals","Calls Needed to Generate Deal"].map(h=>
                     React.createElement('th',{key:h,style:{padding:"8px 14px",textAlign:h==="Vertical"?"left":"center",fontSize:11,fontWeight:500,color:"var(--text-secondary)",textTransform:"uppercase",letterSpacing:"0.05em"}},h)
                   )
                 )
@@ -606,6 +606,7 @@ function App(){
                   React.createElement('td',{style:{padding:"10px 14px",textAlign:"center"}},r.calls>0?r.calls.toLocaleString():"-"),
                   React.createElement('td',{style:{padding:"10px 14px",textAlign:"center"}},r.conn>0?r.conn.toLocaleString():"-"),
                   React.createElement('td',{style:{padding:"10px 14px",textAlign:"center",fontWeight:500,color:r.calls>0?VCOLS[r.v]:"var(--text-secondary)"}},r.calls>0?Math.round(r.conn/r.calls*100)+"%":"-"),
+                React.createElement('td',{style:{padding:"10px 14px",textAlign:"center"}},r.deals>0?r.deals:"-"),
                   React.createElement('td',{style:{padding:"10px 14px",textAlign:"center",fontWeight:500,color:r.cpd?VCOLS[r.v]:"var(--text-secondary)"}},r.cpd?r.cpd+" calls":"-")
                 ))
               )
