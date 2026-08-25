@@ -476,21 +476,6 @@ function App(){
     });
   },[]);
 
-  // WoW
-    if(last2.length<2)return null;
-    const pw=last2[0],cw=last2[1];
-    const prevQ=quotes.filter(q=>{const d=new Date(q.date);return d>=new Date(pw.week)&&d<new Date(cw.week);});
-    const currQ=quotes.filter(q=>{const d=new Date(q.date);const e=new Date(TODAY);e.setDate(e.getDate()+1);return d>=new Date(cw.week)&&d<=e;});
-    const sumQ=arr=>arr.reduce((s,q)=>s+(q.amount||0),0);
-    const ps=pw.P,gs=pw.G,ms=pw.M;
-    const pc=cw.P,gc=cw.G,mc=cw.M;
-    return{
-      prevLabel:pw.week,currLabel:cw.week,
-      prev:{calls:ps.calls+gs.calls+ms.calls,conn:ps.conn+gs.conn+ms.conn,pos:ps.pos+gs.pos+ms.pos,deals:ps.deals+gs.deals+ms.deals,mov:ps.mov+gs.mov+ms.mov,quoteAmt:sumQ(prevQ),quoteCount:prevQ.length},
-      curr:{calls:pc.calls+gc.calls+mc.calls,conn:pc.conn+gc.conn+mc.conn,pos:pc.pos+gc.pos+mc.pos,deals:pc.deals+gc.deals+mc.deals,mov:pc.mov+gc.mov+mc.mov,quoteAmt:sumQ(currQ),quoteCount:currQ.length},
-    };
-  },[]);
-
   const thS={textAlign:"left",fontSize:11,fontWeight:500,color:"var(--text-secondary)",padding:"8px 10px",borderBottom:"1px solid var(--border)",background:"var(--bg-secondary)"};
   const tdS={padding:"7px 10px",borderBottom:"1px solid var(--border)",color:"var(--text-primary)",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"};
 
